@@ -22,12 +22,26 @@ The ML code owns preprocessing and class mapping. The backend imports the same i
 
 ## Research models
 
+The primary reference is [Enhanced Skin Disease Classification via Dataset Refinement and Attention-Based Vision Approach](https://pmc.ncbi.nlm.nih.gov/articles/PMC11939559/). The required project extension is CNN–Transformer feature fusion. The paper's preprocessing/ViT method and our proposed fusion design must be attributed separately.
+
+```mermaid
+flowchart LR
+    A[Validated image and shared preprocessing] --> B[EfficientNetV2-S CNN features]
+    A --> C[Swin-T Transformer features]
+    B --> D[Feature fusion: E3 concatenation or E4 attention]
+    C --> D
+    D --> E[Classification head]
+    E --> F[Class scores and scoped explanation]
+```
+
 - E1: ImageNet-initialized EfficientNetV2-S with a seven-class output head.
 - E2: ImageNet-initialized Swin-T with the same class order. Swin is the proposed Transformer family choice permitted by the brief. Its practical memory/latency suitability must be measured in Colab.
 - E3: remove the baseline classifier heads, concatenate pooled CNN and Transformer features, and train a classification head.
 - E4: project each pooled feature vector to 256 dimensions, add learned branch embeddings, apply four-head attention to the two branch tokens, pool, then classify. Attention over two feature tokens is not a pixel-level explanation.
 
 Branch dimensions will be read from the chosen Torchvision models and checked with a real forward pass. A frozen-backbone warm-up followed by controlled fine-tuning is proposed. Fair comparisons use the same saved splits and a recorded training budget.
+
+E1/E2 are comparison baselines; E3/E4 implement the required hybrid. Select the fusion candidate using validation evidence, report its comparison with both baselines, and disclose negative results. A standalone model cannot silently replace the required hybrid. If the hybrid cannot satisfy the export/verification gate, report the limitation and resolve it with the user before application integration.
 
 Torchvision supplies both [EfficientNetV2-S](https://docs.pytorch.org/vision/0.24/models/generated/torchvision.models.efficientnet_v2_s.html) and [Swin-T](https://docs.pytorch.org/vision/0.24/models/generated/torchvision.models.swin_t.html). They do not supply a trained SkinDiseaseAI classifier. ImageNet initialization is not skin-lesion training.
 

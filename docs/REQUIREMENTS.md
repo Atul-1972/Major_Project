@@ -11,7 +11,7 @@ The system supports awareness and consultation with qualified dermatologists. It
 ## Requested capabilities
 
 1. Upload a skin image for analysis.
-2. Classify supported skin-lesion categories with a trained hybrid EfficientNetV2 and Vision Transformer model using feature fusion. ViT/Swin selection remains to be decided.
+2. Classify supported skin-lesion categories with a trained hybrid EfficientNetV2-S and Transformer model using feature fusion. Swin-T is the proposed Transformer branch, subject to the documented feasibility checks. Fusion is a required project component; standalone models serve as comparison baselines.
 3. Display predicted classes and model confidence with appropriate limitations.
 4. Show Grad-CAM visualizations of image regions influencing model output, with an accurate description of what the visualization explains.
 5. Validate supported formats and basic technical image quality.
@@ -33,6 +33,8 @@ User-supplied title: *Enhanced Skin Disease Classification via Dataset Refinemen
 https://pmc.ncbi.nlm.nih.gov/articles/PMC11939559/
 
 Phase 1 checked the title and methods using the primary source's indexed full-text excerpts. Live PMC and publisher requests were challenged/rate-limited. See `../reports/literature_review.md` for the limited review and its access constraints. The citation does not establish trained weights or clinical validity for this project.
+
+The user reaffirmed this paper as the primary research reference and explicitly required model fusion on 2026-10-25. Our extension combines CNN and Transformer features, comparing concatenation (E3) and attention-based fusion (E4). Describe it as a project extension inspired by the reference, not the paper's reproduced architecture. Baselines remain necessary for measuring whether fusion helps; a weaker fusion result must be reported honestly and does not authorize silently replacing the required hybrid with a standalone model.
 
 ## Decisions needed in Phase 1
 

@@ -4,6 +4,8 @@ Explainable AI-Based Skin Disease Screening Using CNN–Transformer Fusion.
 
 Research prototype for preliminary screening of supported skin-lesion categories. It is not a medical diagnosis or a replacement for a qualified dermatologist.
 
+Primary research reference: [Enhanced Skin Disease Classification via Dataset Refinement and Attention-Based Vision Approach](https://pmc.ncbi.nlm.nih.gov/articles/PMC11939559/). Our required extension is EfficientNetV2-S + Transformer feature fusion, with Swin-T proposed for the Transformer branch. Standalone models provide comparison baselines; fusion improvement must be measured rather than assumed.
+
 ## Current status
 
 Phase 1 is complete and locally verified. Waiting for the user's verification and explicit Phase 2 approval. Dataset processing, model training, backend implementation, and the dashboard have not started.

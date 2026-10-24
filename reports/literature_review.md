@@ -23,4 +23,4 @@ Access limitation: live PMC returned a browser challenge and the publisher retur
 
 ## Research contribution to test
 
-The project's contribution is a reproducible comparison of CNN, Transformer, and two fusion strategies under a common leakage-aware protocol, with scoped explanations and an honest research web interface. Neither higher accuracy from fusion nor clinical/general-smartphone suitability is assumed.
+The user reaffirmed this paper as the primary reference and model fusion as a requirement. The project's extension combines EfficientNetV2-S and a Transformer branch (proposed Swin-T), comparing concatenation and attention-based feature fusion against standalone baselines under a common leakage-aware protocol. Our fusion design is a proposed extension, not an architecture established by the reference paper. Neither higher accuracy from fusion nor clinical/general-smartphone suitability is assumed.

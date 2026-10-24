@@ -22,7 +22,7 @@ Phase 1 is authorized. No dataset processing, training, API implementation, webs
 
 - Phase 2 needs the actual source files and confirmed dataset permissions/version; download instructions can be implemented without pretending the files are already present.
 - Phases 3–5 need a usable GPU runtime, storage, real data, and compatible tested dependencies. Colab access is confirmed; an allocated GPU and uninterrupted runtime are not guaranteed.
-- Phase 5 does not assume fusion wins. Select the deployable model using the predeclared validation protocol and report all experiments honestly.
+- Phase 5 must implement the required CNN–Transformer fusion. Select a fusion candidate using the predeclared validation protocol and compare it honestly with both baselines. Do not assume fusion wins or silently replace it with a standalone model. If the hybrid fails verification, resolve that limitation before integration.
 - Phases 6–7 must not substitute fake predictions when weights are missing. Clearly unavailable inference is the correct behavior.
 - Phase 8 needs the approved hosting/access plan and relevant credentials; it must distinguish research-demo validation from clinical validation.
 

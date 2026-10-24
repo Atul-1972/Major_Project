@@ -12,7 +12,7 @@ Status: proposed protocol. No experiment has run and there are no project perfor
 | E4 | Projected two-branch attention fusion | Does learned interaction help over simple concatenation? |
 | E5 | Optional supervised segmentation | Can annotated masks support a separate validated task? |
 
-Swin-T is proposed; measure feasibility with a GPU smoke test before committing the training budget. Do not substitute models or change splits without recording a new experiment/version. Negative or inconclusive fusion results are valid outcomes. Select the deployable model from evidence even if a baseline wins; report fusion as an experiment rather than claiming superiority.
+Swin-T is proposed; measure feasibility with a GPU smoke test before committing the training budget. Do not substitute models or change splits without recording a new experiment/version. Fusion is required by the user; E1/E2 are comparisons, and E3/E4 are the hybrid candidates. Select between validated fusion configurations using validation evidence. Report negative or inconclusive results even if a baseline wins; do not claim superiority or silently substitute a standalone model. If no fusion candidate passes export/verification checks, report the limitation and resolve it with the user before integration.
 
 ## Initial configuration to validate
 

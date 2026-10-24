@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "SkinDiseaseAI",
-  "updated_at": "2026-10-24T19:08:17.932401+00:00",
+  "updated_at": "2026-10-24T19:10:18.842814+00:00",
   "phase": "phase_1",
   "status": "awaiting_approval",
-  "summary": "Phase 1 complete and locally verified: named repository/Git main, isolated Python venv, environment verifier, requirements, source review with access limits, HAM10000 grouped-split plan, baseline/fusion experiments, API/architecture/UML, setup guide and detailed report. Doctor/compilation passed; optional ML gate correctly reports missing packages; ignore rules and checkpoint consistency checked. User confirmed Colab access and no dataset download. No training or application implementation performed.",
-  "next_action": "Wait for user verification and explicit Phase 2 approval. Then implement HAM10000 acquisition support, audit, leakage-aware splitting, preprocessing, and data-loader verification. Do not begin Phase 2 or mobile work without approval.",
+  "summary": "Recorded the user clarification: PMC11939559 is the primary research reference and CNN-Transformer feature fusion is required. Updated architecture, requirements, experiment/phase plans, decisions, literature review and resume instructions. EfficientNetV2-S plus proposed Swin-T hybrid candidates use concatenation and attention fusion; baselines remain comparisons. Documentation diff whitespace check passed. No implementation or training performed.",
+  "next_action": "Wait for user verification and explicit Phase 2 approval. Preserve the required fusion scope, then implement HAM10000 acquisition support, audit, grouped splits, preprocessing and loader verification in the approved phase. Do not start mobile work.",
   "completed": [
     "Created structured project directories and ignore rules",
     "Recorded SkinDiseaseAI requirements and deferred mobile work",
@@ -16,6 +16,7 @@
     "Moved preparation files into the named SkinDiseaseAI repository",
     "Verified Phase 1 environment, isolated venv, repository, optional dependency gate, and ignore rules",
     "Documented research-first architecture, HAM10000 protocol, E1-E4 experiments, API contract and UML",
-    "Delivered Phase 1 report and setup guide; paused at user verification and Phase 2 approval boundary"
+    "Delivered Phase 1 report and setup guide; paused at user verification and Phase 2 approval boundary",
+    "Confirmed the primary paper reference and required CNN-Transformer fusion without assuming performance gains"
   ]
 }

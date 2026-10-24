@@ -25,3 +25,11 @@ See `ARCHITECTURE.md`, `DATASET_PLAN.md`, and `EXPERIMENT_PLAN.md` for Phase 1 d
 - Use Python-served templates and browser JavaScript for the web client. No Node tooling.
 - Create only a scope note in `mobile_app/`; no Flutter dependencies or implementation are authorized now.
 - MIT covers original repository code; dataset, paper, pretrained weights, and third-party code retain their own terms. No dataset or model redistribution is implied.
+
+## 2026-10-25 — reference and fusion clarification
+
+- User instruction: "use this reseach paper as refrence and here we use fusion of model", referring to https://pmc.ncbi.nlm.nih.gov/articles/PMC11939559/.
+- Treat that paper as the primary research reference. Attribute the reference method and our CNN–Transformer feature-fusion extension separately.
+- Fusion is required: EfficientNetV2-S plus proposed Swin-T, with E3 concatenation and E4 attention-based fusion. E1/E2 remain comparison baselines.
+- Select between validated fusion candidates using the predeclared validation protocol. If fusion underperforms a baseline, report it honestly; do not silently change the project's required architecture. Resolve an inability to pass export/verification checks before integration.
+- This is a Phase 1 requirements clarification. Phase 2 remains unapproved; no dataset processing, training, or mobile work begins.

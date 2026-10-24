@@ -47,3 +47,13 @@ Phase 1 complete and locally verified: named repository/Git main, isolated Pytho
 - Delivered Phase 1 report and setup guide; paused at user verification and Phase 2 approval boundary
 
 Next action: Wait for user verification and explicit Phase 2 approval. Then implement HAM10000 acquisition support, audit, leakage-aware splitting, preprocessing, and data-loader verification. Do not begin Phase 2 or mobile work without approval.
+
+## 2026-10-24T19:10:18.842814+00:00 — phase_1
+
+Status: awaiting_approval
+
+Recorded the user clarification: PMC11939559 is the primary research reference and CNN-Transformer feature fusion is required. Updated architecture, requirements, experiment/phase plans, decisions, literature review and resume instructions. EfficientNetV2-S plus proposed Swin-T hybrid candidates use concatenation and attention fusion; baselines remain comparisons. Documentation diff whitespace check passed. No implementation or training performed.
+
+- Confirmed the primary paper reference and required CNN-Transformer fusion without assuming performance gains
+
+Next action: Wait for user verification and explicit Phase 2 approval. Preserve the required fusion scope, then implement HAM10000 acquisition support, audit, grouped splits, preprocessing and loader verification in the approved phase. Do not start mobile work.
