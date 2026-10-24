@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "SkinDiseaseAI",
-  "updated_at": "2026-10-24T19:10:18.842814+00:00",
+  "updated_at": "2026-10-24T19:18:26.693424+00:00",
   "phase": "phase_1",
   "status": "awaiting_approval",
-  "summary": "Recorded the user clarification: PMC11939559 is the primary research reference and CNN-Transformer feature fusion is required. Updated architecture, requirements, experiment/phase plans, decisions, literature review and resume instructions. EfficientNetV2-S plus proposed Swin-T hybrid candidates use concatenation and attention fusion; baselines remain comparisons. Documentation diff whitespace check passed. No implementation or training performed.",
-  "next_action": "Wait for user verification and explicit Phase 2 approval. Preserve the required fusion scope, then implement HAM10000 acquisition support, audit, grouped splits, preprocessing and loader verification in the approved phase. Do not start mobile work.",
+  "summary": "Implemented local project chat preservation from original session records: readable Markdown, structured JSONL, hashed manifest and preserved master prompt. Added exporter, checkpoint refresh, current-session watcher, private Git exclusions and documentation. Five focused unit tests passed; initial 21-message export included all six user messages and three earlier final answers; content hashes, attachment fidelity and ignore rules verified. Phase 2 remains unapproved.",
+  "next_action": "Keep registered chat archives refreshed; register later project conversations and restart the watcher after process/app shutdown as needed. Wait for explicit Phase 2 approval before dataset pipeline work; mobile remains deferred.",
   "completed": [
     "Created structured project directories and ignore rules",
     "Recorded SkinDiseaseAI requirements and deferred mobile work",
@@ -17,6 +17,7 @@
     "Verified Phase 1 environment, isolated venv, repository, optional dependency gate, and ignore rules",
     "Documented research-first architecture, HAM10000 protocol, E1-E4 experiments, API contract and UML",
     "Delivered Phase 1 report and setup guide; paused at user verification and Phase 2 approval boundary",
-    "Confirmed the primary paper reference and required CNN-Transformer fusion without assuming performance gains"
+    "Confirmed the primary paper reference and required CNN-Transformer fusion without assuming performance gains",
+    "Saved original project conversation messages and master prompt with checkpoint and live-session refresh support"
   ]
 }

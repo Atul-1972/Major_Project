@@ -33,3 +33,11 @@ See `ARCHITECTURE.md`, `DATASET_PLAN.md`, and `EXPERIMENT_PLAN.md` for Phase 1 d
 - Fusion is required: EfficientNetV2-S plus proposed Swin-T, with E3 concatenation and E4 attention-based fusion. E1/E2 remain comparison baselines.
 - Select between validated fusion candidates using the predeclared validation protocol. If fusion underperforms a baseline, report it honestly; do not silently change the project's required architecture. Resolve an inability to pass export/verification checks before integration.
 - This is a Phase 1 requirements clarification. Phase 2 remains unapproved; no dataset processing, training, or mobile work begins.
+
+## 2026-10-25 — preserve project chat history
+
+- User instruction: "i want to save all the chat history of this project".
+- Archive available user/assistant conversation messages directly from the local project session record, separately from progress summaries. Include progress updates, question/answer replies, and the preserved master prompt.
+- Keep transcripts and source registration local and ignored by Git. Add a manual exporter, checkpoint-triggered refresh, and a watcher for the active session. A watcher must be restarted if its process or the computer stops.
+- Exclude internal instructions, private reasoning, internal tool payloads, and environment-only UI snapshots. Do not reconstruct missing messages or claim arbitrary images/attachments were copied.
+- This maintenance request is authorized independently of the pending dataset phase; Phase 2 remains unapproved.

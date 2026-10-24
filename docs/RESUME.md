@@ -13,6 +13,7 @@ The preparation files moved into the named repository during Phase 1. The author
 - `.project/history.jsonl`: chronological development checkpoint records.
 - `docs/PROGRESS.md`: readable report generated from the history.
 - `docs/APPROVALS.md`: explicit phase-approval record.
+- `chat_history/`: private local user/assistant conversation exports, separate from the progress summaries. See `CHAT_HISTORY.md`; archives and source registration are ignored by Git and need their own workspace backup.
 
 The checkpoint utility runs with Python's standard library; no package installation is required.
 

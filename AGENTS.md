@@ -25,6 +25,8 @@
 - Supply a concrete `--summary`, `--next`, and relevant `--completed` items. Update requirements and decisions when they change.
 - Record validation results and incomplete work accurately. Never label unexecuted checks as passed.
 - The script updates `.project/state.json`, appends `.project/history.jsonl`, and regenerates `docs/PROGRESS.md`.
+- User requested full project chat preservation. Read `docs/CHAT_HISTORY.md`; transcripts are local under ignored `chat_history/`, separately from progress summaries. Run `scripts/export_chat.py --register-current` for each new project conversation, then refresh at checkpoints. Never export internal instructions, private reasoning, or internal tool payloads. Do not claim an unwritten final reply is already archived.
+- A current-session chat watcher may be running. Do not start duplicate watchers; after restart, refresh/register as needed. Archive source registration is local and ignored by Git.
 - If interrupted, inspect actual files and the history before relying on the latest checkpoint. A process may end between file writes.
 - Do not claim that token exhaustion can always be detected or that credits automatically restart an agent. Frequent checkpoints reduce lost context; they do not guarantee an uninterrupted process.
 

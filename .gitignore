@@ -44,6 +44,10 @@ backend/uploads/
 # Temporary checkpoint write (keep state and history versionable)
 .project/*.tmp
 
+# Private local conversation exports and machine-specific source registrations
+chat_history/
+.project/chat_sources.local.json
+
 # Operating system/editor files
 Thumbs.db
 .DS_Store

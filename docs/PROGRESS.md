@@ -57,3 +57,13 @@ Recorded the user clarification: PMC11939559 is the primary research reference a
 - Confirmed the primary paper reference and required CNN-Transformer fusion without assuming performance gains
 
 Next action: Wait for user verification and explicit Phase 2 approval. Preserve the required fusion scope, then implement HAM10000 acquisition support, audit, grouped splits, preprocessing and loader verification in the approved phase. Do not start mobile work.
+
+## 2026-10-24T19:18:26.693424+00:00 — phase_1
+
+Status: awaiting_approval
+
+Implemented local project chat preservation from original session records: readable Markdown, structured JSONL, hashed manifest and preserved master prompt. Added exporter, checkpoint refresh, current-session watcher, private Git exclusions and documentation. Five focused unit tests passed; initial 21-message export included all six user messages and three earlier final answers; content hashes, attachment fidelity and ignore rules verified. Phase 2 remains unapproved.
+
+- Saved original project conversation messages and master prompt with checkpoint and live-session refresh support
+
+Next action: Keep registered chat archives refreshed; register later project conversations and restart the watcher after process/app shutdown as needed. Wait for explicit Phase 2 approval before dataset pipeline work; mobile remains deferred.

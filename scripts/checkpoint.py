@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -75,6 +76,16 @@ def main() -> None:
     report.write_text("\n".join(lines), encoding="utf-8")
     print(f"Saved checkpoint: {STATE_FILE}")
     print(f"Phase: {state['phase']} | Status: {state['status']}")
+
+    # Preserve task progress even if a local chat source is temporarily unavailable.
+    try:
+        from export_chat import refresh_archives
+
+        conversations = refresh_archives()
+        if conversations:
+            print(f"Refreshed {conversations} local conversation archive(s).")
+    except (OSError, ValueError, StopIteration) as error:
+        print(f"Checkpoint saved; chat archive refresh failed: {error}", file=sys.stderr)
 
 
 if __name__ == "__main__":

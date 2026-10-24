@@ -12,6 +12,8 @@ Phase 1 is complete and locally verified. Waiting for the user's verification an
 
 Read the [Phase 1 report](docs/phase-reports/phase-1.md), [setup guide](docs/SETUP_WINDOWS.md), and [running checklist](docs/CHECKLIST.md).
 
+The [chat history guide](docs/CHAT_HISTORY.md) explains the full local conversation archive under `chat_history/`, its live refresh command, and how it differs from development checkpoints.
+
 The repository is `Desktop/Major Project/SkinDiseaseAI`. Run all commands from `SkinDiseaseAI`, not its parent folder.
 
 ## Agreed constraints
