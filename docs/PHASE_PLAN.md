@@ -16,7 +16,7 @@ The attached master prompt explicitly approved Phase 1 only and requires researc
 
 ## Current boundary
 
-Phase 1 is authorized. No dataset processing, training, API implementation, website implementation, publication, or mobile implementation is authorized by this phase alone. Local standard-library tools, documentation, a virtual environment, and Git setup are within Phase 1.
+Phase 2 is authorized by the user's "start phase 2" instruction on 2026-10-25. Dataset acquisition support, auditing, grouped splits, preprocessing, and data-loader verification are in scope. Training, application implementation, publication, and mobile implementation require their later approvals.
 
 ## Essential dependencies
 

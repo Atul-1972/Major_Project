@@ -1,0 +1,4 @@
+# Local Windows CPU verification. The dedicated CPU index returned no wheels
+# in this environment; the verified PyPI Windows distribution reports +cpu.
+# Colab CUDA wheels/runtime are checked separately; do not use this there.
+-r torch-windows.txt

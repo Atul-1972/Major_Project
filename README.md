@@ -8,7 +8,7 @@ Primary research reference: [Enhanced Skin Disease Classification via Dataset Re
 
 ## Current status
 
-Phase 1 is complete and locally verified. Waiting for the user's verification and explicit Phase 2 approval. Dataset processing, model training, backend implementation, and the dashboard have not started.
+Phase 1 is complete. Phase 2 is authorized and in progress: dataset acquisition, audit, grouped splits, preprocessing, and loader verification. Model training, backend implementation, and the dashboard have not started.
 
 Read the [Phase 1 report](docs/phase-reports/phase-1.md), [setup guide](docs/SETUP_WINDOWS.md), and [running checklist](docs/CHECKLIST.md).
 
@@ -57,10 +57,10 @@ Files remain on disk when a session ends. Token-credit changes cannot automatica
 
 ## Run the current phase
 
-No application dependencies are needed for Phase 1. See [Windows setup](docs/SETUP_WINDOWS.md) for exact commands and [the checklist](docs/CHECKLIST.md) for completed and remaining work.
+Phase 2 commands and output descriptions are in [the data-preparation guide](docs/PHASE_2.md). See [the checklist](docs/CHECKLIST.md) and saved checkpoint for completed and remaining verification. Run the data pipeline after acquisition:
 
 ```powershell
-python scripts/doctor.py
+python -m ai_model.data.pipeline prepare
 ```
 
 The web application has no run command yet. Its implementation follows the evaluated model in the approved phase plan. No trained skin-lesion model is included.

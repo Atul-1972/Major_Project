@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "SkinDiseaseAI",
-  "updated_at": "2026-10-24T19:18:26.693424+00:00",
-  "phase": "phase_1",
-  "status": "awaiting_approval",
-  "summary": "Implemented local project chat preservation from original session records: readable Markdown, structured JSONL, hashed manifest and preserved master prompt. Added exporter, checkpoint refresh, current-session watcher, private Git exclusions and documentation. Five focused unit tests passed; initial 21-message export included all six user messages and three earlier final answers; content hashes, attachment fidelity and ignore rules verified. Phase 2 remains unapproved.",
-  "next_action": "Keep registered chat archives refreshed; register later project conversations and restart the watcher after process/app shutdown as needed. Wait for explicit Phase 2 approval before dataset pipeline work; mobile remains deferred.",
+  "updated_at": "2026-10-24T19:47:44.874653+00:00",
+  "phase": "phase_2",
+  "status": "in_progress",
+  "summary": "Phase 2 implementation and documentation saved. All 30 tests passed, including ranged resume, source identity/integrity, image audit, duplicate grouping, patient grouping, leakage prevention, immutable splits, deterministic evaluation, augmentation restrictions, orientation and real PyTorch fixture batches. Source metadata confirms 10,015 entries, 7,470 lesions and seven expected class counts; no patient IDs. Colab notebook JSON/cells statically checked but not run in Colab. Image archive is still downloading; actual full-image audit and batch verification remain pending.",
+  "next_action": "Finish official image download/extraction (acquisition session 94256), then run python -m ai_model.data.pipeline prepare on the real data. Diagnose any audit errors; save actual aggregate findings and phase report before requesting Phase 3 approval.",
   "completed": [
     "Created structured project directories and ignore rules",
     "Recorded SkinDiseaseAI requirements and deferred mobile work",
@@ -18,6 +18,8 @@
     "Documented research-first architecture, HAM10000 protocol, E1-E4 experiments, API contract and UML",
     "Delivered Phase 1 report and setup guide; paused at user verification and Phase 2 approval boundary",
     "Confirmed the primary paper reference and required CNN-Transformer fusion without assuming performance gains",
-    "Saved original project conversation messages and master prompt with checkpoint and live-session refresh support"
+    "Saved original project conversation messages and master prompt with checkpoint and live-session refresh support",
+    "Implemented and tested Phase 2 acquisition, audit, grouped manifests, shared preprocessing and PyTorch loaders",
+    "Added pinned verified Windows dependencies, source attribution, phase guide and Colab preparation notebook"
   ]
 }

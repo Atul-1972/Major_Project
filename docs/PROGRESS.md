@@ -67,3 +67,38 @@ Implemented local project chat preservation from original session records: reada
 - Saved original project conversation messages and master prompt with checkpoint and live-session refresh support
 
 Next action: Keep registered chat archives refreshed; register later project conversations and restart the watcher after process/app shutdown as needed. Wait for explicit Phase 2 approval before dataset pipeline work; mobile remains deferred.
+
+## 2026-10-24T19:22:13.920757+00:00 — phase_2
+
+Status: in_progress
+
+User explicitly approved Phase 2. Checked clean repository and saved requirements; no HAM10000 files are present. Beginning acquisition verification, data audit, grouped splitting, shared preprocessing and loader implementation.
+
+Next action: Verify official HAM10000 release terms and file catalogue, install isolated data dependencies, implement and test the pipeline, then verify it on the actual data if accessible.
+
+## 2026-10-24T19:30:57.808842+00:00 — phase_2
+
+Status: in_progress
+
+Phase 2 approved and in progress. Harvard API returned HTTP 403; verified official ISIC distribution and CC BY-NC 4.0. Official labels and lesion groups downloaded (10,015 rows each); image ZIP download is running. Added resumable acquisition code and pinned data dependencies. Corrected the downloader default root; the already-running first download is under Major Project/data/ham10000 and must be moved into SkinDiseaseAI/data/ham10000 after it finishes. PyTorch CPU index supplied no wheels; testing matched PyPI Windows wheels.
+
+Next action: Implement audit, duplicate-aware group splits, shared preprocessing, Dataset/DataLoader and focused tests while downloads finish. Consolidate the first download into the repository before verification; do not start training.
+
+## 2026-10-24T19:39:00.660084+00:00 — phase_2
+
+Status: in_progress
+
+Phase 2 code implemented: official resumable acquisition, metadata join, image audit with exact/perceptual duplicate components, deterministic class-aware group splits, immutable manifests, shared transforms and PyTorch loaders. Initial 27 tests passed; added ranged-download resume test (8 acquisition tests now pass). Torch 2.9.1+cpu and torchvision 0.24.1+cpu import/CPU calculation and pip check passed using PyPI Windows wheels. Consolidated download files into the correct repository directory; resuming the official image archive with four validated range connections.
+
+Next action: Complete source download/extraction, run the full audit and pipeline on actual HAM10000 images, diagnose failures, rerun relevant tests, and prepare Phase 2 documentation/report. Do not start model training.
+
+## 2026-10-24T19:47:44.874653+00:00 — phase_2
+
+Status: in_progress
+
+Phase 2 implementation and documentation saved. All 30 tests passed, including ranged resume, source identity/integrity, image audit, duplicate grouping, patient grouping, leakage prevention, immutable splits, deterministic evaluation, augmentation restrictions, orientation and real PyTorch fixture batches. Source metadata confirms 10,015 entries, 7,470 lesions and seven expected class counts; no patient IDs. Colab notebook JSON/cells statically checked but not run in Colab. Image archive is still downloading; actual full-image audit and batch verification remain pending.
+
+- Implemented and tested Phase 2 acquisition, audit, grouped manifests, shared preprocessing and PyTorch loaders
+- Added pinned verified Windows dependencies, source attribution, phase guide and Colab preparation notebook
+
+Next action: Finish official image download/extraction (acquisition session 94256), then run python -m ai_model.data.pipeline prepare on the real data. Diagnose any audit errors; save actual aggregate findings and phase report before requesting Phase 3 approval.

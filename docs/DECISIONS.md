@@ -41,3 +41,13 @@ See `ARCHITECTURE.md`, `DATASET_PLAN.md`, and `EXPERIMENT_PLAN.md` for Phase 1 d
 - Keep transcripts and source registration local and ignored by Git. Add a manual exporter, checkpoint-triggered refresh, and a watcher for the active session. A watcher must be restarted if its process or the computer stops.
 - Exclude internal instructions, private reasoning, internal tool payloads, and environment-only UI snapshots. Do not reconstruct missing messages or claim arbitrary images/attachments were copied.
 - This maintenance request is authorized independently of the pending dataset phase; Phase 2 remains unapproved.
+
+## 2026-10-25 — Phase 2 authorization and implementation
+
+- User approved Phase 2 with "start phase 2". Dataset processing is authorized; training remains a separately approved Phase 3.
+- Harvard's API returned HTTP 403. Use the documented official ISIC 2018 Task 3 training distribution with its CC BY-NC 4.0 notice, original labels, and supplemental lesion identifiers. Never substitute an undocumented pre-split/augmented mirror.
+- The canonical metadata is a one-to-one join named `metadata.csv`, retaining original lesion IDs and diagnosis-confirmation text. Patient/demographic values are not invented.
+- Prefer actual patient IDs when supplied; otherwise union lesion relations, exact duplicates, and conservative perceptual matches. The ISIC source used here has no patient IDs.
+- Shared preprocessing is RGB/orientation normalization and aspect-preserving 224-pixel letterboxing with ImageNet normalization. Training-only flips/color jitter are configured; rotation is initially omitted to avoid an additional crop/geometry change before review.
+- Freeze class mappings, manifests, and preprocessing together, with hashes and a seed-42 class-aware group assignment. Reject changed existing bundles rather than silently regenerating splits.
+- Windows torch/torchvision 2.9.1/0.24.1 from PyPI import as CPU builds; NumPy 2.3.5 and Pillow 12.0.0 are installed. CPU operation and `pip check` passed; Colab execution remains unverified.

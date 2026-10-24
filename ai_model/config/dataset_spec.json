@@ -1,0 +1,13 @@
+{
+  "dataset": "HAM10000",
+  "expected_images": 10015,
+  "classes": [
+    {"index": 0, "code": "akiec", "name": "Actinic keratoses / intraepithelial carcinoma", "expected_images": 327},
+    {"index": 1, "code": "bcc", "name": "Basal cell carcinoma", "expected_images": 514},
+    {"index": 2, "code": "bkl", "name": "Benign keratosis-like lesions", "expected_images": 1099},
+    {"index": 3, "code": "df", "name": "Dermatofibroma", "expected_images": 115},
+    {"index": 4, "code": "mel", "name": "Melanoma", "expected_images": 1113},
+    {"index": 5, "code": "nv", "name": "Melanocytic nevi", "expected_images": 6705},
+    {"index": 6, "code": "vasc", "name": "Vascular lesions", "expected_images": 142}
+  ]
+}

@@ -1,0 +1,5 @@
+# Tested Windows CPU distribution from PyPI. No CUDA packages are requested.
+# Version output must be checked after installation; do not assume a GPU backend.
+--index-url https://pypi.org/simple
+torch==2.9.1
+torchvision==0.24.1

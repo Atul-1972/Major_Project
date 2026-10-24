@@ -1,0 +1,3 @@
+# Complete pinned direct requirements for local Phase 2 verification.
+-r data.txt
+-r torch-windows.txt

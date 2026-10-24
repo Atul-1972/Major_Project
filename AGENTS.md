@@ -18,6 +18,7 @@
 - User confirmed Google Colab access and no HAM10000 download on 2026-10-25. Use local CPU checks and Colab GPU training, subject to actual runtime availability.
 - Repository root is `SkinDiseaseAI/` inside the parent Desktop workspace. Do not recreate project records at the parent level.
 - User reaffirmed PMC11939559 as the primary research reference and CNN–Transformer fusion as required. E1/E2 are comparison baselines; implement E3/E4 hybrid candidates and evaluate honestly. Do not silently replace the hybrid with a baseline. This clarification does not approve Phase 2.
+- The user subsequently approved Phase 2 on 2026-10-25 with "start phase 2". Dataset acquisition support, audit, grouped splits, preprocessing, and loader verification are authorized. Training remains Phase 3 and needs a separate approval.
 
 ## Saving and resuming
 

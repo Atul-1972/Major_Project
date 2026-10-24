@@ -2,7 +2,7 @@
 
 ## Current state
 
-User confirmed: Colab is available and HAM10000 has not been downloaded. No local images or labels have been audited. Source-documented totals below are expectations, not measurements of this workspace.
+The user authorized Phase 2 on 2026-10-25. Official ISIC labels and lesion-group files have been downloaded and joined: 10,015 image entries and 7,470 lesion IDs. The image-archive download and full image audit are tracked in the latest checkpoint/phase report. No training has run. Published class totals below remain expectations until the image audit confirms the actual saved cohort.
 
 ## Initial source and scope
 
@@ -28,7 +28,7 @@ This is the planned class order. Phase 2 must generate and validate the saved ma
 4. Record original filenames, provider checksums where available, and locally computed SHA-256 hashes. Read actual archive sizes before downloading/extracting; the local free-space measurement does not guarantee future capacity.
 5. On Colab, use a private durable storage location. Do not publish images, private paths, or credentials in notebooks.
 
-No automated download or acceptance of terms has occurred in Phase 1.
+No automated download occurred in Phase 1. Phase 2 uses the official ISIC distribution after Harvard's API returned HTTP 403. See `DATASET_SOURCE.md` for verified source links, CC BY-NC 4.0 attribution, and metadata derivation. The derived table is named `metadata.csv`; it does not pretend to be Harvard's original CSV or supply missing demographics. Commands are in `PHASE_2.md`.
 
 ## Audit acceptance criteria
 
