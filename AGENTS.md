@@ -19,6 +19,8 @@
 - Repository root is `SkinDiseaseAI/` inside the parent Desktop workspace. Do not recreate project records at the parent level.
 - User reaffirmed PMC11939559 as the primary research reference and CNN–Transformer fusion as required. E1/E2 are comparison baselines; implement E3/E4 hybrid candidates and evaluate honestly. Do not silently replace the hybrid with a baseline. This clarification does not approve Phase 2.
 - The user subsequently approved Phase 2 on 2026-10-25 with "start phase 2". Dataset acquisition support, audit, grouped splits, preprocessing, and loader verification are authorized. Training remains Phase 3 and needs a separate approval.
+- A resumable Phase 2 runner may be active. Inspect `.project/phase2_run.local.json` and `reports/local/phase2-run.log` before launching acquisition or another runner; do not duplicate downloads. `scripts/run_phase2.py` may finish the approved data phase and write its report/checkpoint without an agent turn, but it never starts training. User confirmed slow Wi-Fi; do not mistake slow download progress for a passed real-data checkpoint.
+- The user subsequently chose "Pause now". The download was stopped and Phase 2 is paused. Do not restart network acquisition or the completion runner until the user requests resumption. Retain `.part`, `.part.json`, chunk files, original archives, receipts and the checkpoint; use the resume guide when authorized.
 
 ## Saving and resuming
 

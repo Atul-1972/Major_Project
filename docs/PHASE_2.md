@@ -2,6 +2,23 @@
 
 Run every command from `Desktop/Major Project/SkinDiseaseAI`. These commands prepare research data; they do not train a model or start a server.
 
+## Complete the phase as a resumable local job
+
+```powershell
+.\.venv\Scripts\python.exe -u scripts\run_phase2.py
+```
+
+This performs acquisition/extraction, dependency checks, tests, and actual-data preparation in order. It stops on any failed stage and retains downloaded bytes. After successful real-cohort checks it generates the final phase report and `reports/phase2-data-summary.json`, updates the checkpoint and checklist, and stops before training. It uses a process lock to prevent duplicate jobs. At the saved pause checkpoint, no Phase 2 runner was left running. Before any later restart, inspect the status file to avoid starting duplicate jobs.
+
+Review its status and recent log output:
+
+```powershell
+Get-Content .project\phase2_run.local.json
+Get-Content reports\local\phase2-run.log -Tail 20
+```
+
+This process can continue without agent tokens while the computer and process stay running. It is not a Windows startup service. If it stops or the computer restarts, run the same command to resume. `status: complete` means the data phase passed and is waiting for Phase 3 approval; `needs_attention` means inspect the log and resolve the reported issue before continuing.
+
 ## 1. Install the tested Windows environment
 
 ```powershell

@@ -14,6 +14,20 @@ def test_default_download_directory_stays_in_repository():
     assert acquire.DEFAULT_DATA == Path(__file__).resolve().parents[1] / "data/ham10000"
 
 
+def test_regional_probe_requires_the_expected_source_range(monkeypatch, capsys):
+    import sys
+
+    monkeypatch.setattr(acquire, "BASE", acquire.BASE)
+    monkeypatch.setattr(sys, "argv", ["acquire", "--probe", "--regional-endpoint"])
+    def respond(request, **kwargs):
+        assert request.full_url.startswith(acquire.REGIONAL_BASE)
+        return Response(b"x" * 1024**2, status=206, headers={"Content-Range": "bytes 0-1048575/2771732744", "ETag": '"test-only-source"'})
+    monkeypatch.setattr(acquire.urllib.request, "urlopen", respond)
+    assert acquire.main() == 0
+    report = json.loads(capsys.readouterr().out)
+    assert report["bytes"] == 1024**2 and report["etag"] == '"test-only-source"'
+
+
 class Response(io.BytesIO):
     def __init__(self, content, status=200, headers=None):
         super().__init__(content)

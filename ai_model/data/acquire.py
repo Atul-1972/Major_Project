@@ -15,6 +15,7 @@ import urllib.error
 import urllib.request
 import zipfile
 import zlib
+from time import perf_counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath
@@ -23,6 +24,7 @@ from pathlib import Path, PurePosixPath
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA = ROOT / "data" / "ham10000"
 BASE = "https://isic-archive.s3.amazonaws.com/challenges/2018/"
+REGIONAL_BASE = "https://isic-archive.s3.us-east-1.amazonaws.com/challenges/2018/"
 INPUT = "ISIC2018_Task3_Training_Input.zip"
 TRUTH = "ISIC2018_Task3_Training_GroundTruth.zip"
 GROUPS = "ISIC2018_Task3_Training_LesionGroupings.csv"
@@ -262,15 +264,38 @@ def canonical_metadata(raw_directory: Path, output: Path) -> int:
 
 
 def main() -> int:
+    global BASE
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA)
     parser.add_argument("--metadata-only", action="store_true", help="Fetch and join labels/groups without downloading images")
     parser.add_argument("--extract", action="store_true", help="Extract after downloading; existing verified images are retained")
     parser.add_argument("--workers", type=int, default=4, choices=range(1, 9), help="Image download connections, default 4; small metadata downloads stay serial")
+    parser.add_argument("--regional-endpoint", action="store_true", help="Use the same public S3 bucket's us-east-1 endpoint; entity identity is still checked")
+    parser.add_argument("--probe", action="store_true", help="Measure a 1 MiB source range and report source identity without downloading the cohort")
     args = parser.parse_args()
+    if args.regional_endpoint:
+        BASE = REGIONAL_BASE
     directory = args.data_dir.resolve()
     receipts = []
     try:
+        if args.probe:
+            start = perf_counter()
+            request = urllib.request.Request(BASE + INPUT, headers={"Range": "bytes=0-1048575"})
+            with urllib.request.urlopen(request, timeout=15) as response:
+                if response.status != 206 or response.headers.get("Content-Range") != "bytes 0-1048575/2771732744":
+                    raise ValueError("Probe did not receive the expected official archive range")
+                chunks = []
+                while chunk := response.read(16 * 1024):
+                    chunks.append(chunk)
+                    if perf_counter() - start > 30:
+                        raise TimeoutError("Source probe exceeded 30 seconds; existing dataset files are untouched")
+                data = b"".join(chunks)
+                etag = response.headers.get("ETag")
+            seconds = perf_counter() - start
+            if len(data) != 1024**2:
+                raise ValueError("Incomplete source probe")
+            print(json.dumps({"url": BASE + INPUT, "etag": etag, "bytes": len(data), "seconds": round(seconds, 3), "MiB_per_second": round(1 / max(seconds, 0.001), 3)}), flush=True)
+            return 0
         for filename in (TRUTH, GROUPS) + (() if args.metadata_only else (INPUT,)):
             for attempt in range(3):
                 try:

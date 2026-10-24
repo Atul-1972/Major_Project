@@ -17,7 +17,20 @@
 - [x] Add a complete standard-library environment verifier and Windows setup guide.
 - [x] Verify the local venv, environment checker, optional missing-ML gate, ignore rules, script compilation, and checkpoint consistency; record actual results in the phase report.
 - [x] Save final Phase 1 checkpoint and stop at the approval boundary.
-- [ ] Receive user verification and explicit Phase 2 approval before starting dataset work.
+- [x] Receive explicit Phase 2 approval: "start phase 2" on 2026-10-25.
+
+## Phase 2
+
+- [x] Verify official alternate distribution and license after Harvard HTTP 403.
+- [x] Download/join actual labels and lesion grouping (10,015 entries / 7,470 lesions).
+- [x] Implement acquisition/resume, image/metadata audit, exact/perceptual grouping, and immutable splits.
+- [x] Implement shared preprocessing and PyTorch Dataset/DataLoader with meaningful tests.
+- [x] Verify local dependency imports/CPU operation, package consistency, and all 30 tests.
+- [x] Add Windows guide, attribution, package freeze, and statically checked Colab notebook.
+- [ ] Finish the actual image download/extraction and audit every source image.
+- [ ] Verify class coverage, actual zero-overlap splits, and real train/val/test batches.
+- [ ] Record actual aggregate results and finalize Phase 2 report/checkpoint.
+- [ ] Receive explicit Phase 3 approval before starting training.
 
 ## Remaining phases
 

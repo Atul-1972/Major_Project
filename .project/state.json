@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "SkinDiseaseAI",
-  "updated_at": "2026-10-24T19:47:44.874653+00:00",
+  "updated_at": "2026-10-24T20:09:56.458524+00:00",
   "phase": "phase_2",
-  "status": "in_progress",
-  "summary": "Phase 2 implementation and documentation saved. All 30 tests passed, including ranged resume, source identity/integrity, image audit, duplicate grouping, patient grouping, leakage prevention, immutable splits, deterministic evaluation, augmentation restrictions, orientation and real PyTorch fixture batches. Source metadata confirms 10,015 entries, 7,470 lesions and seven expected class counts; no patient IDs. Colab notebook JSON/cells statically checked but not run in Colab. Image archive is still downloading; actual full-image audit and batch verification remain pending.",
-  "next_action": "Finish official image download/extraction (acquisition session 94256), then run python -m ai_model.data.pipeline prepare on the real data. Diagnose any audit errors; save actual aggregate findings and phase report before requesting Phase 3 approval.",
+  "status": "paused",
+  "summary": "Paused at the user request. Official image download stopped with 1,600,126,976 of 2,771,732,744 bytes saved (57.73%), plus completed metadata/receipts and saved range chunks. Phase 2 source, setup guides, report and resumable completion runner are saved. Full suite: 34 passed; final focused runner checks: 3 passed; pip check clean. Actual-cohort audit/splits/batches remain pending. No acquisition or Phase 2 runner is running.",
+  "next_action": "Wait for user resumption. Then run .venv/Scripts/python.exe -u scripts/run_phase2.py from SkinDiseaseAI, keeping raw .part/.part.json/chunk/receipt files intact. The runner resumes the approved data phase and stops before training; Phase 3 needs explicit approval.",
   "completed": [
     "Created structured project directories and ignore rules",
     "Recorded SkinDiseaseAI requirements and deferred mobile work",

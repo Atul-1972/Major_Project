@@ -6,7 +6,7 @@ The user authorized project preparation and requested approval before each new p
 | --- | --- | --- |
 | Preparation | Authorized and completed | Initial request for structured files and persistent development progress |
 | Phase 1 | Approved 2026-10-25; delivered and locally verified; user verification pending | Attached master prompt: "Start by checking my environment, confirming the dataset plan, and implementing Phase 1 only. Wait for verification before moving to the next phase." |
-| Phase 2 — dataset pipeline | Approved 2026-10-25; in progress | User instruction: "start phase 2" |
+| Phase 2 — dataset pipeline | Approved 2026-10-25; paused at user's request | User instructions: "start phase 2", then "Pause now" |
 | Phase 3 — CNN | Not started | Requires approval after Phase 2 report |
 | Phase 4 — Transformer | Not started | Requires approval after Phase 3 report |
 | Phase 5 — fusion/explanation/export | Not started | Requires approval after Phase 4 report |

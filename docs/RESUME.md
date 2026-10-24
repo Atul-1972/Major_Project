@@ -8,6 +8,14 @@ The preparation files moved into the named repository during Phase 1. The author
 
 ## What persists
 
+The latest user instruction is "Pause now". Phase 2 download was stopped with a saved prefix and source entity tag. Wait for a new user resume instruction before restarting it. When authorized, run from `SkinDiseaseAI`:
+
+```powershell
+.\.venv\Scripts\python.exe -u scripts\run_phase2.py
+```
+
+The runner resumes the official download and completes only the already-approved Phase 2 checks. It does not start training. Keep `data/ham10000/raw/*.part`, matching `.part.json` files, and saved chunks/receipts. The source must still match its saved entity tag for a safe continuation; a changed/unavailable source stops with an error rather than silently mixing files.
+
 - Saved source files and documentation in this workspace.
 - `.project/state.json`: latest saved phase, status, completed items, summary, and next action.
 - `.project/history.jsonl`: chronological development checkpoint records.

@@ -102,3 +102,27 @@ Phase 2 implementation and documentation saved. All 30 tests passed, including r
 - Added pinned verified Windows dependencies, source attribution, phase guide and Colab preparation notebook
 
 Next action: Finish official image download/extraction (acquisition session 94256), then run python -m ai_model.data.pipeline prepare on the real data. Diagnose any audit errors; save actual aggregate findings and phase report before requesting Phase 3 approval.
+
+## 2026-10-24T19:58:49.763266+00:00 — phase_2
+
+Status: in_progress
+
+Phase 2 implementation committed as 6df3a2f; 30 tests and CPU dependency checks pass. Actual metadata is verified (10,015 rows / 7,470 lesions). Full image verification remains pending. Parallel download slowed on an outstanding range, so it was stopped and the same official archive resumed serially from the saved 1,457 MiB prefix. Current acquisition process is session 37107; all source/partial files are inside data/ham10000.
+
+Next action: Wait for acquisition session 37107 to finish download and extraction, then run python -m ai_model.data.pipeline prepare on all actual images. Diagnose audit failures and finalize actual-data results/report before asking for Phase 3 approval.
+
+## 2026-10-24T20:08:31.214263+00:00 — phase_2
+
+Status: paused
+
+User explicitly selected Pause now. Stopped acquisition process 37107 and preserved the source download prefix, entity-tag metadata, completed labels/groups, receipts and range chunks. All 34 tests pass; pip check is clean. Phase 2 implementation, resumable completion runner, docs and progress are saved. Full actual-data audit/splitting/loader verification remain pending. No Phase 2 runner was left running; do not restart until the user resumes.
+
+Next action: Wait for the user to resume. When authorized, run .venv/Scripts/python.exe -u scripts/run_phase2.py from SkinDiseaseAI; retain all raw partial and metadata files. Review real Phase 2 results before asking for Phase 3 approval; no training or mobile work is authorized.
+
+## 2026-10-24T20:09:56.458524+00:00 — phase_2
+
+Status: paused
+
+Paused at the user request. Official image download stopped with 1,600,126,976 of 2,771,732,744 bytes saved (57.73%), plus completed metadata/receipts and saved range chunks. Phase 2 source, setup guides, report and resumable completion runner are saved. Full suite: 34 passed; final focused runner checks: 3 passed; pip check clean. Actual-cohort audit/splits/batches remain pending. No acquisition or Phase 2 runner is running.
+
+Next action: Wait for user resumption. Then run .venv/Scripts/python.exe -u scripts/run_phase2.py from SkinDiseaseAI, keeping raw .part/.part.json/chunk/receipt files intact. The runner resumes the approved data phase and stops before training; Phase 3 needs explicit approval.

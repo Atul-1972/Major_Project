@@ -8,9 +8,9 @@ Primary research reference: [Enhanced Skin Disease Classification via Dataset Re
 
 ## Current status
 
-Phase 1 is complete. Phase 2 is authorized and in progress: dataset acquisition, audit, grouped splits, preprocessing, and loader verification. Model training, backend implementation, and the dashboard have not started.
+Phase 2 is paused at the user's request. Its implementation and 34 passing tests are saved; the official image download is partially saved and resumable. Full image audit, frozen splits, and actual-cohort loader verification are pending. Run `python scripts/run_phase2.py` from the project venv to resume the approved data phase. No model training has started.
 
-Read the [Phase 1 report](docs/phase-reports/phase-1.md), [setup guide](docs/SETUP_WINDOWS.md), and [running checklist](docs/CHECKLIST.md).
+Read the [Phase 2 report](docs/phase-reports/phase-2.md), [Phase 1 report](docs/phase-reports/phase-1.md), and [running checklist](docs/CHECKLIST.md).
 
 The [chat history guide](docs/CHAT_HISTORY.md) explains the full local conversation archive under `chat_history/`, its live refresh command, and how it differs from development checkpoints.
 
