@@ -1,0 +1,2 @@
+# Phase 1 uses Python 3.11+ and the standard library only.
+# No third-party package installation is required.

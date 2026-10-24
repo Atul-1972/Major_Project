@@ -1,0 +1,54 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime data, uploaded images, datasets, and trained weights
+data/*
+!data/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+ai_model/checkpoints/*
+!ai_model/checkpoints/.gitkeep
+ai_model/exports/*
+!ai_model/exports/.gitkeep
+ai_model/results/*
+!ai_model/results/.gitkeep
+reports/local/
+backend/uploads/
+*.zip
+*.tar
+*.tar.gz
+*.log
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.sqlite
+*.sqlite3
+*.db
+
+# Temporary checkpoint write (keep state and history versionable)
+.project/*.tmp
+
+# Operating system/editor files
+Thumbs.db
+.DS_Store
+.idea/
+
+# Future Flutter build artifacts (mobile implementation is deferred)
+.dart_tool/
+build/
