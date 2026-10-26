@@ -384,3 +384,13 @@ Status: in_progress
 User authorized publishing SkinDiseaseAI to https://github.com/Atul-1972/Major_Project and provided that repository URL. Verified the matching saved GitHub account, configured origin and fetched its initial README-only main branch. Reviewed current source candidates and Git history for secret patterns/large blobs and confirmed dataset, weight, archive, environment and chat exclusions. Added pytest discovery configuration after a pre-push run collected duplicate tests from the ignored extracted training bundle; rerun is being checked. Updated source/dependency README descriptions and portable setup paths. Retained original local progress history privately while normalizing machine-specific log paths in publishable records. Preparing a source-only commit and non-forced merge/push that preserves the GitHub initial commit; no push has happened yet.
 
 Next action: Finish the pre-push test/staged-file checks, commit the source/docs, merge the initial origin/main history while keeping the SkinDiseaseAI README, then push normally and verify the remote commit. Keep private training assets local and all research/GPU/evaluation phase gates unchanged.
+
+## 2026-10-26T18:13:55.880599+00:00 — phase_5
+
+Status: in_progress
+
+Published the user-authorized source-only project to https://github.com/Atul-1972/Major_Project on main. Added the complete E1-E4 training workflow, tests, configuration and guides in e5685ba, preserved the existing GitHub initial README commit through non-forced merge 0716661, and successfully pushed main with upstream tracking. All 69 tests passed in 33.88 seconds after pytest discovery was restricted to tests/ to avoid the copied test tree under ignored artifacts/. Audited 128 indexed files (625549 bytes): private runtime assets excluded, no inspected secret patterns found, and no large blobs in source/history. Portable setup paths and GitHub/private-asset documentation are saved. The original training ZIP remains local and unchanged. No GPU training, clinical validation or application work was performed.
+
+- Published the reviewed source and documentation to the user GitHub repository with existing history preserved
+
+Next action: Continue the approved research workflow when the college login/GPU job details arrive. Use the private all-model ZIP and beginner guide, verify a real GPU smoke/one-epoch checkpoint and complete E1-E4 training/evaluation; return and verify the full results before application integration. Keep source commits synced to origin/main; private datasets/weights/training archives/chat history need independent backup.
