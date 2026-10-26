@@ -1,0 +1,125 @@
+{
+  "date_asia_kolkata": "2026-10-26",
+  "status": "training_package_prepared_gpu_execution_pending",
+  "experiments": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+  ],
+  "archive": {
+    "archive": "SkinDiseaseAI-all-models-training.zip",
+    "bytes": 2973268386,
+    "sha256": "217ff22cdd7641b36ef91e7603de5faf466ac1e731f5358ec6b6fc68f714f5bc",
+    "files": 67,
+    "experiments": [
+      "E1",
+      "E2",
+      "E3",
+      "E4"
+    ],
+    "split_fingerprint": "59c4dc4192093bb29e33e7d1d79c8937819d7d4e0fd05a0e552009d76e3a43fd",
+    "dataset_and_imagenet_initialization_included": true,
+    "gpu_execution_verified": false,
+    "python_environment_included": false
+  },
+  "repository_tests": {
+    "passed": 69,
+    "seconds": 40.09
+  },
+  "extracted_package_tests": {
+    "passed": 58,
+    "seconds": 29.16
+  },
+  "zip_crc_passed": true,
+  "extracted_file_hashes_passed": true,
+  "extracted_source_imports_passed": true,
+  "cpu_research_training_refused": true,
+  "official_pretrained_real_image_cpu_diagnostics": [
+    {
+      "passed": true,
+      "purpose": "technical_smoke_only_not_trained_classifier",
+      "device": "cpu",
+      "input_shape": [
+        2,
+        3,
+        224,
+        224
+      ],
+      "output_shape": [
+        2,
+        7
+      ],
+      "checkpoint_reload_matches": true,
+      "seconds": 5.003471099999842,
+      "research_metrics_produced": false,
+      "experiment": "E1",
+      "official_pretrained_initialization": true
+    },
+    {
+      "passed": true,
+      "purpose": "technical_smoke_only_not_trained_classifier",
+      "device": "cpu",
+      "input_shape": [
+        2,
+        3,
+        224,
+        224
+      ],
+      "output_shape": [
+        2,
+        7
+      ],
+      "checkpoint_reload_matches": true,
+      "seconds": 5.597009300000082,
+      "research_metrics_produced": false,
+      "experiment": "E2",
+      "official_pretrained_initialization": true
+    },
+    {
+      "passed": true,
+      "purpose": "technical_smoke_only_not_trained_classifier",
+      "device": "cpu",
+      "input_shape": [
+        2,
+        3,
+        224,
+        224
+      ],
+      "output_shape": [
+        2,
+        7
+      ],
+      "checkpoint_reload_matches": true,
+      "seconds": 10.059706000000006,
+      "research_metrics_produced": false,
+      "experiment": "E3",
+      "official_pretrained_initialization": true
+    },
+    {
+      "passed": true,
+      "purpose": "technical_smoke_only_not_trained_classifier",
+      "device": "cpu",
+      "input_shape": [
+        2,
+        3,
+        224,
+        224
+      ],
+      "output_shape": [
+        2,
+        7
+      ],
+      "checkpoint_reload_matches": true,
+      "seconds": 8.028218399999787,
+      "research_metrics_produced": false,
+      "experiment": "E4",
+      "official_pretrained_initialization": true
+    }
+  ],
+  "gpu_execution_verified": false,
+  "research_training_completed": false,
+  "college_environment_verified": false,
+  "explanation_validation_completed": false,
+  "dependency_environment_included": false
+}

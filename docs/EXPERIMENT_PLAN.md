@@ -1,6 +1,6 @@
 # Experiment and evaluation plan
 
-Status: proposed protocol. No experiment has run and there are no project performance results.
+Status: the user explicitly authorized all E1-E4 training implementations on 2026-10-26. All four architectures and the shared sequential training/evaluation/export workflow are implemented and locally checked; actual GPU research training and performance results remain pending.
 
 ## Ordered experiments
 
@@ -24,7 +24,7 @@ Swin-T is proposed; measure feasibility with a GPU smoke test before committing 
 - Proposed budgets: 3 warm-up epochs and up to 20 fine-tuning epochs, early-stopping patience 5, best checkpoint selected by validation macro-F1. Confirm time/compute constraints after the first smoke test.
 - Seed Python, NumPy, and PyTorch; record nondeterminism and environment. Use additional seeds when feasible; do not report variability from a single run.
 
-The final runnable configurations and dependency pins belong to their implementation phases. These settings must not be described as tested yet.
+The E1 runnable config is `../ai_model/config/e1.json`; its training/resume behavior is locally tested using synthetic fixtures and an actual-network CPU diagnostic. This does not validate the hyperparameters or establish GPU compatibility/performance. The corresponding `e2.json`, `e3.json` and `e4.json` now share the starting protocol. E3/E4 independently initialize both branches from ImageNet, not trained E1/E2 checkpoints. See `TRAINING_PACKAGE.md`; compatibility still requires the actual GPU smoke tests.
 
 ## Evaluation
 

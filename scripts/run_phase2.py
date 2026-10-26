@@ -24,7 +24,16 @@ def save_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
-    temporary.replace(path)
+    # Windows readers and sync/indexing processes can briefly deny replacement.
+    # Retain the previous valid status until an atomic replacement succeeds.
+    for attempt in range(10):
+        try:
+            temporary.replace(path)
+            return
+        except PermissionError:
+            if attempt == 9:
+                raise
+            time.sleep(0.1 * (attempt + 1))
 
 
 @contextmanager
@@ -104,6 +113,9 @@ def collect_results(root=ROOT):
     for name, digest in manifest["files_sha256"].items():
         if Path(name).name != name or hashlib.sha256((manifest_dir / name).read_bytes()).hexdigest() != digest:
             raise ValueError("Manifest integrity failure at phase completion")
+    review_sha256 = audit.get("duplicate_review", {}).get("sha256")
+    if review_sha256 != manifest["files_sha256"].get("duplicate_review.json"):
+        raise ValueError("Audited duplicate review differs from the frozen manifest bundle")
     if not batch["passed"] or batch["training_performed"]:
         raise ValueError("No valid data-only loader verification")
     for split in ("train", "val", "test"):
@@ -123,6 +135,7 @@ def write_completion(root=ROOT):
         "audited_images": audit["audited_images"], "class_counts": audit["class_counts"],
         "unique_source_lesions": audit["unique_lesions"], "connected_groups": audit["connected_groups"],
         "exact_duplicate_groups": audit["exact_duplicate_groups"], "near_duplicate_pairs": len(audit["near_duplicate_pairs"]),
+        "duplicate_review": audit.get("duplicate_review", {"sha256": None, "accepted_pairs": 0}),
         "image_modes": audit["image_modes"], "dimensions": audit["dimensions"],
         "split_counts": summary["split_counts"], "split_class_counts": summary["class_counts"],
         "split_group_counts": summary["group_counts"], "leakage_checks": summary["leakage_checks"],
@@ -135,6 +148,9 @@ def write_completion(root=ROOT):
     lines = ["# Phase 2 report", "", f"Date: {phase_date} (Asia/Calcutta).", "", "Status: complete and locally verified. Awaiting explicit Phase 3 approval; no training has started.", "", "## Delivered", "", "Official ISIC acquisition/provenance, canonical metadata, actual image audit, duplicate-aware grouped splits, immutable mapping/preprocessing/manifests, PyTorch loaders, tests, Windows instructions and a statically checked Colab notebook. See `../PHASE_2.md` and `../../reports/phase2-data-summary.json` for reproducible commands and aggregate evidence.", "", "## Actual cohort audit", "", f"Audited images: {audit['audited_images']}. Original lesion IDs: {audit['unique_lesions']}. Connected groups after duplicate handling: {audit['connected_groups']}. Exact pixel-duplicate groups: {audit['exact_duplicate_groups']}. Conservative near-duplicate pairs: {len(audit['near_duplicate_pairs'])}.", "", "| Class | Source images | Train | Validation | Test |", "| --- | ---: | ---: | ---: | ---: |"]
     for code in audit["class_counts"]:
         lines.append(f"| {code} | {audit['class_counts'][code]} | {summary['class_counts']['train'].get(code, 0)} | {summary['class_counts']['val'].get(code, 0)} | {summary['class_counts']['test'].get(code, 0)} |")
+    review = audit.get("duplicate_review", {})
+    if review.get("accepted_pairs"):
+        lines.extend(["", f"Technical duplicate review: {review['accepted_pairs']} cross-label perceptual candidates were reviewed as distinct images. Source labels and conservative connected grouping were retained. Review SHA-256: `{review['sha256']}`. The original failed audit, private contact sheet and hash-bound review remain under ignored local data/reports; see `../DUPLICATE_REVIEW.md` for the procedure and limits."])
     lines.extend(["", f"Split totals: {json.dumps(summary['split_counts'])}. All classes are present in each split. Zero prohibited image, connected-group, lesion, or exact-pixel overlap; patient-level overlap is unknown when source IDs are unavailable.", "", f"Manifest fingerprint: `{manifest['input_fingerprint']}`.", "", "## Verification", "", "The completion runner requires successful acquisition/extraction, `pip check`, the full pytest suite, and actual-data `pipeline prepare` before generating this report. Detailed command output is in ignored `reports/local/phase2-run.log`. Each split produced a real finite float32 image batch and int64 labels, with deterministic evaluation transforms. The full saved audit and manifest files are under ignored `data/ham10000/processed/`.", "", "## Limitations", ""])
     lines.extend(f"- {warning}" for warning in audit["warnings"])
     lines.extend(["- Harvard API access returned HTTP 403; the official ISIC alternate source and CC BY-NC 4.0 attribution are documented in `../DATASET_SOURCE.md`.", "- Demographics absent from this distribution are not inferred. No clinical, smartphone-photo, calibration, or model-accuracy results exist.", "- Colab cells were statically checked, not executed remotely by the agent. Local tests use clearly labeled synthetic fixtures only; actual-data verification is recorded separately above.", "- No training, API, dashboard, mobile implementation, or deployment was run.", "", "## Next phase", "", "Request explicit approval for Phase 3: EfficientNetV2-S baseline setup, Colab GPU smoke test, resumable training, validation selection, evaluation and error analysis. Do not start it automatically.", ""])
@@ -156,10 +172,12 @@ def write_completion(root=ROOT):
     readme = root / "README.md"
     if readme.exists():
         before = "Phase 2 is paused at the user's request. Its implementation and 34 passing tests are saved; the official image download is partially saved and resumable. Full image audit, frozen splits, and actual-cohort loader verification are pending. Run `python scripts/run_phase2.py` from the project venv to resume the approved data phase. No model training has started."
-        readme.write_text(readme.read_text(encoding="utf-8").replace(before, "Phase 2 is complete and locally verified. Review the Phase 2 report; explicit Phase 3 approval is required before training. Backend, dashboard and mobile work have not started."), encoding="utf-8")
+        resumed = "Phase 2 was resumed at the user's request on 2026-10-25. Its implementation and 34 previously passing tests are saved; the official image download is partially saved and resumable. Full image audit, frozen splits, and actual-cohort loader verification are pending. Inspect `.project/phase2_run.local.json` and `reports/local/phase2-run.log` for live runner status before restarting `python scripts/run_phase2.py` from the project venv. No model training has started."
+        complete = "Phase 2 is complete and locally verified. Review the Phase 2 report; explicit Phase 3 approval is required before training. Backend, dashboard and mobile work have not started."
+        readme.write_text(readme.read_text(encoding="utf-8").replace(before, complete).replace(resumed, complete), encoding="utf-8")
     approvals = root / "docs/APPROVALS.md"
     if approvals.exists():
-        approvals.write_text(approvals.read_text(encoding="utf-8").replace("Approved 2026-10-25; paused at user's request |", "Approved 2026-10-25; complete and locally verified |"), encoding="utf-8")
+        approvals.write_text(approvals.read_text(encoding="utf-8").replace("Approved 2026-10-25; paused at user's request |", "Approved 2026-10-25; complete and locally verified |").replace("Approved 2026-10-25; resumed 2026-10-25 |", "Approved 2026-10-25; complete and locally verified |"), encoding="utf-8")
     return aggregate
 
 

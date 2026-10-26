@@ -1,0 +1,4 @@
+# Local CPU verification; Colab keeps its matched CUDA torch/torchvision pair.
+-r phase2-windows.txt
+scikit-learn==1.7.2
+matplotlib==3.10.7

@@ -73,6 +73,74 @@ def test_conflicting_duplicate_labels_fail_audit(source_dataset):
     assert any(error["code"] == "conflicting_labels_for_pixel_sha256" for error in report["errors"])
 
 
+@pytest.fixture
+def cross_label_review(source_dataset):
+    data = source_dataset
+    with Image.open(data["images"] / "TEST_0_0.png") as image:
+        pixels = np.array(image)
+    pixels[0, 0, 0] ^= 1
+    Image.fromarray(pixels).save(data["images"] / "TEST_1_0.png")
+    report, records = audit_dataset(data["metadata"], data["images"], data["output"], data["spec"])
+    assert not report["passed"]
+    assert any(error["code"] == "near_duplicate_label_conflict" for error in report["errors"])
+    ids = ["TEST_0_0", "TEST_1_0"]
+    by_id = {record["image_id"]: record for record in records}
+    review = {"schema_version": 1, "metadata_sha256": sha256_file(data["metadata"]), "pairs": [{
+        "image_ids": ids, "file_sha256": {identifier: by_id[identifier]["file_sha256"] for identifier in ids},
+        "decision": "distinct_images_keep_grouped", "rationale": "Synthetic test-only decision; not a real visual review.",
+    }]}
+    path = data["root"] / "near_duplicate_review.json"
+    path.write_text(json.dumps(review), encoding="utf-8")
+    return data, path
+
+
+def test_review_retains_labels_groups_and_checksum_protects_its_evidence(cross_label_review):
+    data, review = cross_label_review
+    report, records = audit_dataset(data["metadata"], data["images"], data["output"], data["spec"], duplicate_review=review)
+    assert report["passed"]
+    assert report["duplicate_review"] == {"sha256": sha256_file(review), "accepted_pairs": 1}
+    by_id = {record["image_id"]: record for record in records}
+    assert by_id["TEST_0_0"]["group_id"] == by_id["TEST_1_0"]["group_id"]
+    assert by_id["TEST_0_0"]["dx"] == "bcc" and by_id["TEST_1_0"]["dx"] == "nv"
+    output = data["output"] / "splits"
+    create_manifests(records, data["spec"], data["config"], output, duplicate_review=review)
+    assert (output / "duplicate_review.json").read_bytes() == review.read_bytes()
+    assert verify_manifest_files(output)["files_sha256"]["duplicate_review.json"] == sha256_file(review)
+    review.write_text(review.read_text() + "\n")
+    with pytest.raises(ValueError, match="Immutable manifests"):
+        create_manifests(records, data["spec"], data["config"], output, duplicate_review=review)
+    (output / "duplicate_review.json").write_text("modified")
+    with pytest.raises(ValueError, match="Manifest bundle was modified"):
+        verify_manifest_files(output)
+
+
+@pytest.mark.parametrize("change", ["file", "metadata", "decision"])
+def test_duplicate_review_cannot_override_changed_sources_or_unapproved_decisions(cross_label_review, change):
+    data, path = cross_label_review
+    review = json.loads(path.read_text())
+    if change == "file":
+        review["pairs"][0]["file_sha256"]["TEST_0_0"] = "0" * 64
+    elif change == "metadata":
+        review["metadata_sha256"] = "0" * 64
+    else:
+        review["pairs"][0]["decision"] = "ignore_conflict"
+    path.write_text(json.dumps(review))
+    with pytest.raises(ValueError, match="review"):
+        audit_dataset(data["metadata"], data["images"], data["output"], data["spec"], duplicate_review=path)
+
+
+def test_technical_review_never_bypasses_exact_pixel_label_conflicts(cross_label_review):
+    data, path = cross_label_review
+    shutil.copyfile(data["images"] / "TEST_0_0.png", data["images"] / "TEST_1_0.png")
+    review = json.loads(path.read_text())
+    review["pairs"][0]["file_sha256"]["TEST_1_0"] = sha256_file(data["images"] / "TEST_1_0.png")
+    path.write_text(json.dumps(review))
+    report, _ = audit_dataset(data["metadata"], data["images"], data["output"], data["spec"], duplicate_review=path)
+    assert not report["passed"]
+    codes = {error["code"] for error in report["errors"]}
+    assert {"conflicting_labels_for_pixel_sha256", "unused_duplicate_reviews"} <= codes
+
+
 def test_partial_patient_identifiers_fail(source_dataset):
     data = source_dataset
     with data["metadata"].open("w", encoding="utf-8", newline="") as handle:

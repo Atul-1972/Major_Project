@@ -126,3 +126,261 @@ Status: paused
 Paused at the user request. Official image download stopped with 1,600,126,976 of 2,771,732,744 bytes saved (57.73%), plus completed metadata/receipts and saved range chunks. Phase 2 source, setup guides, report and resumable completion runner are saved. Full suite: 34 passed; final focused runner checks: 3 passed; pip check clean. Actual-cohort audit/splits/batches remain pending. No acquisition or Phase 2 runner is running.
 
 Next action: Wait for user resumption. Then run .venv/Scripts/python.exe -u scripts/run_phase2.py from SkinDiseaseAI, keeping raw .part/.part.json/chunk/receipt files intact. The runner resumes the approved data phase and stops before training; Phase 3 needs explicit approval.
+
+## 2026-10-25T17:44:41.787931+00:00 — phase_2
+
+Status: in_progress
+
+Started resumable Phase 2 completion runner. It will acquire original data, run dependency/tests checks, and verify actual grouped splits and loader batches; it never starts training.
+
+Next action: Monitor .project/phase2_run.local.json and reports/local/phase2-run.log. On success review the generated Phase 2 report; on failure diagnose and resume this runner.
+
+## 2026-10-25T17:44:47.000080+00:00 — phase_2
+
+Status: in_progress
+
+Phase 2 runner stopped at downloading_and_extracting: Stage 'downloading_and_extracting' exited 1; inspect .\reports\local\phase2-run.log. Saved files and download prefix are retained; Phase 2 is not complete.
+
+Next action: Inspect .project/phase2_run.local.json and reports/local/phase2-run.log; resolve the failure and rerun scripts/run_phase2.py. Do not start training.
+
+## 2026-10-25T17:45:02.414135+00:00 — phase_2
+
+Status: in_progress
+
+Started resumable Phase 2 completion runner. It will acquire original data, run dependency/tests checks, and verify actual grouped splits and loader batches; it never starts training.
+
+Next action: Monitor .project/phase2_run.local.json and reports/local/phase2-run.log. On success review the generated Phase 2 report; on failure diagnose and resume this runner.
+
+## 2026-10-25T17:46:33.316779+00:00 — phase_2
+
+Status: in_progress
+
+User explicitly requested resume Phase 2 on 2026-10-25. Registered this conversation and refreshed local archives; recorded resumption in repository instructions, approvals, README, resume guide and Phase 2 report. Restarted the locked completion runner from 1,600,126,976 saved bytes; after sandbox network denial, the network-enabled retry is transferring official source data. All 34 tests passed in 11.85s, including completion status updates that retain resumption evidence. Actual-cohort audit and split/batch gates remain pending; no training started.
+
+- Resumed approved Phase 2 acquisition from the saved prefix after explicit user request
+
+Next action: Monitor .project/phase2_run.local.json and reports/local/phase2-run.log; leave the active runner to finish the approved Phase 2 stages. Review real audit/splits/batches and reconcile final README/approval status with the completion report. Resolve failures without duplicating acquisition. Phase 3 needs explicit approval.
+
+## 2026-10-25T17:55:04.079096+00:00 — phase_2
+
+Status: in_progress
+
+Started resumable Phase 2 completion runner. It will acquire original data, run dependency/tests checks, and verify actual grouped splits and loader batches; it never starts training.
+
+Next action: Monitor .project/phase2_run.local.json and reports/local/phase2-run.log. On success review the generated Phase 2 report; on failure diagnose and resume this runner.
+
+## 2026-10-25T17:55:16.758226+00:00 — phase_2
+
+Status: in_progress
+
+Recovered a Windows status-file replacement failure at 94.35% of acquisition (2,615,148,544 bytes preserved). Added bounded retries for PermissionError while retaining atomic status writes and the previous valid state. Five focused runner tests passed, including transient lock recovery, persistent-lock failure, completion gating and duplicate-run protection. Restarted the network-enabled completion runner from the retained prefix; actual-data checks remain pending and training is not authorized.
+
+- Hardened Phase 2 status writes against transient Windows file locks with regression coverage
+
+Next action: Monitor the active Phase 2 runner through acquisition, dependencies, the full tests and actual-cohort preparation. Review the final reports/manifests and obtain explicit Phase 3 approval before training.
+
+## 2026-10-25T18:02:24.670019+00:00 — phase_2
+
+Status: in_progress
+
+Phase 2 runner stopped at auditing_splitting_and_verifying: Stage 'auditing_splitting_and_verifying' exited 1; inspect .\reports\local\phase2-run.log. Saved files and download prefix are retained; Phase 2 is not complete.
+
+Next action: Inspect .project/phase2_run.local.json and reports/local/phase2-run.log; resolve the failure and rerun scripts/run_phase2.py. Do not start training.
+
+## 2026-10-25T18:05:49.150968+00:00 — phase_2
+
+Status: in_progress
+
+Started resumable Phase 2 completion runner. It will acquire original data, run dependency/tests checks, and verify actual grouped splits and loader batches; it never starts training.
+
+Next action: Monitor .project/phase2_run.local.json and reports/local/phase2-run.log. On success review the generated Phase 2 report; on failure diagnose and resume this runner.
+
+## 2026-10-25T18:07:41.201960+00:00 — phase_2
+
+Status: in_progress
+
+Official acquisition and extraction completed for all 10,015 images. Initial full audit found expected class counts, RGB 600x450 images, 7,470 source lesions, two exact-duplicate groups and 58 perceptual pairs, then correctly stopped on eleven cross-label heuristic candidates. Preserved the failed audit and inspected every flagged pair. Added hash-bound technical distinct-image reviews while retaining original labels, thresholds and all connected edges. Review evidence is frozen with manifests; exact-pixel/lesion label conflicts still fail. Full suite passed 41 tests; notebook JSON/code syntax passed without remote execution. The runner is repeating the actual cohort audit; no training started.
+
+- Completed official HAM10000 acquisition/extraction and preserved the first complete image audit
+- Documented hash-bound technical review of eleven perceptual false matches while retaining labels and grouped edges
+
+Next action: Let the active Phase 2 runner finish the reviewed actual-data audit, grouped manifests and real loader batches. Verify review hashes, group overlap and class counts before finalizing the Phase 2 report and requesting Phase 3 approval.
+
+## 2026-10-25T18:08:39.560087+00:00 — phase_2
+
+Status: awaiting_approval
+
+Phase 2 completed by the authorized runner: audited 10015 actual images, froze leakage-checked manifests, verified all three real loader batches, and wrote the aggregate summary/report. No training performed.
+
+Next action: Review docs/phase-reports/phase-2.md and reports/phase2-data-summary.json. Obtain explicit Phase 3 approval before training the CNN baseline.
+
+## 2026-10-25T18:09:43.723792+00:00 — phase_2
+
+Status: awaiting_approval
+
+Phase 2 complete and locally verified. Acquired/extracted and audited all 10,015 actual HAM10000 images with expected seven-class counts; 7,470 lesions form 7,436 connected groups. Preserved the initial failed audit and hash-bound technical review of eleven cross-label perceptual false matches; all source labels/images and all candidate grouping edges retained. Frozen splits contain 7,011 train / 1,502 validation / 1,502 test images with all classes and zero image/group/lesion/exact-pixel overlap; patient overlap is unknown. Verified real finite [8,3,224,224] float32 batches and int64 labels in every split. Final 42 tests passed in 14.45s, pip check clean, notebook JSON/code syntax passed, completion evidence/review/manifest hashes rechecked and ignored data/private artifacts verified. Final report, aggregate evidence, checklist, decisions and resume records saved; no training or remote Colab execution performed.
+
+- Audited all actual source images and froze seven-class manifests with zero prohibited cross-split overlap
+- Verified real CPU train/validation/test batches and final 42-test suite; delivered the Phase 2 report and aggregate results
+
+Next action: Review docs/phase-reports/phase-2.md and reports/phase2-data-summary.json. Obtain explicit Phase 3 approval before E1 EfficientNetV2-S setup, Colab GPU smoke test, resumable training, validation-selected checkpoint and evaluation. Preserve frozen manifests and private review evidence; do not start training automatically.
+
+## 2026-10-25T18:13:46.831579+00:00 — phase_3
+
+Status: in_progress
+
+User explicitly approved Phase 3 with so start phase 3 after requesting pause/resume support. Read repository requirements and experiment protocol; preserved existing Phase 2 Git changes. Rechecked actual frozen data, review/manifest hashes and 7011/1502/1502 counts. Local torch 2.9.1+cpu and torchvision 0.24.1+cpu have no CUDA. Beginning E1 EfficientNetV2-S training, checkpoint/resume, evaluation and Colab workflow implementation; no trained E1 weights or GPU execution exist yet.
+
+- Recorded explicit Phase 3 approval and requested durable pause/resume behavior
+
+Next action: Implement and locally verify E1 against the frozen manifests, including epoch-boundary checkpoint/restart, train-only class weights, validation macro-F1 selection and protected final-test evaluation. Prepare a private Colab handoff for actual GPU smoke/training; do not mark Phase 3 complete before real training and evaluation.
+
+## 2026-10-25T18:36:36.900257+00:00 — phase_3
+
+Status: in_progress
+
+Implemented approved E1 EfficientNetV2-S protocol, train-only class weights, staged AdamW/cosine training, AMP overflow handling, validation macro-F1 selection, durable initial/last/best checkpoints, immutable resume identity and protected final-test evaluation with metrics/plots/error analysis. All 55 tests passed in 17.65s, including uninterrupted versus resumed/interrupted recovery, train/test access, final-test reuse, safe atomic writes and scaler skip counts. Actual-network real-image CPU diagnostic passed with random initialization and matching checkpoint reload; no research metrics produced. pip check clean. Created step-by-step Colab notebook, private approximately 1.2 MB allowlisted transfer ZIP and dependency freeze. User resolved Colab fetch error and reports GPU available True. Local official ImageNet requests were reset; no successful pretrained download or project GPU training/evaluation is claimed. Phase 3 remains in progress.
+
+- Implemented and verified E1 training/checkpoint/resume and final-test software with 55 passing tests
+- Prepared a private Colab transfer bundle and beginner training notebook; user reports a working GPU runtime
+
+Next action: User should upload artifacts/colab-transfer/skindiseaseai-phase3.zip to My Drive and open ai_model/notebooks/phase3_e1_training.ipynb in Colab. Guide notebook setup, direct provider acquisition, ImageNet-initialized GPU smoke, one saved epoch, resume, full training and fixed final-test evaluation. Review actual GPU/run/evaluation evidence before completing Phase 3; Phase 4 needs separate approval.
+
+## 2026-10-25T18:48:30.934827+00:00 — phase_3
+
+Status: paused
+
+Paused at the explicit user request on 2026-10-26 after unsuccessful uploads; user intends to continue tomorrow, 2026-10-27 Asia/Calcutta. Preserved all implemented Phase 3 source, 55-test validation evidence, actual-model CPU diagnostic, notebook, unchanged 1170252-byte private transfer ZIP/receipt, dataset and frozen manifests. Updated approval/status/resume instructions and phase report. User previously reported an available Colab GPU, but no project GPU smoke, research training or evaluation is verified. No uploads, acquisition or training were started during this save operation.
+
+- Saved the user-requested Phase 3 pause after unsuccessful uploads, retaining the notebook and transfer bundle for resumption
+
+Next action: Wait for user resumption. Then identify whether the Drive ZIP upload or Colab notebook upload failed and inspect its error/existing files. Reuse artifacts/colab-transfer/skindiseaseai-phase3.zip and ai_model/notebooks/phase3_e1_training.ipynb; guide upload, reconnect/check GPU, run project smoke, save one epoch and resume training within approved Phase 3. Do not restart work automatically; Phase 4 needs separate approval.
+
+## 2026-10-25T18:50:12.235571+00:00 — phase_3
+
+Status: paused
+
+User clarified the next-session starting point by reposting the Colab handoff instructions and saying we will start from here tomorrow. Phase 3 stays paused. Saved the precise resume walkthrough and first-session Python setting EPOCHS_THIS_SESSION = 1; the pasted SQL block is a scheduling note, not code. Existing source, notebook, transfer ZIP, frozen data and previous validation evidence are retained. No uploads, downloads, training or tests started in this save operation.
+
+Next action: Wait for the user to resume, intended 2026-10-27 Asia/Calcutta. Start from the shared Colab handoff: verify or finish the My Drive ZIP upload and Colab notebook upload, reconnect/check GPU, run setup/acquisition/smoke cells sequentially, then train with EPOCHS_THIS_SESSION = 1 and verify the saved Drive checkpoint before resuming with None. Inspect failed-upload errors rather than assuming any remote step passed. Remain within approved Phase 3.
+
+## 2026-10-26T17:02:31.549122+00:00 — phase_3
+
+Status: in_progress
+
+User resumed Phase 3 on 2026-10-26 and confirmed neither transfer file is uploaded. Verified unchanged 1170252-byte transfer ZIP receipt hash, all 35 packaged file hashes, source/config/frozen-data agreement, frozen split fingerprint and seven parsed notebook code cells. Registered/refreshed chat archives and updated resume/approval/status records. User then asked about supercomputer training; inspected the single-CUDA-device trainer and official Slurm/PyTorch distributed documentation. No tests, uploads, acquisition, GPU smoke, training or evaluation were run.
+
+- Resumed Phase 3, verified saved Colab handoff integrity and clarified that no files are uploaded yet
+
+Next action: Clarify whether the user has institutional GPU-cluster access or needs free/paid GPU options. Adapt the Phase 3 handoff to actual available compute; the existing trainer uses one CUDA GPU and distributed training is not implemented. If continuing Colab, upload the existing ZIP to My Drive and notebook to Colab, verify GPU and smoke, then save one epoch before resuming. Phase 4 still requires approval.
+
+## 2026-10-26T17:03:22.737933+00:00 — phase_3
+
+Status: in_progress
+
+User asked how to train on a supercomputer. Verified official NSM access guidance: institutional email registration, project/document submission, HOD or PI and host-facility verification, allocation subject to policy. Confirmed current Phase 3 CLI supports a single CUDA GPU with smoke-before-training and durable epoch checkpoints. No account applications, external messages, transfers, package changes or training were performed.
+
+Next action: Guide the user through their college GPU access or official NSM account application after identifying institution and institutional email availability. Once a GPU allocation is known, prepare its actual environment, transfer and scheduler commands for existing E1 source and frozen manifests; verify smoke and one saved epoch before full training. Preserve the Colab handoff as an available path. Phase 4 remains unapproved.
+
+## 2026-10-26T17:04:12.375248+00:00 — phase_3
+
+Status: in_progress
+
+User confirmed the college will provide a supercomputer. Recorded the college facility as the intended Phase 3 compute target in environment, decisions, resume, repository instructions and README while preserving Colab artifacts as alternatives. Requested facility setup guide, GPU model and connection method; scheduler, persistent storage, time limits and download access must be established before execution. No training source, config, split files or transfer bundles changed; no tests or remote operations ran.
+
+Next action: Obtain the college facility setup guide and GPU/access details, then prepare commands matching its actual environment, scheduler and persistent-storage paths. Run official-pretrained GPU smoke, one epoch and checkpoint verification before full E1 training. Do not start later phases without approval.
+
+## 2026-10-26T17:06:09.307512+00:00 — phase_3
+
+Status: in_progress
+
+User clarified that the college supplied no access details and its team will train the model on their behalf. Prepared docs/COLLEGE_TRAINING_HANDOFF.md with unchanged ZIP identity, known local dependency evidence, facility prerequisites, frozen-manifest/loader verification, single-GPU smoke, one epoch, resume/evaluation commands and returned evidence/checkpoints. Updated compute/resume records to staff-operated training. Parsed the embedded Python verification snippet and rechecked the existing transfer ZIP hash; no GPU execution, environment changes, tests or external transfers occurred.
+
+- Prepared college-operated E1 training handoff with frozen protocol and required returned artifacts
+
+Next action: Student can provide the existing private transfer ZIP and college handoff guide to the college team. Obtain their planned GPU environment and first smoke/one-epoch logs/checkpoint evidence; adapt only when actual errors or facility requirements are known. Review actual training and final evaluation evidence before completing Phase 3. Phase 4 remains unapproved.
+
+## 2026-10-26T17:20:31.045956+00:00 — phase_5
+
+Status: in_progress
+
+User explicitly authorized Phases 4 and 5 and confirmed all four models. Implemented Swin-T, concatenation and 256-dimension four-head branch-attention fusion, shared resumable E1-E4 training/evaluation, sequential GPU orchestration, validation-first hybrid selection and clean-process inference export. Downloaded and checksum-verified both official ImageNet initializations. All four actual pretrained models passed real-image CPU forward/backward/checkpoint diagnostics; no GPU/research training ran. Initial full software suite passed 67 tests; additional export/orchestration tests are being run. Complete data-bearing ZIP builder, launchers, pinned environment setup and guide are implemented; final archive construction/integrity/extraction tests remain.
+
+- Implemented all four approved E1-E4 training architectures and the resumable supercomputer workflow
+- Verified official ImageNet initialization and real-image CPU model diagnostics for E1-E4
+
+Next action: Finish export/orchestration tests, build the complete all-model training ZIP with original HAM10000 archives/receipts and both ImageNet caches, verify archive and extracted-package tests, update phase reports/checklist/resume records and deliver the one-file package. Actual college GPU compatibility, training, evaluation and explanation validation remain pending.
+
+## 2026-10-26T17:25:46.368156+00:00 — phase_5
+
+Status: in_progress
+
+Completed the user-approved all-model supercomputer training package. E1 EfficientNetV2-S, E2 Swin-T, E3 concatenation and E4 branch-attention fusion share the frozen protocol, durable checkpoints, sequential orchestration, validation-before-test selection, fixed evaluation/comparison and clean-process hybrid export. The private ZIP is 2973268386 bytes and includes original dataset archives/receipts, frozen splits/review files and both official ImageNet initializations. All 69 repository tests passed; all 58 included tests passed from a freshly extracted package. Transfer SHA-256, ZIP CRC, 66 shipped-file hashes, extracted imports and CPU research-training rejection passed. All four actual pretrained models passed real-image CPU forward/backward/checkpoint diagnostics. Source/docs/phase reports/aggregate evidence are saved; old Colab ZIP retained unchanged. No college GPU fitting, real performance scores or explanation validation is claimed.
+
+- Delivered and verified the complete all-model ZIP with original dataset, official initialization, launchers, tests and training guide
+
+Next action: Transfer artifacts/training-package/SkinDiseaseAI-all-models-training.zip to private persistent college storage and follow START_HERE.md / docs/TRAINING_PACKAGE.md. Set up a compatible Linux CUDA Python environment, obtain the actual GPU allocation/scheduler account/partition, then run bash run_training.sh (or the supplied Slurm template). Review GPU smoke, first checkpoint/resume behavior and full E1-E4 results under artifacts/training. Keep Phases 3-5 incomplete until real evidence and explanation validation are reviewed; do not start backend, dashboard, mobile or deployment without separate approval.
+
+## 2026-10-26T17:30:14.871337+00:00 — phase_5
+
+Status: in_progress
+
+User requested a beginner guide to personally train on the supercomputer and clarified the college will provide a login. Added docs/SUPERCOMPUTER_BEGINNER_GUIDE.md with pending access details, Windows SSH/SCP transfer, persistent extraction/package verification, setup, conditional Slurm one-epoch submission, monitoring, checkpoint inspection, full E1-E4 resume, portal/Jupyter path and results retrieval. Linked it from README, resume and the old handoff guide. Verified the guide checksum, file names and launcher flags against the existing unchanged ZIP; local SSH/SCP availability confirmed. Documentation only; no tests rerun, remote login, transfer or GPU execution performed.
+
+- Provided a beginner guide for training all four models using the user college login
+
+Next action: Wait for the college login/host or portal and its actual GPU/scheduler/account/partition/storage instructions. Follow docs/SUPERCOMPUTER_BEGINNER_GUIDE.md with the verified all-model ZIP, adapt placeholders to the actual facility, then inspect the first GPU smoke/epoch/checkpoint evidence before the full sequential run. Do not request or record passwords or private keys.
+
+## 2026-10-26T17:45:41.895672+00:00 — phase_5
+
+Status: in_progress
+
+User asked what training produces and how to integrate the returned model into the project. Inspected actual suite export, evaluation artifacts, planned architecture and current backend/frontend placeholders. Extended the beginner guide with output-to-purpose mapping, private full-result recovery into a new import directory, existing CPU verify-export command, validation-first review, complete hybrid promotion and the planned FastAPI/dashboard/Grad-CAM integration. Existing training ZIP and all model/training source remain unchanged. Documentation only; no tests, results imports, trained-model verification or backend implementation ran.
+
+- Documented training outcomes and the return, verification and application-integration workflow
+
+Next action: Receive the college login/access/GPU job instructions, run the existing verified E1-E4 package, then bring back the full artifacts/training directory and scheduler logs. Import into a new private run folder, verify the actual selected-hybrid export on CPU and review all model metrics/provenance before completing research/explanation validation and requesting the backend phase approval.
+
+## 2026-10-26T17:55:48.842266+00:00 — phase_5
+
+Status: in_progress
+
+User asked whether checkpoint and evaluation tests are included in the training ZIP. Inspected the actual archive, verified hashes of all six shipped test/fixture files against its manifest and confirmed coverage for checkpoint/RNG reload, exact resume, interrupted epochs, pauses, atomic writes, final-test gates/reuse, validation-first suite selection and clean-process export/tamper detection. Prior extracted-package result remains 58 passed; tests were not rerun for this read-only archive inspection. Training ZIP/source unchanged and GPU execution still pending.
+
+Next action: Use the unchanged all-model ZIP and beginner guide once college login/GPU job details arrive. On the college environment, run the included tests if needed, verify GPU smoke and one saved epoch, then resume all four models and return the full run directory for review.
+
+## 2026-10-26T17:56:53.454025+00:00 — phase_5
+
+Status: in_progress
+
+User asked whether the beginner guide contains all commands. Added the explicit included-test command and college-environment alternative to the existing guide, which already covers SSH/SCP transfer, package verification, setup, first Slurm/portal GPU epoch, monitoring, full resume, results retrieval and local export verification. Facility username/host/GPU queue/account/storage values still require the college instructions. Documentation only; no tests rerun or training ZIP/source changed.
+
+Next action: Use docs/SUPERCOMPUTER_BEGINNER_GUIDE.md when the college login and GPU/scheduler instructions arrive; replace the documented placeholders with actual assigned values, run setup/tests, then verify the first GPU smoke/epoch before the full sequential run.
+
+## 2026-10-26T17:58:54.639274+00:00 — phase_5
+
+Status: in_progress
+
+Added the requested What to bring back from the supercomputer checklist to the beginner guide: all E1-E4 checkpoints/history/run metadata, complete evaluations/plots/predictions/error analysis, selected-hybrid weights/config/mapping/preprocessing/model card/probe/export verification, suite comparison/selection/completion and hardware/software/loader evidence. Added commands to collect scheduler/test logs and loader evidence, archive stopped-run outputs, generate/download a SHA-256 sidecar and compare local hashes. Explained partial-run returns, optional changed-source handoff and files already available locally. Checked the documented output names against the existing training implementation; documentation only, no tests rerun or training ZIP/source changed.
+
+- Added a complete supercomputer return checklist and log/archive/checksum download commands
+
+Next action: Use the updated guide with college login/GPU scheduling instructions. After actual training stops, collect the complete artifacts/training directory plus job logs, transfer its results archive and checksum, verify the transfer locally, then review and validate the selected hybrid before application integration.
+
+## 2026-10-26T18:02:41.648120+00:00 — phase_5
+
+Status: in_progress
+
+Expanded the beginner guide with a route-selection table and complete pen-drive, personal-laptop SSH/SCP, browser/Jupyter login and college Linux/Windows login workflows. Added Windows USB copy/hash commands, college-computer uploads, Linux mounted-drive examples, browser upload/extraction instructions and results archive/checksum download directly to USB plus copy-back verification. Clearly separated local versus remote commands and persistent storage versus USB transport. All 17 Bash examples passed bash -n; all 9 PowerShell examples parsed successfully without executing transfers or training. Documentation only; existing training ZIP and model source unchanged.
+
+- Added pen-drive, laptop and login-window command paths with return-transfer instructions
+
+Next action: When college login and GPU/scheduler details arrive, select the corresponding route in docs/SUPERCOMPUTER_BEGINNER_GUIDE.md, replace drive/host/account/partition/path placeholders, transfer and verify the existing ZIP, then run setup/tests and one checkpointed GPU epoch before the full suite. Return the complete run archive, checksum and job logs for review.
+
+## 2026-10-26T18:12:12.705403+00:00 — phase_5
+
+Status: in_progress
+
+User authorized publishing SkinDiseaseAI to https://github.com/Atul-1972/Major_Project and provided that repository URL. Verified the matching saved GitHub account, configured origin and fetched its initial README-only main branch. Reviewed current source candidates and Git history for secret patterns/large blobs and confirmed dataset, weight, archive, environment and chat exclusions. Added pytest discovery configuration after a pre-push run collected duplicate tests from the ignored extracted training bundle; rerun is being checked. Updated source/dependency README descriptions and portable setup paths. Retained original local progress history privately while normalizing machine-specific log paths in publishable records. Preparing a source-only commit and non-forced merge/push that preserves the GitHub initial commit; no push has happened yet.
+
+Next action: Finish the pre-push test/staged-file checks, commit the source/docs, merge the initial origin/main history while keeping the SkinDiseaseAI README, then push normally and verify the remote commit. Keep private training assets local and all research/GPU/evaluation phase gates unchanged.

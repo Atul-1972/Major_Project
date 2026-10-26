@@ -9,6 +9,8 @@
 
 ## User constraints
 
+- Latest scope override, 2026-10-26: the user requested files to train "all the models" and explicitly answered "Yes—authorize Phases 4 and 5 and prepare the full hybrid training package". Implement/package E1 EfficientNetV2-S, E2 Swin-T, E3 concatenation and E4 attention fusion, including sequential execution, recovery, validation selection, evaluation and export. The user clarified they must run training themselves; earlier staff-operated handoff assumptions are superseded. Keep existing artifacts/frozen splits. This approval supersedes the old Phase 4/5 implementation gates below, but does not complete the phases or authorize application/mobile/deployment work. Report actual local checks separately from unverified college GPU execution.
+
 - Python backend, preferably FastAPI. No Node.js, npm, or Node-based build tooling.
 - Web application only. Do not implement a smartphone application until the user explicitly commands it.
 - Ask before each new phase. Do not treat silence, an expired session, or a request to resume as approval for a new phase.
@@ -21,8 +23,18 @@
 - The user subsequently approved Phase 2 on 2026-10-25 with "start phase 2". Dataset acquisition support, audit, grouped splits, preprocessing, and loader verification are authorized. Training remains Phase 3 and needs a separate approval.
 - A resumable Phase 2 runner may be active. Inspect `.project/phase2_run.local.json` and `reports/local/phase2-run.log` before launching acquisition or another runner; do not duplicate downloads. `scripts/run_phase2.py` may finish the approved data phase and write its report/checkpoint without an agent turn, but it never starts training. User confirmed slow Wi-Fi; do not mistake slow download progress for a passed real-data checkpoint.
 - The user subsequently chose "Pause now". The download was stopped and Phase 2 is paused. Do not restart network acquisition or the completion runner until the user requests resumption. Retain `.part`, `.part.json`, chunk files, original archives, receipts and the checkpoint; use the resume guide when authorized.
+- The user subsequently requested "resume Phase 2" on 2026-10-25. Resuming acquisition and the Phase 2 completion runner is authorized. Inspect the live runner status before restarting; Phase 3 still requires separate approval.
+- Phase 2 subsequently completed on 2026-10-25: actual audit, frozen 7,011/1,502/1,502 splits and real CPU batches passed; 42 tests passed. Review `docs/phase-reports/phase-2.md` and `reports/phase2-data-summary.json`. Keep the private hash-bound duplicate review with the dataset and frozen manifests; see `docs/DUPLICATE_REVIEW.md`. Wait for explicit Phase 3 approval before training.
+- The user subsequently approved Phase 3 on 2026-10-25 with "so start phase 3" after requesting pause/resume support. E1 EfficientNetV2-S implementation, GPU smoke testing, resumable training, validation selection and evaluation are authorized. Save epoch checkpoints to durable storage; an interrupted epoch may repeat. Phase 4 still requires separate approval. Local PyTorch is CPU-only; do not claim Colab/GPU execution without actual evidence.
+- On 2026-10-26 the user reported unsuccessful uploads and requested saving the project to continue tomorrow (2026-10-27). Phase 3 is paused at that request. Preserve the notebook, transfer ZIP/receipt, source, frozen data and private artifacts; do not restart uploads, acquisition or training until the user resumes. On resumption, first diagnose which upload failed and guide the Colab handoff. Actual project GPU smoke/training/evaluation remain unverified.
 
 ## Saving and resuming
+
+- The user clarified that the college has supplied no access details and only said its team will train the model. Treat the handoff as staff-operated training; do not assume the student will receive login access. `docs/COLLEGE_TRAINING_HANDOFF.md` accompanies the unchanged transfer ZIP and explains E1 execution and the evidence/checkpoints to return. No external transfer or training is verified.
+
+- The user subsequently confirmed on 2026-10-26: "my college will provide the supercomputer". The intended Phase 3 compute target is now the college facility, with access/GPU/scheduler/storage details pending. Obtain its setup guide before adapting commands. Preserve the Colab artifacts as alternatives; no remote GPU execution is verified. The existing trainer uses one CUDA GPU; Phase 4 still needs separate approval.
+
+- Latest instruction on 2026-10-26: "resume phase 3". The user confirmed "Neither file is uploaded yet". Phase 3 is resumed; guide the existing ZIP upload to My Drive and notebook upload to Colab, then GPU check/setup/smoke and one saved epoch. The previous pause is superseded. Do not assume any remote step passed. Phase 4 still requires separate approval.
 
 - Save files and run `python scripts/checkpoint.py` after meaningful completed work, before a phase boundary, and before ending a session.
 - Supply a concrete `--summary`, `--next`, and relevant `--completed` items. Update requirements and decisions when they change.

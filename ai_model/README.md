@@ -1,6 +1,6 @@
 # AI research component
 
-Phase 2 implements acquisition, audit, immutable group splits, preprocessing, and data loaders. See `docs/PHASE_2.md` and the latest phase report/checkpoint for actual-data verification status. No training has run and no trained skin-lesion weights are present.
+Phase 2 data preparation is complete. The approved E1 EfficientNetV2-S, E2 Swin-T, E3 concatenation fusion and E4 attention fusion implementations share durable checkpoint/resume, validation selection and separate final-test evaluation. See `../docs/TRAINING_PACKAGE.md` and `../docs/SUPERCOMPUTER_BEGINNER_GUIDE.md`. Local software and official-pretrained CPU diagnostics passed; actual college GPU training/evaluation remain pending. No evaluated skin-lesion weights are present. Private data, manifests, initialization/trained weights and transfer ZIPs are excluded from GitHub.
 
 | Directory | Purpose in later approved phases |
 | --- | --- |
@@ -10,7 +10,7 @@ Phase 2 implements acquisition, audit, immutable group splits, preprocessing, an
 | `training/` | Training, validation, and resumable checkpoints |
 | `evaluation/` | Metrics, error analysis, calibration, and comparison |
 | `explainability/` | Grad-CAM and compatible explanations |
-| `notebooks/` | Phase 2 Colab data-preparation entry point; not executed remotely by the agent |
+| `notebooks/` | Phase 2 preparation and Phase 3 E1 training notebooks; not executed remotely by the agent |
 | `checkpoints/` | Local/private model checkpoints; excluded from Git |
 | `exports/` | Evaluated inference bundles; excluded from Git |
 | `results/` | Local run artifacts; publish only reviewed non-sensitive reports |

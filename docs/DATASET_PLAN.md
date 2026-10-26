@@ -2,7 +2,7 @@
 
 ## Current state
 
-The user authorized Phase 2 on 2026-10-25. Official ISIC labels and lesion-group files have been downloaded and joined: 10,015 image entries and 7,470 lesion IDs. The image-archive download and full image audit are tracked in the latest checkpoint/phase report. No training has run. Published class totals below remain expectations until the image audit confirms the actual saved cohort.
+Phase 2 completed on 2026-10-25. Official ISIC data contains 10,015 audited images and 7,470 lesion IDs; actual image/class counts match the table below. The frozen grouped splits contain 7,011 training, 1,502 validation and 1,502 test images, with every class represented and zero prohibited overlaps. See `phase-reports/phase-2.md`, `DUPLICATE_REVIEW.md` and `../reports/phase2-data-summary.json` for actual findings and limits. No training has run; Phase 3 requires approval.
 
 ## Initial source and scope
 

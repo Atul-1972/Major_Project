@@ -1,0 +1,141 @@
+{
+  "phase": 2,
+  "status": "locally_verified_awaiting_phase3_approval",
+  "verified_at_utc": "2026-10-25T18:08:39.396046+00:00",
+  "audited_images": 10015,
+  "class_counts": {
+    "nv": 6705,
+    "mel": 1113,
+    "bkl": 1099,
+    "df": 115,
+    "akiec": 327,
+    "bcc": 514,
+    "vasc": 142
+  },
+  "unique_source_lesions": 7470,
+  "connected_groups": 7436,
+  "exact_duplicate_groups": 2,
+  "near_duplicate_pairs": 58,
+  "duplicate_review": {
+    "sha256": "baf5bcffa8fdf240526e1a2e9fe1e950c71f010cff35e6026b16225c2df44d6b",
+    "accepted_pairs": 11
+  },
+  "image_modes": {
+    "RGB": 10015
+  },
+  "dimensions": {
+    "600x450": 10015
+  },
+  "split_counts": {
+    "train": 7011,
+    "val": 1502,
+    "test": 1502
+  },
+  "split_class_counts": {
+    "train": {
+      "nv": 4693,
+      "bkl": 769,
+      "mel": 779,
+      "df": 81,
+      "bcc": 360,
+      "vasc": 100,
+      "akiec": 229
+    },
+    "val": {
+      "mel": 167,
+      "nv": 1006,
+      "akiec": 49,
+      "bcc": 77,
+      "bkl": 165,
+      "vasc": 21,
+      "df": 17
+    },
+    "test": {
+      "nv": 1006,
+      "bkl": 165,
+      "mel": 167,
+      "vasc": 21,
+      "bcc": 77,
+      "akiec": 49,
+      "df": 17
+    }
+  },
+  "split_group_counts": {
+    "train": 5203,
+    "val": 1116,
+    "test": 1117
+  },
+  "leakage_checks": {
+    "image_id": 0,
+    "group_id": 0,
+    "lesion_id": 0,
+    "pixel_sha256": 0,
+    "patient_id": null
+  },
+  "manifest_fingerprint": "59c4dc4192093bb29e33e7d1d79c8937819d7d4e0fd05a0e552009d76e3a43fd",
+  "manifest_files_sha256": {
+    "train.csv": "d5e21c71cc759ddfa078af29b13f924b523b410aa6abb401ac72edd15e67d5cf",
+    "val.csv": "6fb31d171f800bf657e612b3d23c8b8c60280cac8c761c9a3dbf113d822f71f8",
+    "test.csv": "0e27a00ef9c3ecaf6c36d64fb545250b90833643753ead0d68f13737d649fbfc",
+    "class_mapping.json": "881fccfe66a11227a55723d19214ec0103b5cdd192fb154707b261380a73c559",
+    "preprocessing.json": "54727bb46e9825ebc095f186c70717064bf31bf928000243b8c263cd47c6c057",
+    "split_summary.json": "b7cb84e9edb2c3f2bc84a3ca2af797182285a7371fa8f14ee0830047d93ddb2a",
+    "duplicate_review.json": "baf5bcffa8fdf240526e1a2e9fe1e950c71f010cff35e6026b16225c2df44d6b"
+  },
+  "loader_batches": {
+    "train": {
+      "dataset_images": 7011,
+      "batch_shape": [
+        8,
+        3,
+        224,
+        224
+      ],
+      "image_dtype": "torch.float32",
+      "label_dtype": "torch.int64",
+      "finite": true,
+      "deterministic_evaluation": true,
+      "augmentation_enabled": true
+    },
+    "val": {
+      "dataset_images": 1502,
+      "batch_shape": [
+        8,
+        3,
+        224,
+        224
+      ],
+      "image_dtype": "torch.float32",
+      "label_dtype": "torch.int64",
+      "finite": true,
+      "deterministic_evaluation": true,
+      "augmentation_enabled": false
+    },
+    "test": {
+      "dataset_images": 1502,
+      "batch_shape": [
+        8,
+        3,
+        224,
+        224
+      ],
+      "image_dtype": "torch.float32",
+      "label_dtype": "torch.int64",
+      "finite": true,
+      "deterministic_evaluation": true,
+      "augmentation_enabled": false
+    }
+  },
+  "packages": {
+    "torch": "2.9.1",
+    "torchvision": "0.24.1",
+    "numpy": "2.3.5",
+    "Pillow": "12.0.0"
+  },
+  "limitations": [
+    "No patient identifiers: lesion-disjoint splits cannot establish patient-disjointness.",
+    "Technical visual review identified 11 cross-label perceptual candidates as distinct images; source labels are unchanged and every candidate remains grouped. This does not validate diagnoses or establish different patient identities.",
+    "Perceptual matching is a heuristic; absence of flagged pairs does not prove absence of all related images."
+  ],
+  "training_performed": false
+}

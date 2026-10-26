@@ -110,12 +110,13 @@ def verify_manifest_files(directory: Path):
     return manifest
 
 
-def create_manifests(records, spec_path: Path, preprocessing_path: Path, output: Path, seed=42, ratios=(0.7, 0.15, 0.15)):
+def create_manifests(records, spec_path: Path, preprocessing_path: Path, output: Path, seed=42, ratios=(0.7, 0.15, 0.15), duplicate_review: Path | None = None):
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
     classes = [item["code"] for item in spec["classes"]]
     if [item["index"] for item in spec["classes"]] != list(range(len(classes))):
         raise ValueError("Class indexes must be contiguous and ordered")
-    canonical = {"records": sorted(records, key=lambda row: row["image_id"]), "seed": seed, "ratios": ratios, "spec_sha256": sha256_file(spec_path), "preprocessing_sha256": sha256_file(preprocessing_path)}
+    review_sha256 = sha256_file(duplicate_review) if duplicate_review is not None else None
+    canonical = {"records": sorted(records, key=lambda row: row["image_id"]), "seed": seed, "ratios": ratios, "spec_sha256": sha256_file(spec_path), "preprocessing_sha256": sha256_file(preprocessing_path), "duplicate_review_sha256": review_sha256}
     fingerprint = hashlib.sha256(json.dumps(canonical, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     if output.exists() and any(output.iterdir()):
         if not (output / "manifest_set.json").exists():
@@ -139,5 +140,8 @@ def create_manifests(records, spec_path: Path, preprocessing_path: Path, output:
     (output / "preprocessing.json").write_bytes(preprocessing_path.read_bytes())
     save_json(output / "split_summary.json", summary)
     names = [f"{split}.csv" for split in SPLITS] + ["class_mapping.json", "preprocessing.json", "split_summary.json"]
+    if duplicate_review is not None:
+        (output / "duplicate_review.json").write_bytes(duplicate_review.read_bytes())
+        names.append("duplicate_review.json")
     save_json(output / "manifest_set.json", {"schema_version": 1, "input_fingerprint": fingerprint, "files_sha256": {name: sha256_file(output / name) for name in names}})
     return summary

@@ -68,7 +68,7 @@ Machine-specific JSON evidence is saved under ignored `reports/local/`. Package 
 Run from the new repository folder:
 
 ```powershell
-Set-Location -LiteralPath 'C:\Users\ATUL KUMAR AGRAHARI\OneDrive\Desktop\Major Project\SkinDiseaseAI'
+Set-Location -LiteralPath (Join-Path $env:USERPROFILE 'OneDrive\Desktop\Major Project\SkinDiseaseAI')
 .\.venv\Scripts\python.exe scripts\doctor.py
 git status --short --branch
 ```

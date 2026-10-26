@@ -3,7 +3,7 @@
 The files are already created. Open PowerShell and enter the repository:
 
 ```powershell
-Set-Location -LiteralPath 'C:\Users\ATUL KUMAR AGRAHARI\OneDrive\Desktop\Major Project\SkinDiseaseAI'
+Set-Location -LiteralPath (Join-Path $env:USERPROFILE 'OneDrive\Desktop\Major Project\SkinDiseaseAI')
 python --version
 git --version
 ```

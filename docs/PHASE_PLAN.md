@@ -16,7 +16,7 @@ The attached master prompt explicitly approved Phase 1 only and requires researc
 
 ## Current boundary
 
-Phase 2 is authorized by the user's "start phase 2" instruction on 2026-10-25. Dataset acquisition support, auditing, grouped splits, preprocessing, and data-loader verification are in scope. Training, application implementation, publication, and mobile implementation require their later approvals.
+Phase 2 is complete. Phase 3 is authorized by the user's "so start phase 3" instruction on 2026-10-25, including requested pause/resume support. E1 EfficientNetV2-S setup, GPU smoke testing, resumable training, validation checkpoint selection and evaluation are in scope. On 2026-10-26 the user explicitly authorized Phases 4 and 5 to prepare the complete E1-E4 supercomputer training package. Training/evaluation/export implementation for those models is now in scope; GPU evidence and explanation validation are still required for phase completion. Phase 6 and later require separate approvals.
 
 ## Essential dependencies
 

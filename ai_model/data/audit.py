@@ -98,8 +98,31 @@ def write_records(path: Path, records: list[dict], fields=RECORD_FIELDS):
     temporary.replace(path)
 
 
+def load_duplicate_review(path: Path | None, metadata: Path, records: list[dict]):
+    """Bind technical false-match reviews to unchanged source labels and files."""
+    if path is None:
+        return {}, None
+    review = json.loads(path.read_text(encoding="utf-8"))
+    if review.get("schema_version") != 1 or review.get("metadata_sha256") != sha256_file(metadata):
+        raise ValueError("Duplicate review schema or source metadata hash mismatch")
+    by_id = {record["image_id"]: record for record in records}
+    accepted = {}
+    for item in review["pairs"]:
+        ids = item["image_ids"]
+        if len(ids) != 2 or len(set(ids)) != 2 or any(identifier not in by_id for identifier in ids):
+            raise ValueError("Duplicate review contains an invalid image pair")
+        key = frozenset(ids)
+        if key in accepted or item.get("decision") != "distinct_images_keep_grouped" or not item.get("rationale", "").strip():
+            raise ValueError("Duplicate review requires a unique, reasoned technical decision")
+        if item.get("file_sha256") != {identifier: by_id[identifier]["file_sha256"] for identifier in ids}:
+            raise ValueError("Duplicate review source image hash mismatch")
+        accepted[key] = item
+    return accepted, sha256_file(path)
+
+
 def audit_dataset(metadata: Path, images: Path, output: Path, spec_path: Path = DEFAULT_SPEC,
-                  near_hash_distance: int = 2, near_pixel_distance: float = 0.03):
+                  near_hash_distance: int = 2, near_pixel_distance: float = 0.03,
+                  duplicate_review: Path | None = None):
     if not metadata.is_file() or not images.is_dir():
         raise ValueError("Metadata/images are missing. Run acquisition or supply the actual source files first.")
     if not 0 <= near_hash_distance <= 4 or not 0 <= near_pixel_distance <= 0.1:
@@ -161,6 +184,8 @@ def audit_dataset(metadata: Path, images: Path, output: Path, spec_path: Path = 
         if number % 1000 == 0:
             print(f"Audited {number}/{len(rows)} metadata rows", flush=True)
     records.sort(key=lambda record: record["image_id"])
+    reviewed_pairs, review_sha256 = load_duplicate_review(duplicate_review, metadata, records)
+    used_reviews = set()
     union = UnionFind(record["image_id"] for record in records)
     for field in ("lesion_id", "patient_id", "pixel_sha256"):
         first = {}
@@ -190,11 +215,21 @@ def audit_dataset(metadata: Path, images: Path, output: Path, spec_path: Path = 
                 continue
             difference = float(np.abs(thumbnails[identifier] - thumbnails[other_id]).mean() / 255)
             if difference <= near_pixel_distance:
-                near_pairs.append({"left": other_id, "right": identifier, "hamming_distance": distance, "mean_thumbnail_difference": round(difference, 6)})
+                pair = {"left": other_id, "right": identifier, "hamming_distance": distance, "mean_thumbnail_difference": round(difference, 6)}
                 if other["dx"] != record["dx"]:
-                    errors.append({"code": "near_duplicate_label_conflict", "image_ids": [other_id, identifier]})
+                    key = frozenset((other_id, identifier))
+                    if key in reviewed_pairs:
+                        used_reviews.add(key)
+                        pair["review_decision"] = reviewed_pairs[key]["decision"]
+                    else:
+                        errors.append({"code": "near_duplicate_label_conflict", "image_ids": [other_id, identifier]})
+                near_pairs.append(pair)
                 union.join(other_id, identifier)
         tree.add(value, identifier)
+    if set(reviewed_pairs) != used_reviews:
+        errors.append({"code": "unused_duplicate_reviews", "message": "Review no longer matches the detected cross-label candidates; inspect the source/configuration."})
+    if used_reviews:
+        warnings.append(f"Technical visual review identified {len(used_reviews)} cross-label perceptual candidates as distinct images; source labels are unchanged and every candidate remains grouped. This does not validate diagnoses or establish different patient identities.")
     groups = defaultdict(list)
     for record in records:
         groups[union.find(record["image_id"])].append(record["image_id"])
@@ -216,7 +251,8 @@ def audit_dataset(metadata: Path, images: Path, output: Path, spec_path: Path = 
         "unique_patients": len(set(patients)) if patient_available else None,
         "grouping_basis": "patient+lesion+duplicate components" if patient_available else "lesion+duplicate components; patient disjointness unknown",
         "connected_groups": len(groups), "exact_duplicate_groups": sum(count > 1 for count in pixel_counts.values()),
-        "near_duplicate_policy": {"hash_hamming_max": near_hash_distance, "thumbnail_mean_difference_max": near_pixel_distance, "action": "keep connected pairs in the same split; fail conflicting diagnoses"},
+        "near_duplicate_policy": {"hash_hamming_max": near_hash_distance, "thumbnail_mean_difference_max": near_pixel_distance, "action": "keep all connected pairs in the same split; fail conflicting diagnoses unless a hash-bound technical review records distinct images; exact pixel/lesion conflicts always fail"},
+        "duplicate_review": {"sha256": review_sha256, "accepted_pairs": len(used_reviews)},
         "near_duplicate_pairs": near_pairs,
         "image_modes": dict(Counter(record["original_mode"] for record in records)),
         "dimensions": dict(Counter(f"{record['width']}x{record['height']}" for record in records)),

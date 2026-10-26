@@ -1,0 +1,7 @@
+# GPU torch/torchvision are installed separately from the official CUDA wheel index.
+# Same direct non-torch versions as the verified local research environment.
+numpy==2.3.5
+Pillow==12.0.0
+scikit-learn==1.7.2
+matplotlib==3.10.7
+pytest==8.4.2

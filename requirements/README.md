@@ -13,6 +13,10 @@ Phase 2 installed and import-tested `torch==2.9.1` and `torchvision==0.24.1` on 
 | `torch-windows.txt` | Matched Windows CPU PyTorch/Torchvision from PyPI |
 | `phase2-windows.txt` | Combined Phase 2 installation entry point |
 | `locks/phase2-windows-py311.txt` | Actual local installed-package freeze, including transitive dependencies |
+| `phase3-windows.txt` | Phase 2 plus locally verified scikit-learn 1.7.2 / Matplotlib 3.10.7 |
+| `phase3-colab.txt` | Evaluation/plotting pins only; preserve Colab's CUDA torch/torchvision pair |
+| `training-linux.txt` | Non-torch requirements for all-model college GPU training; `setup_training.sh` installs the matched CUDA torch/torchvision pair separately |
+| `locks/phase3-windows-py311.txt` | Actual Phase 3 local dependency freeze |
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements/phase2-windows.txt

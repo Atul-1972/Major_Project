@@ -2,59 +2,50 @@
 
 Date: 2026-10-25 (Asia/Calcutta).
 
-Status: paused at the user's explicit "Pause now" request. Implementation is tested; full image acquisition and real-cohort verification are still pending. Phase 3 is not authorized.
+Status: complete and locally verified. Awaiting explicit Phase 3 approval; no training has started.
 
-## Authorization
+## Delivered
 
-User instruction: "start phase 2". Scope is acquisition support, source audit, leakage-aware splits, preprocessing, and loader verification. No model training or application implementation is included.
+Official ISIC acquisition/provenance, canonical metadata, actual image audit, duplicate-aware grouped splits, immutable mapping/preprocessing/manifests, PyTorch loaders, tests, Windows instructions and a statically checked Colab notebook. See `../PHASE_2.md` and `../../reports/phase2-data-summary.json` for reproducible commands and aggregate evidence.
 
-## Implemented and verified code
+## Actual cohort audit
 
-- Official-source acquisition with resumable serial or validated parallel byte ranges, per-file SHA-256 receipts, unchanged source archives, and bounded/path-safe extraction.
-- A checked one-to-one join of ISIC diagnosis labels and lesion identifiers into the explicitly derived `metadata.csv`.
-- Full-file image/label audit, source-count checks, decoded-pixel hashing, conservative near-duplicate matching, connected patient/lesion/duplicate groups, and honest missing-demographic reporting.
-- Deterministic, class-aware grouped train/validation/test assignment, class coverage and overlap assertions, ordered class mapping, frozen preprocessing, and immutable checksum-protected manifest bundles.
-- Shared orientation/RGB/letterbox/normalization transforms; training-only flips and color jitter; checksum-verified PyTorch Dataset and seeded DataLoader.
-- CPU batch-verification entry point, Windows instructions, pinned dependencies, actual environment freeze, source attribution, and a Colab data-preparation notebook.
+Audited images: 10015. Original lesion IDs: 7470. Connected groups after duplicate handling: 7436. Exact pixel-duplicate groups: 2. Conservative near-duplicate pairs: 58.
 
-Code checkpoint: local Git commit `6df3a2f` (implementation before full-cohort verification).
+| Class | Source images | Train | Validation | Test |
+| --- | ---: | ---: | ---: | ---: |
+| nv | 6705 | 4693 | 1006 | 1006 |
+| mel | 1113 | 779 | 167 | 167 |
+| bkl | 1099 | 769 | 165 | 165 |
+| df | 115 | 81 | 17 | 17 |
+| akiec | 327 | 229 | 49 | 49 |
+| bcc | 514 | 360 | 77 | 77 |
+| vasc | 142 | 100 | 21 | 21 |
 
-## Source metadata findings
+Technical duplicate review: 11 cross-label perceptual candidates were reviewed as distinct images. Source labels and conservative connected grouping were retained. Review SHA-256: `baf5bcffa8fdf240526e1a2e9fe1e950c71f010cff35e6026b16225c2df44d6b`. The original failed audit, private contact sheet and hash-bound review remain under ignored local data/reports; see `../DUPLICATE_REVIEW.md` for the procedure and limits.
 
-Harvard returned HTTP 403. The documented official ISIC 2018 Task 3 distribution was used instead; see `DATASET_SOURCE.md`. The source labels and grouping tables each contain 10,015 matching image entries and 7,470 distinct lesion IDs. No patient identifiers or age/sex/localization fields are supplied by this distribution.
+Split totals: {"train": 7011, "val": 1502, "test": 1502}. All classes are present in each split. Zero prohibited image, connected-group, lesion, or exact-pixel overlap; patient-level overlap is unknown when source IDs are unavailable.
 
-| Diagnosis code | Actual source metadata rows |
-| --- | ---: |
-| akiec | 327 |
-| bcc | 514 |
-| bkl | 1099 |
-| df | 115 |
-| mel | 1113 |
-| nv | 6705 |
-| vasc | 142 |
+Manifest fingerprint: `59c4dc4192093bb29e33e7d1d79c8937819d7d4e0fd05a0e552009d76e3a43fd`.
 
-These are measured metadata counts. They are not yet a passed audit of all image files.
+## Verification
 
-## Completed checks
+The completion runner requires successful acquisition/extraction, `pip check`, the full pytest suite, and actual-data `pipeline prepare` before generating this report. Detailed command output is in ignored `reports/local/phase2-run.log`. Each split produced a real finite float32 image batch and int64 labels, with deterministic evaluation transforms. The full saved audit and manifest files are under ignored `data/ham10000/processed/`.
 
-- All 30 automated tests passed in the local venv. Synthetic fixtures are explicitly labeled test-only, not research data or model performance evidence.
-- Torch 2.9.1+cpu and Torchvision 0.24.1+cpu imported; a CPU matrix operation passed; CUDA is unavailable locally.
-- NumPy 2.3.5 and Pillow 12.0.0 installed; `pip check` reported no broken requirements.
-- Python source compiled. Colab notebook JSON and all code cells parsed; no Colab execution is claimed.
-- Source diff whitespace checks passed. Source images/data, private chat archives, and runtime artifacts are ignored by Git.
+Final verification: all 42 tests passed in 14.45 seconds after adding the frozen-review completion check (the runner's immediately preceding full run passed 41 tests). `pip check` reported no broken requirements. Notebook JSON and every code cell parsed successfully; no remote Colab execution is claimed. Each actual split returned an `[8, 3, 224, 224]` float32 image batch with int64 labels. Completion evidence, review hashes and manifest checksums were independently rechecked after the runner finished. Data, private review/contact-sheet evidence and chat archives remain ignored by Git.
 
-After adding the source probe and completion runner, all 34 tests passed in 9.21 seconds. Runner tests verify completion gating and protection of an already-running job. `pip check` again reported no broken requirements. The actual-cohort pipeline is not yet verified, and no claim is made that the completion runner has already processed the full data.
+Recovery during resumption: the first connection was blocked by the sandbox; the network-enabled retry resumed saved bytes. A Windows status-file replacement lock interrupted acquisition at 94.35%; bounded atomic-write retries were implemented and tested before restarting. A later socket timeout recovered automatically. The initial full audit failed on eleven cross-label perceptual candidates; its report was preserved and the technical review above was applied before a second full audit passed. No source image or label was changed.
 
-## Actual image-data gate — pending
+## Limitations
 
-The official image ZIP is 2,771,732,744 bytes. The user confirmed slow Wi-Fi, then requested a pause. The download was stopped, retaining its contiguous prefix, entity-tag metadata, completed small files and range chunks. The latest saved byte count is in `.project/phase2_run.local.json`. A regional source probe measured only about 0.011 MiB/s; changing the endpoint did not remove the bottleneck. The completion runner was not left running. Tomorrow `scripts/run_phase2.py` can resume acquisition, check dependencies/tests, run actual-data preparation, and write the final report/checkpoint only on success. The standalone preparation command after acquisition is:
+- No patient identifiers: lesion-disjoint splits cannot establish patient-disjointness.
+- Technical visual review identified 11 cross-label perceptual candidates as distinct images; source labels are unchanged and every candidate remains grouped. This does not validate diagnoses or establish different patient identities.
+- Perceptual matching is a heuristic; absence of flagged pairs does not prove absence of all related images.
+- Harvard API access returned HTTP 403; the official ISIC alternate source and CC BY-NC 4.0 attribution are documented in `../DATASET_SOURCE.md`.
+- Demographics absent from this distribution are not inferred. No clinical, smartphone-photo, calibration, or model-accuracy results exist.
+- Colab cells were statically checked, not executed remotely by the agent. Local tests use clearly labeled synthetic fixtures only; actual-data verification is recorded separately above.
+- No training, API, dashboard, mobile implementation, or deployment was run.
 
-```powershell
-.\.venv\Scripts\python.exe -u -m ai_model.data.pipeline prepare
-```
+## Next phase
 
-Before closing Phase 2, record the real image audit, class coverage, detected duplicate/group counts, zero prohibited cross-split overlaps, frozen manifest hashes, and real train/val/test tensor batches. Do not mark this gate passed from synthetic tests.
-
-## Limits
-
-No patient-disjointness claim is possible with absent patient IDs. Perceptual duplicate detection is heuristic. Data use remains subject to CC BY-NC 4.0 attribution and noncommercial conditions. No clinical or ordinary smartphone-photo validity has been demonstrated. No training, model results, API, dashboard, Flutter app, or deployment has been produced.
+Request explicit approval for Phase 3: EfficientNetV2-S baseline setup, Colab GPU smoke test, resumable training, validation selection, evaluation and error analysis. Do not start it automatically.

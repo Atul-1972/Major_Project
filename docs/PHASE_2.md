@@ -56,6 +56,8 @@ The command stops on failed audit, invalid group coverage, changed existing mani
 
 Lesion, available patient, exact-duplicate, and detected near-duplicate relations are joined into indivisible components. A deterministic class-aware greedy procedure with seed 42 seeks approximately 70/15/15 image ratios while reserving class coverage. Actual counts depend on group boundaries. Labels from the locked test partition never control model tuning.
 
+The actual cohort initially stopped on eleven cross-label perceptual candidates. Their technical visual review is documented in `DUPLICATE_REVIEW.md`. Keep the private, hash-bound `data/ham10000/near_duplicate_review.json` with the dataset. The pipeline discovers it automatically; use `--duplicate-review <path>` for another location. Reviewed candidates remain grouped and retain source labels. Exact-pixel/source-lesion conflicts and unreviewed cross-label candidates still fail. The review is frozen and checksum-protected alongside the manifests.
+
 ## 4. Inspect outputs
 
 ```text
@@ -98,3 +100,5 @@ Tests use explicitly synthetic fixtures solely to check behavior. They do not de
 ## Colab
 
 Open `ai_model/notebooks/phase2_data_preparation.ipynb` in Colab after copying the repository source to a private Drive folder named `SkinDiseaseAI`. The notebook checks imports and transforms before acquisition, calls the same real modules, and saves reports/manifests to Drive. The temporary Colab image cache can disappear after runtime termination; reacquire it before reusing saved manifests. Training remains the next separately approved phase.
+
+Also copy the private technical review described above to `SkinDiseaseAI/data/ham10000/near_duplicate_review.json` on Drive. It is not in Git. The notebook requires the file before cohort preparation and verifies its source binding through the audit.

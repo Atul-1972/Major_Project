@@ -12,6 +12,12 @@
 
 ## Pending architecture decisions
 
+Latest 2026-10-26 override: the user will run training and explicitly authorized Phases 4 and 5 for all four models. Prepare a single private source/data/official-initialization ZIP with Linux setup, one-GPU sequential E1-E4 fitting, checkpoint recovery, validation-first hybrid selection, fixed test reporting and clean-process export. Earlier staff-operated assumptions are superseded. Preserve the frozen splits and old artifacts; do not claim completed GPU experiments or expand to application/mobile work.
+
+The user clarified that no facility details have been provided and the college team said it will train the model. Prepare a staff-operated handoff instead of requiring student credentials. `COLLEGE_TRAINING_HANDOFF.md` accompanies the unchanged ZIP, preserves the frozen E1 protocol, and requests smoke/one-epoch evidence followed by the complete private run artifacts. No communication, upload or college execution has been performed by the agent.
+
+Latest compute choice, 2026-10-26: the user confirmed "my college will provide the supercomputer". Prepare Phase 3 for the college facility once its access, GPU, software, scheduler and persistent-storage details are supplied. Keep the existing E1 protocol and frozen splits; verify compatibility and one durable epoch checkpoint before full training. No remote access or training is verified, and this does not approve later model phases. Colab remains an alternative.
+
 See `ARCHITECTURE.md`, `DATASET_PLAN.md`, and `EXPERIMENT_PLAN.md` for Phase 1 design choices and their validation gates. Hosting and access controls remain to be resolved before deployment.
 
 ## 2026-10-25 — master prompt and user reply
@@ -51,3 +57,19 @@ See `ARCHITECTURE.md`, `DATASET_PLAN.md`, and `EXPERIMENT_PLAN.md` for Phase 1 d
 - Shared preprocessing is RGB/orientation normalization and aspect-preserving 224-pixel letterboxing with ImageNet normalization. Training-only flips/color jitter are configured; rotation is initially omitted to avoid an additional crop/geometry change before review.
 - Freeze class mappings, manifests, and preprocessing together, with hashes and a seed-42 class-aware group assignment. Reject changed existing bundles rather than silently regenerating splits.
 - Windows torch/torchvision 2.9.1/0.24.1 from PyPI import as CPU builds; NumPy 2.3.5 and Pillow 12.0.0 are installed. CPU operation and `pip check` passed; Colab execution remains unverified.
+
+## 2026-10-25 — Phase 2 resumption and actual duplicate review
+
+- User requested "resume Phase 2" after the earlier pause. Resume the data phase only; training remains unapproved.
+- Added bounded atomic-status retries after an observed Windows file-lock failure; partial downloads are preserved.
+- The first complete image audit stopped on eleven cross-label perceptual candidates. Technical visual inspection found distinct image structures; preserve the failed audit and per-pair rationale/hash evidence locally. This does not clinically validate source labels or establish independent patients/lesions.
+- Keep all candidate pairs connected, retain every source image/label, and keep the original matching thresholds. Permit only explicit hash-bound false-match reviews; exact-pixel/source-lesion conflicts always fail. Freeze review evidence with the manifest bundle. See `DUPLICATE_REVIEW.md`.
+
+## 2026-10-25 approval; 2026-10-26 handoff — Phase 3
+
+- User approved "so start phase 3" and requested pause/resume, then asked for beginner Colab instructions. After a browser fetch error, the user reported Colab works and its GPU probe returns True. That report is separate from actual GPU model execution evidence.
+- Implement the planned E1 protocol in `ai_model/config/e1.json`: three warm-up plus up to twenty fine-tuning epochs, batch eight, train-only inverse-frequency weights, AdamW/cosine scheduling, patience five and validation macro-F1 selection. Preserve 224-pixel Phase 2 letterboxing, rather than adopting the pretrained enum's 384-pixel crop transform.
+- Save initial and completed-epoch state to durable Drive storage; repeat unfinished epochs. `last.pt` also contains best weights so an interrupted best-file write can be repaired. Reject changed source/config/packages/splits on resume. Handle AMP overflow through scaler skip/backoff; count only applied optimizer updates.
+- Keep training restricted to train/validation. Final-test evaluation requires a finished run and immutable validation selection, and saved reports cannot switch to another selection.
+- Prepare a small private allowlisted transfer bundle. Download original images and pretrained initialization inside Colab to avoid the user's slow laptop upload. No external upload or Colab execution was performed by the agent.
+- All 55 local tests and the real-image, actual-network CPU diagnostic passed. Local official-weight requests were reset; the diagnostic explicitly used random initialization and is not research training. Phase 3 remains in progress until GPU smoke, resumable training and evaluated results are reviewed. Phase 4 remains unapproved.

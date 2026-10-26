@@ -49,6 +49,7 @@ def main():
     parser.add_argument("action", choices=("audit", "prepare", "verify"))
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA)
     parser.add_argument("--metadata", type=Path, help="Optional original HAM10000 CSV instead of the joined ISIC metadata")
+    parser.add_argument("--duplicate-review", type=Path, help="Hash-bound technical false-match review; default <data-dir>/near_duplicate_review.json when present")
     parser.add_argument("--spec", type=Path, default=DEFAULT_SPEC)
     parser.add_argument("--preprocessing", type=Path, default=PREPROCESSING)
     parser.add_argument("--output", type=Path, help="Audit/output directory; default <data-dir>/processed")
@@ -57,15 +58,18 @@ def main():
     args = parser.parse_args()
     data = args.data_dir.resolve()
     output = args.output.resolve() if args.output else data / "processed"
+    duplicate_review = args.duplicate_review
+    if duplicate_review is None and (data / "near_duplicate_review.json").is_file():
+        duplicate_review = data / "near_duplicate_review.json"
     try:
         if args.action in ("audit", "prepare"):
-            report, records = audit_dataset(args.metadata or data / "metadata.csv", data / "images", output, args.spec)
+            report, records = audit_dataset(args.metadata or data / "metadata.csv", data / "images", output, args.spec, duplicate_review=duplicate_review)
             print(json.dumps({key: report[key] for key in ("passed", "metadata_rows", "audited_images", "class_counts", "unique_lesions", "connected_groups", "exact_duplicate_groups")}, indent=2), flush=True)
             if not report["passed"]:
                 print(f"Audit failed: {len(report['errors'])} issue(s). Inspect {output / 'audit.json'}; splitting/training not allowed.", flush=True)
                 return 1
             if args.action == "prepare":
-                summary = create_manifests(records, args.spec, args.preprocessing, output / "splits", seed=args.seed)
+                summary = create_manifests(records, args.spec, args.preprocessing, output / "splits", seed=args.seed, duplicate_review=duplicate_review)
                 print(json.dumps(summary, indent=2), flush=True)
         if args.action in ("prepare", "verify"):
             verification = verify_loaders(data, output / "splits", output / "loader_verification.json", batch_size=args.batch_size, seed=args.seed)
