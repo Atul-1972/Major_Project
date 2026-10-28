@@ -417,3 +417,13 @@ Resumed on explicit user approval: start Phase 6 with training deferred to the c
 - Finished authenticated verification of the source-only GitHub checkpoint synchronization setup
 
 Next action: Use docs/PHASE_6.md to run/review the approved local API. When college access is available, run the existing E1-E4 training package and return GPU/recovery/evaluation evidence and the intact selected-hybrid export; review it and complete real-model Phase 6 acceptance. Grad-CAM remains unavailable pending implementation/validation. Keep source-only GitHub sync current. Phase 7 dashboard, mobile and deployment still require explicit approval.
+
+## 2026-10-28T20:06:39.113728+00:00 — phase_6
+
+Status: paused
+
+User requested save till here on 2026-10-29. Saved a pause checkpoint with Phase 6 FastAPI backend preparation preserved; the repository was clean at the start of this save. Last verified implementation checks remain 31 focused backend tests, all 112 repository tests, dependency consistency and the real Uvicorn HTTP smoke; no tests were rerun for this documentation-only save. Updated pause/resume instructions and refreshed local conversation archives. Training remains deferred to the college supercomputer; actual evaluated weights, real-model API acceptance and Grad-CAM validation remain pending. No development, training or server was started for this save.
+
+- Saved the user-requested 2026-10-29 pause with Phase 6 preparation and research dependencies preserved
+
+Next action: Wait for the user to resume. Then inspect Git changes and this checkpoint, and continue approved Phase 6 using docs/PHASE_6.md. Preserve unavailable inference until the trusted evaluated hybrid export returns and is reviewed. College GPU training/evaluation and explanation validation remain pending; Phase 7 dashboard, mobile and deployment require separate approval.
