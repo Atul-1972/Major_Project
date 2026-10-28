@@ -27,6 +27,7 @@ def main() -> None:
         help="Otherwise keep the previous status",
     )
     parser.add_argument("--completed", action="append", default=[], help="Completed item; repeatable")
+    parser.add_argument('--no-github-sync', action='store_true', help='Save locally without the configured automatic commit/push')
     args = parser.parse_args()
     if not args.summary.strip() or not args.next_action.strip():
         parser.error("Summary and next action must contain text.")
@@ -86,6 +87,20 @@ def main() -> None:
             print(f"Refreshed {conversations} local conversation archive(s).")
     except (OSError, ValueError, StopIteration) as error:
         print(f"Checkpoint saved; chat archive refresh failed: {error}", file=sys.stderr)
+
+    if not args.no_github_sync:
+        # GitHub is a secondary copy. A network/auth failure must not lose this checkpoint.
+        try:
+            try:
+                from github_sync import sync
+            except ImportError:
+                from scripts.github_sync import sync
+            result = sync(ROOT, message='Checkpoint: ' + args.summary)
+            print('GitHub sync: ' + result['status'])
+            if result['status'] in ('pending', 'blocked'):
+                print('Checkpoint saved locally. ' + result['reason'] + ' Retry scripts/github_sync.py.', file=sys.stderr)
+        except (OSError, ValueError, RuntimeError) as error:
+            print(f'Checkpoint saved locally; GitHub sync needs retry ({type(error).__name__}).', file=sys.stderr)
 
 
 if __name__ == "__main__":

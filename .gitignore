@@ -51,6 +51,9 @@ chat_history/
 .project/phase2_run.local.json
 .project/phase2_run.local.json.tmp
 .project/phase2_runner.local.lock
+.project/github_sync.local.json
+.project/github_sync.local.json.tmp
+.project/github_sync.local.lock
 
 # Operating system/editor files
 Thumbs.db

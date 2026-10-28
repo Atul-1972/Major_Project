@@ -1,0 +1,1 @@
+"""SkinDiseaseAI web service."""

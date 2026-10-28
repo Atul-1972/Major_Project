@@ -12,6 +12,8 @@
 
 ## Pending architecture decisions
 
+On 2026-10-26 the user requested automatic GitHub pushes after changes and phase completion. Persist that authorization in `AGENTS.md`, enable `.project/github_sync.json`, and call the guarded standard-library sync helper after normal checkpoints. Save locally first; keep commits for retry on a network/authentication failure, refuse non-fast-forward history changes, and keep private assets excluded. Appropriate validation remains an agent responsibility before checkpoints. No continuous file-save watcher or startup service is installed.
+
 Latest 2026-10-26 override: the user will run training and explicitly authorized Phases 4 and 5 for all four models. Prepare a single private source/data/official-initialization ZIP with Linux setup, one-GPU sequential E1-E4 fitting, checkpoint recovery, validation-first hybrid selection, fixed test reporting and clean-process export. Earlier staff-operated assumptions are superseded. Preserve the frozen splits and old artifacts; do not claim completed GPU experiments or expand to application/mobile work.
 
 The user clarified that no facility details have been provided and the college team said it will train the model. Prepare a staff-operated handoff instead of requiring student credentials. `COLLEGE_TRAINING_HANDOFF.md` accompanies the unchanged ZIP, preserves the frozen E1 protocol, and requests smoke/one-epoch evidence followed by the complete private run artifacts. No communication, upload or college execution has been performed by the agent.

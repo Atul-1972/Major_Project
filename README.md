@@ -53,7 +53,9 @@ To save a development checkpoint using Python's standard library:
 python scripts/checkpoint.py --summary "Describe the work saved" --next "Describe the next action"
 ```
 
-The utility records development metadata. Source files must be saved separately; it does not make backups, run the application, or monitor an agent's token balance. Git records source changes; checkpoint files record development context. Neither replaces an independent backup.
+The utility records development metadata; save source files before invoking it. Git records source changes and checkpoint files record development context. It does not run the application or monitor an agent's token balance. GitHub synchronization covers committed source, while private assets still need an independent backup.
+
+Automatic GitHub sync is enabled at the user's request. After completed saved changes and phase checkpoints, the checkpoint command audits, commits and pushes source/docs to `origin/main`; local checkpoints/commits survive a failed push. See [GitHub sync and retry instructions](docs/GITHUB_SYNC.md). It runs at checkpoints, not as a background watcher for every editor keystroke. Private data, weights, training ZIPs and chat archives remain excluded and need separate backup.
 
 Files remain on disk when a session ends. Token-credit changes cannot automatically restart this agent. After credits return, open this workspace and send: **Resume SkinDiseaseAI from AGENTS.md and .project/state.json. Respect the phase approval gates.**
 

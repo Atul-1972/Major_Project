@@ -9,6 +9,8 @@
 
 ## User constraints
 
+- Current pause, 2026-10-27: the user said "stop here" and "we will work tomarrow". Stop project work and automatic GitHub pushes until explicit resumption. The new checkpoint-driven sync implementation and documentation are saved locally; 12 local Git integration tests and the complete 81-test suite passed. Its real authenticated GitHub execution and commit/push are still pending. Use `--no-github-sync` for this pause record. On resume, inspect actual Git changes and the saved checkpoint before finishing the sync setup. No background watcher or training job was started.
+
 - Latest scope override, 2026-10-26: the user requested files to train "all the models" and explicitly answered "Yes—authorize Phases 4 and 5 and prepare the full hybrid training package". Implement/package E1 EfficientNetV2-S, E2 Swin-T, E3 concatenation and E4 attention fusion, including sequential execution, recovery, validation selection, evaluation and export. The user clarified they must run training themselves; earlier staff-operated handoff assumptions are superseded. Keep existing artifacts/frozen splits. This approval supersedes the old Phase 4/5 implementation gates below, but does not complete the phases or authorize application/mobile/deployment work. Report actual local checks separately from unverified college GPU execution.
 
 - Python backend, preferably FastAPI. No Node.js, npm, or Node-based build tooling.
@@ -29,6 +31,10 @@
 - On 2026-10-26 the user reported unsuccessful uploads and requested saving the project to continue tomorrow (2026-10-27). Phase 3 is paused at that request. Preserve the notebook, transfer ZIP/receipt, source, frozen data and private artifacts; do not restart uploads, acquisition or training until the user resumes. On resumption, first diagnose which upload failed and guide the Colab handoff. Actual project GPU smoke/training/evaluation remain unverified.
 
 ## Saving and resuming
+
+- Standing user authorization, 2026-10-26: "automatically push on github after any changes made or completion of any phase". After each completed saved change batch and every phase checkpoint, run the appropriate validation, save a concrete checkpoint, and synchronize source/docs to `origin/main` at `https://github.com/Atul-1972/Major_Project.git` without asking for push permission again. `scripts/checkpoint.py` now invokes `scripts/github_sync.py` automatically using `.project/github_sync.json`. Review the reported sync status before claiming GitHub is up to date.
+- Automatic sync is source-only. Preserve the private-data/weight/archive/chat exclusions; never force-push or reset/rebase away user/remote work. If status is pending because network or Windows credential access is unavailable in the sandbox, retry `python scripts/github_sync.py` through the normal authorized network/credential execution path, requesting the tool's sandbox escalation when necessary. The user has already authorized these pushes; do not ask for a new user confirmation. If GitHub is ahead or a guard blocks the content, inspect and resolve safely, or report the specific unresolved issue. The local checkpoint/commit must remain saved.
+- This is checkpoint/session automation, not a continuously running file-save watcher or Windows startup task. It does not bypass phase approvals, run training, publish private artifacts or imply GPU/research validation. See `docs/GITHUB_SYNC.md`. Use `--no-github-sync` only when intentionally saving a local-only checkpoint; retry the sync later for work that should be backed up.
 
 - The user clarified that the college has supplied no access details and only said its team will train the model. Treat the handoff as staff-operated training; do not assume the student will receive login access. `docs/COLLEGE_TRAINING_HANDOFF.md` accompanies the unchanged transfer ZIP and explains E1 execution and the evidence/checkpoints to return. No external transfer or training is verified.
 
