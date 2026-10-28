@@ -404,3 +404,16 @@ User explicitly said stop here and we will work tomorrow. Stopped work and saved
 - Saved automatic-sync implementation with 81 passing local tests; paused before real GitHub verification/push
 
 Next action: Wait for explicit user resumption. Then inspect the saved source/diff and finish real authenticated GitHub-sync verification and publication without losing local changes. Respect the existing source-only destination, asset exclusions, paused research work and phase gates; do not automatically upload or train before resumption.
+
+## 2026-10-28T18:27:10.813018+00:00 — phase_6
+
+Status: in_progress
+
+Resumed on explicit user approval: start Phase 6 with training deferred to the college supercomputer. Implemented FastAPI health/model-info/predict/docs, bounded memory-only image validation, safe unavailable-model responses and an evaluated hybrid export adapter. 31 focused backend tests and all 112 repository tests passed; pip check, diff checks and a real Uvicorn loopback HTTP smoke passed. Synthetic fixtures are test-only; valid uploads currently return 503 without a verified evaluated model. Reviewed pending automatic GitHub sync setup: 12 local Git tests passed and real authenticated source push e6c3586 was verified. Saved backend guide, phase report, dependency freeze and updated approval/resume records. Training, actual metrics/export acceptance and Grad-CAM validation remain pending. No persistent server or GPU job was started.
+
+- Recorded explicit Phase 6 approval with college training deferred; research evidence remains pending
+- Implemented FastAPI service, memory-only validated uploads, unavailable-model behavior and trusted hybrid export adapter
+- Verified 31 backend tests, all 112 repository tests, dependency consistency and real Uvicorn HTTP smoke
+- Finished authenticated verification of the source-only GitHub checkpoint synchronization setup
+
+Next action: Use docs/PHASE_6.md to run/review the approved local API. When college access is available, run the existing E1-E4 training package and return GPU/recovery/evaluation evidence and the intact selected-hybrid export; review it and complete real-model Phase 6 acceptance. Grad-CAM remains unavailable pending implementation/validation. Keep source-only GitHub sync current. Phase 7 dashboard, mobile and deployment still require explicit approval.

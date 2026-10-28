@@ -62,7 +62,20 @@ Resumed on 2026-10-26. The user subsequently authorized the complete E1-E4 super
 - [x] Verify ZIP CRC/receipt, all 66 shipped-file hashes and extracted-source imports; 58 included tests passed. Complete repository suite: 69 passed.
 - [ ] Review actual GPU training/evaluation/export evidence; complete explanation validation before application integration.
 
-## Remaining phases
+## Phase 6 preparation (approved 2026-10-28)
+
+- [x] Record explicit approval to start Phase 6 with supercomputer training deferred.
+- [x] Implement FastAPI health/model-info/predict/docs with one-time startup model loading.
+- [x] Validate JPEG/PNG uploads, encoded/decoded limits, multipart fields, orientation and memory-only cleanup.
+- [x] Return safe unavailable-model responses; do not expose placeholder predictions or explanations.
+- [x] Implement evaluated hybrid export integrity/provenance checks and CPU smoke/reload adapter.
+- [x] Pass 31 focused API/adapter tests with explicitly synthetic fixtures; dependency consistency passed.
+- [x] Pass all 112 repository tests and a real Uvicorn HTTP smoke; stop the temporary server afterward.
+- [ ] Review the real returned GPU/training/evaluation/export evidence and verify actual prediction acceptance.
+- [ ] Implement and validate scoped explanations before claiming Grad-CAM support.
+- [ ] Finalize real-model Phase 6 acceptance and request Phase 7 approval.
+
+## Overall phase completion
 
 - [x] Phase 2: acquire/audit HAM10000, grouped splits, preprocessing and a verified loader batch.
 - [ ] Phase 3: train/evaluate E1 and verify training resume.

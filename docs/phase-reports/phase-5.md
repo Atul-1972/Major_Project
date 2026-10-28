@@ -1,5 +1,7 @@
 # Phase 5: fusion training/export implementation ready; evidence pending
 
+2026-10-28 update: training/evaluation/explanation evidence remains pending. The user explicitly approved starting Phase 6 with training deferred; that later approval overrides the previous backend restriction for service preparation only. This does not complete Phase 5 or validate a trained model. See `phase-6.md`.
+
 The user explicitly authorized Phase 5 on 2026-10-26 while requesting all four models. E3/E4 implementation is available; no actual fusion research training has run.
 
 - E3 concatenates the pooled 1,280-dimension CNN and 768-dimension Swin-T feature vectors before classification.

@@ -1,5 +1,9 @@
 # Decision record
 
+## 2026-10-28: resume with training deferred; prepare Phase 6
+
+The user requested continuing beyond training while it will run on the college supercomputer, then explicitly approved: "Yes, start Phase 6 with training deferred". Backend preparation is now authorized before research execution finishes. Keep Phases 3-5 evidence open rather than marking training skipped/completed. Implement the FastAPI service with genuine unavailable inference by default, a trusted returned-export adapter, bounded in-memory uploads, no retained images/history, CPU inference and serialized model execution. Grad-CAM remains unavailable pending implementation/validation. Phase 6 real-model acceptance remains open; Phase 7, mobile and deployment are unapproved. Standing source-only GitHub backup resumes; authenticated sync of the saved setup and initial backend was verified in this session.
+
 ## 2026-10-25 — confirmed constraints
 
 - Application name: SkinDiseaseAI.

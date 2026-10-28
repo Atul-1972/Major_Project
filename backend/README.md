@@ -1,5 +1,14 @@
-# FastAPI component — planned
+# FastAPI backend
 
-Implementation follows the evaluated model export, as required by the master prompt. No server is runnable yet.
+Phase 6 was explicitly approved on 2026-10-28 with supercomputer training deferred. The API runs now and reports inference unavailable until a verified evaluated hybrid export is configured.
 
-Planned endpoints and error behavior are specified in `docs/API_SPEC.md`. Future tests belong in `backend/tests/`. The Python backend will also serve the no-Node web frontend.
+From the repository root:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements/backend-test.txt
+.\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
+```
+
+Open `http://127.0.0.1:8000/docs`. Routes: `/health`, `/model-info`, `/predict`. Run `.\.venv\Scripts\python.exe -m pytest backend/tests -q` for focused checks.
+
+See [the backend guide](../docs/PHASE_6.md), [API contract](../docs/API_SPEC.md), and [phase report](../docs/phase-reports/phase-6.md). Source is in `backend/app/`; tests are in `backend/tests/`. The web dashboard is a future separately approved phase.

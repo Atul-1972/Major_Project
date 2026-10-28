@@ -17,6 +17,9 @@ Phase 2 installed and import-tested `torch==2.9.1` and `torchvision==0.24.1` on 
 | `phase3-colab.txt` | Evaluation/plotting pins only; preserve Colab's CUDA torch/torchvision pair |
 | `training-linux.txt` | Non-torch requirements for all-model college GPU training; `setup_training.sh` installs the matched CUDA torch/torchvision pair separately |
 | `locks/phase3-windows-py311.txt` | Actual Phase 3 local dependency freeze |
+| `backend.txt` | Phase 6 FastAPI/Uvicorn/multipart/Pydantic/Pillow dependencies; no GPU required for missing-model operation |
+| `backend-test.txt` | Backend dependencies plus HTTP test client and pytest |
+| `locks/backend-windows-py311.txt` | Actual combined Phase 6 local Windows Python 3.11 environment |
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements/phase2-windows.txt
