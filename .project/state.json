@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "SkinDiseaseAI",
-  "updated_at": "2026-10-29T08:57:53.079672+00:00",
+  "updated_at": "2026-10-29T08:58:41.851463+00:00",
   "phase": "phase_7",
   "status": "awaiting_requirements",
-  "summary": "Resumed SkinDisease on explicit user instruction on 2026-10-29 within existing Phase 7 approval. Read repository resume, scope and checkpoint records; initial Git tree was clean and prior checkpoint sync was recorded successful. Registered/refreshed this conversation archive. In-process dashboard, health, model-info and chat-status smoke checks each returned HTTP 200; pip check passed. Current environment has chat enabled without key/model and no evaluated model bundle configured. Updated resume instructions; provider choice and private configuration are pending. No live LLM request, GPU training, real-model acceptance, full suite or browser rerun performed. Source-only checkpoint backup remains authorized.",
-  "next_action": "Obtain the preferred chatbot provider, configure its model and any required key privately in the server environment using docs/CHATBOT.md, then start or restart the local server and verify live English/Hindi and safety behavior. Await evaluated college training artifacts before real prediction/context acceptance and scoped Grad-CAM. Preserve existing Phase 7 scope; Phase 8/mobile/deployment need separate approval.",
+  "summary": "User selected Groq for the chatbot on 2026-10-29 and explicitly deferred API-key use until later. Recorded the preference and deferral in repository instructions, resume guide and chatbot guide. No credentials requested or configured, provider request made or application implementation changed. Earlier resumption smoke checks returned HTTP 200 for dashboard, health, model-info and chat-status; dependency consistency passed. Diff whitespace check passed; no tests rerun for this documentation-only update. Source-only checkpoint remains saved; GitHub network/authentication retry is pending.",
+  "next_action": "Leave chatbot activation deferred until the user is ready to use their Groq key. Then verify current Groq endpoint, model availability and adapter compatibility, configure privately on the server and evaluate actual English/Hindi/safety behavior. Await evaluated college artifacts for real prediction/context acceptance and scoped Grad-CAM. Continue only approved Phase 7 scope; Phase 8/mobile/deployment require separate approval.",
   "completed": [
     "Created structured project directories and ignore rules",
     "Recorded SkinDiseaseAI requirements and deferred mobile work",
@@ -58,6 +58,7 @@
     "Verified final chatbot integration with 64 backend tests, all 145 repository tests, 52 Chrome checks and dependency consistency",
     "Delivered chatbot environment examples, activation and testing guide, evidence report and updated resume records; live provider configuration remains pending",
     "Saved the user-requested post-chatbot pause with implementation, verified evidence and pending activation/research dependencies preserved",
-    "Resumed approved Phase 7 after the post-chatbot pause and verified local route availability and dependency consistency"
+    "Resumed approved Phase 7 after the post-chatbot pause and verified local route availability and dependency consistency",
+    "Recorded Groq as the selected chatbot provider with API-key setup and live activation deferred at user request"
   ]
 }

@@ -9,6 +9,8 @@
 
 ## User constraints
 
+- Latest provider preference, 2026-10-29: the user chose Groq and said the API key will be used later. Record this preference without requesting credentials or activating a provider now. Private Groq configuration and live compatibility/English-Hindi/safety acceptance remain deferred; this does not authorize another development phase.
+
 - Latest resumption, 2026-10-29: the user instructed "Resume SkinDisease". The post-chatbot pause below is superseded. Continue within existing Phase 7 approval using `docs/CHATBOT.md`; inspect actual provider/model configuration before live acceptance. No chatbot API key/model or evaluated model bundle is configured in the current environment. Provider choice/private configuration and returned college training evidence remain pending. Phase 8/mobile/deployment still require separate approval.
 
 - Latest save/pause, 2026-10-29: the user said "save till here" after chatbot integration. Save and synchronize this final source-only pause checkpoint, then stop development until explicit resumption. Preserve the dashboard/chatbot and existing Phase 7 authorization. Last verified results are 64 backend tests, 145 repository tests and 52 Chrome checks; no tests were rerun for this documentation-only save. LLM key/model configuration, live provider acceptance, college training, evaluated-model acceptance and scoped Grad-CAM remain pending. On resume inspect Git and `.project/state.json`, then use `docs/CHATBOT.md`; Phase 8/mobile/deployment still require separate approval.

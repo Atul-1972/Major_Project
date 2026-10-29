@@ -493,3 +493,13 @@ Resumed SkinDisease on explicit user instruction on 2026-10-29 within existing P
 - Resumed approved Phase 7 after the post-chatbot pause and verified local route availability and dependency consistency
 
 Next action: Obtain the preferred chatbot provider, configure its model and any required key privately in the server environment using docs/CHATBOT.md, then start or restart the local server and verify live English/Hindi and safety behavior. Await evaluated college training artifacts before real prediction/context acceptance and scoped Grad-CAM. Preserve existing Phase 7 scope; Phase 8/mobile/deployment need separate approval.
+
+## 2026-10-29T08:58:41.851463+00:00 — phase_7
+
+Status: awaiting_requirements
+
+User selected Groq for the chatbot on 2026-10-29 and explicitly deferred API-key use until later. Recorded the preference and deferral in repository instructions, resume guide and chatbot guide. No credentials requested or configured, provider request made or application implementation changed. Earlier resumption smoke checks returned HTTP 200 for dashboard, health, model-info and chat-status; dependency consistency passed. Diff whitespace check passed; no tests rerun for this documentation-only update. Source-only checkpoint remains saved; GitHub network/authentication retry is pending.
+
+- Recorded Groq as the selected chatbot provider with API-key setup and live activation deferred at user request
+
+Next action: Leave chatbot activation deferred until the user is ready to use their Groq key. Then verify current Groq endpoint, model availability and adapter compatibility, configure privately on the server and evaluate actual English/Hindi/safety behavior. Await evaluated college artifacts for real prediction/context acceptance and scoped Grad-CAM. Continue only approved Phase 7 scope; Phase 8/mobile/deployment require separate approval.

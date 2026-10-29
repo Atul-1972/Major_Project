@@ -4,6 +4,8 @@ This is a modular extension to the existing FastAPI/dashboard application. It ad
 
 ## Configure and run
 
+User preference recorded on 2026-10-29: use Groq, with API-key setup deferred until later. The commands below remain generic setup examples. Groq's endpoint, model availability and compatibility with the existing adapter still need verification before activation; no Groq request or live acceptance has been performed.
+
 Run from the `SkinDiseaseAI` repository. The only added runtime dependency is the already test-pinned `httpx==0.28.1` HTTP client:
 
 ```powershell
