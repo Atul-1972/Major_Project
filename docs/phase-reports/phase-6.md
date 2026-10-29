@@ -44,3 +44,19 @@ Synthetic HTTP and tensor fixtures are explicitly injected only in tests. They v
 Training is deferred to the college supercomputer. Obtain the facility details and run the existing all-model package when access is available. Return and review GPU smoke/recovery logs, E1-E4 training/evaluation results, validation-selected hybrid and intact inference export. Complete real-model API acceptance against independently verified outputs. Grad-CAM still needs implementation and validation with accurately scoped branch/layer information. Phase 6 remains in progress while this evidence is absent; request Phase 7 approval only at the agreed boundary or after an explicit further ordering override.
 
 To run the current backend and inspect its code locations, follow `../PHASE_6.md`. Local development can exercise the documented service and unavailable-model behavior without training. No GPU job, external training upload, dashboard, mobile application or deployment was started in this session.
+
+## Proposed Phase 7 transition, 2026-10-29
+
+The user asked "can we move to the next phase for the development of this project". Reviewed the saved checkpoint, approval records, requirements, phase plan and Git status; the working tree was clean at review start. The validation results above are prior evidence, not rerun results. No returned evaluated model was supplied in this request, so Phase 6 real-model acceptance remains pending.
+
+Propose an explicit ordering override to prepare the Phase 7 web dashboard while college training and real-model acceptance remain deferred. This proposal is awaiting approval and does not complete Phases 3-6.
+
+Proposed deliverable and acceptance checks:
+
+- Responsive white/light-blue dashboard using HTML, CSS and browser JavaScript served by FastAPI, without Node tooling.
+- JPEG/PNG selection, local preview, consent and clear screening limitations; verify invalid-file handling and upload/reset behavior.
+- Integration with the existing health/model-info/predict API, showing actual request progress and useful validation, network and unavailable-model feedback.
+- Result/confidence and explanation presentation only when supported by the real API response. Without evaluated weights, verify the honest model-unavailable flow; no sample prediction or fabricated heatmap satisfies acceptance.
+- Verify desktop/mobile-width layout and browser interactions, record actual checks and limitations, and preserve separate pending acceptance for real predictions and scoped Grad-CAM.
+
+On explicit approval, record the actual instruction in `APPROVALS.md` and update the requirements, phase plan and checklist before implementation. Mobile application development and deployment remain outside this proposal.
