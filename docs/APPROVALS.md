@@ -1,5 +1,7 @@
 # Phase approvals
 
+On 2026-10-29 the user confirmed "i have not trained the model yet on supercomputer can we move further", then explicitly approved the proposed dashboard scope with "yes start wit hthe phase 7". This authorizes Phase 7 local dashboard preparation and verification while college training, real-model acceptance and scoped Grad-CAM validation remain deferred. It overrides the sequential acceptance dependency for dashboard preparation only; Phases 3-6 remain incomplete where real evidence is missing. No placeholder predictions or explanations may be presented as real. Phase 8, mobile development and deployment remain unapproved.
+
 On 2026-10-28 the user requested resumption and deferring training to the college supercomputer. When asked specifically about the next phase, the user answered: "Yes, start Phase 6 with training deferred". This authorizes the FastAPI backend, upload validation, health/model-info routes, and a prediction route that returns unavailable until a verified evaluated hybrid export is supplied. It overrides the research-first ordering for backend preparation only. Phases 3-5 retain their pending GPU, evaluation and explanation evidence; Phase 6 cannot claim real-model acceptance yet. Phase 7, mobile and deployment remain unapproved.
 
 On 2026-10-26 the user explicitly expanded the work to a complete supercomputer training package: "give all file that are required to train model during this project", then "all the models" after the assistant identified E1, E2, E3 and E4. This authorizes implementing and packaging the Phase 4 Transformer and Phase 5 fusion training/evaluation work alongside E1. It supersedes waiting for sequential implementation approvals for these training files. It does not establish successful GPU execution or completion of any phase, and does not authorize backend, dashboard, mobile or deployment work.
@@ -15,7 +17,7 @@ The user authorized project preparation and requested approval before each new p
 | Phase 4 — Transformer | Training implementation approved 2026-10-26; GPU evidence pending | User explicitly authorized Phase 4 for the complete all-model package |
 | Phase 5 — fusion/explanation/export | Fusion training/evaluation/export implementation approved 2026-10-26; GPU evidence pending | User explicitly authorized Phase 5 for the complete all-model package; explanation validation remains pending |
 | Phase 6 — backend | Approved 2026-10-28 with training deferred | "Yes, start Phase 6 with training deferred"; real-model acceptance remains dependent on returned evaluated weights |
-| Phase 7 — web dashboard | Not started | Requires approval after Phase 6 report |
+| Phase 7 — web dashboard | Approved 2026-10-29 with training and real-model acceptance deferred | "yes start wit hthe phase 7" in response to the explicit scope question |
 | Phase 8 — QA and handover | Not started | Requires approval after Phase 7 report |
 | Mobile development | Deferred | Requires an explicit later user command and its own phase approval |
 

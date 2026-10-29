@@ -75,6 +75,16 @@ Resumed on 2026-10-26. The user subsequently authorized the complete E1-E4 super
 - [ ] Implement and validate scoped explanations before claiming Grad-CAM support.
 - [ ] Finalize real-model Phase 6 acceptance and request Phase 7 approval.
 
+## Phase 7 preparation (approved 2026-10-29)
+
+- [x] Record explicit approval to prepare the dashboard with training and real-model acceptance deferred.
+- [ ] Implement FastAPI-served responsive HTML/CSS/browser JavaScript without Node tooling.
+- [ ] Implement accessible upload/preview, consent, reset/cancel and actual request progress.
+- [ ] Integrate readiness, safe API errors, unavailable-model feedback and response-driven results.
+- [ ] Verify browser interactions and desktop/mobile-width layout; record actual evidence.
+- [ ] Verify real prediction and explanation flows once trained weights and scoped explanations are available.
+- [ ] Deliver the Phase 7 report and checkpoint; keep Phase 8 behind separate approval.
+
 ## Overall phase completion
 
 - [x] Phase 2: acquire/audit HAM10000, grouped splits, preprocessing and a verified loader batch.

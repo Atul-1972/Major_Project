@@ -21,6 +21,8 @@ The system supports awareness and consultation with qualified dermatologists. It
 
 ## Technology and appearance
 
+On 2026-10-29 the user approved Phase 7 with training deferred: "yes start wit hthe phase 7". Implement the local responsive dashboard, upload/preview/consent, genuine request progress, API results and honest unavailable/error states now. Real prediction and explanation acceptance remain pending returned evaluated weights and validated explanation support. Phase 8, mobile and deployment require separate approval.
+
 On 2026-10-28 the user approved starting Phase 6 with training deferred to the college supercomputer. Implement and verify the backend independently of model availability. A running API must distinguish liveness from model readiness and return 503 when no verified evaluated hybrid export is configured. Training, metrics and explanation validation remain required later; Phase 7 dashboard work needs separate approval.
 
 - Python, PyTorch, FastAPI, EfficientNetV2, and a Vision Transformer branch.

@@ -16,6 +16,8 @@ The attached master prompt explicitly approved Phase 1 only and requires researc
 
 ## Current boundary
 
+**2026-10-29 dashboard ordering override:** the user explicitly approved "yes start wit hthe phase 7" after confirming training has not happened. Prepare and verify the local no-Node dashboard against the current backend, including its unavailable-model behavior. Phases 3-6 retain pending GPU, real-model and explanation acceptance; this override does not mark those phases complete. Phase 7 real-model end-to-end acceptance remains pending. Phase 8, mobile and deployment are unapproved.
+
 **2026-10-28 ordering override:** the user approved "Yes, start Phase 6 with training deferred". Backend preparation can proceed in parallel with the pending college training. Phase 6 implements the service and safe unavailable-model behavior now; its real-model exit checks remain open. This is a deferral of research execution, not completion of Phases 3-5. Phase 7 and later still require explicit approval. The original research-first dependencies below continue to govern actual prediction/explanation validation.
 
 Phase 2 is complete. Phase 3 is authorized by the user's "so start phase 3" instruction on 2026-10-25, including requested pause/resume support. E1 EfficientNetV2-S setup, GPU smoke testing, resumable training, validation checkpoint selection and evaluation are in scope. On 2026-10-26 the user explicitly authorized Phases 4 and 5 to prepare the complete E1-E4 supercomputer training package. Training/evaluation/export implementation for those models is now in scope; GPU evidence and explanation validation are still required for phase completion. Phase 6 and later require separate approvals.

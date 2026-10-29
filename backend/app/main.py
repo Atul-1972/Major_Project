@@ -1,11 +1,13 @@
 """Run with: python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000."""
 
 from contextlib import asynccontextmanager
+from pathlib import Path
 import uuid
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -13,6 +15,16 @@ from .inference import LIMITATIONS, ModelService
 from .schemas import ErrorResponse, Health, ModelInfo, Prediction
 from .settings import MAX_REQUEST_BYTES, Settings
 from .uploads import decode_image, read_upload
+
+
+FRONTEND = Path(__file__).resolve().parents[2] / 'frontend'
+DASHBOARD_HEADERS = {
+    'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self'; "
+    "img-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; "
+    "frame-ancestors 'none'; form-action 'self'",
+    'Referrer-Policy': 'no-referrer',
+    'X-Content-Type-Options': 'nosniff',
+}
 
 
 def error_response(status, request_id, message):
@@ -105,6 +117,11 @@ def create_app(settings=None):
         openapi_url='/openapi.json' if settings.docs_enabled else None,
     )
     app.add_middleware(RequestBoundary)
+    app.mount('/static', StaticFiles(directory=FRONTEND / 'static'), name='static')
+
+    @app.get('/', include_in_schema=False)
+    def dashboard():
+        return FileResponse(FRONTEND / 'templates' / 'index.html', headers=DASHBOARD_HEADERS)
 
     @app.exception_handler(StarletteHTTPException)
     async def http_error(request, error):
