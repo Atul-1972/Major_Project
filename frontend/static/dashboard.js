@@ -38,6 +38,7 @@
   }
 
   function clearSelection() {
+    window.dispatchEvent(new CustomEvent("skinai:screening-context", { detail: "clear" }));
     state.selection += 1;
     state.file = null;
     releasePreview();
@@ -176,6 +177,7 @@
       return item;
     }));
     $("predicted-class").focus();
+    window.dispatchEvent(new CustomEvent("skinai:screening-context", { detail: "refresh" }));
   }
 
   $("screening-form").addEventListener("submit", (event) => {

@@ -16,6 +16,8 @@ The attached master prompt explicitly approved Phase 1 only and requires researc
 
 ## Current boundary
 
+**2026-10-29 chatbot extension:** the user's explicit integration prompt authorizes a modular Phase 7 assistant, not a redesign or Phase 8. The current scope includes bilingual chat UI, LLM configuration, bounded session memory, trusted server prediction context, curated retrieval, safety/privacy checks and fixture-based verification. Provider/model credentials are absent, so live LLM acceptance and real trained-result explanation remain pending. See `CHATBOT.md` and `phase-reports/chatbot-integration.md`.
+
 **2026-10-29 dashboard ordering override:** the user explicitly approved "yes start wit hthe phase 7" after confirming training has not happened. Prepare and verify the local no-Node dashboard against the current backend, including its unavailable-model behavior. Phases 3-6 retain pending GPU, real-model and explanation acceptance; this override does not mark those phases complete. Phase 7 real-model end-to-end acceptance remains pending. Phase 8, mobile and deployment are unapproved.
 
 Phase 7 local preparation is now delivered: 39 Chrome checks, 34 focused backend tests and all 115 repository tests passed. See `PHASE_7.md` and `phase-reports/phase-7.md`. Actual prediction/explanation acceptance remains open; the overall phase is not marked complete.

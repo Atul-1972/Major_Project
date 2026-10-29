@@ -8,6 +8,8 @@
   <link rel="icon" href="/static/brand.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/dashboard.css">
   <script src="/static/dashboard.js" defer></script>
+  <link rel="stylesheet" href="/static/chatbot.css">
+  <script src="/static/chatbot.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to screening</a>
@@ -80,7 +82,7 @@
 
       <section class="details-grid" id="about-model" aria-label="Model information and limitations">
         <details class="info-details"><summary>About this research model <span aria-hidden="true">+</span></summary><div class="details-body"><p>The project combines EfficientNetV2-S and Swin-T features for seven-category HAM10000 skin-lesion research. Training and evaluation must finish before real predictions can be accepted.</p><dl class="model-metadata"><div><dt>Service</dt><dd id="service-status">Checking</dd></div><div><dt>Model</dt><dd id="model-status">Checking</dd></div><div><dt>Architecture</dt><dd id="model-architecture">Not available</dd></div><div><dt>Explanation</dt><dd id="model-explanation">Not available</dd></div></dl></div></details>
-        <details class="info-details" id="limitations"><summary>Privacy &amp; screening limitations <span aria-hidden="true">+</span></summary><div class="details-body"><p>This research prototype is not a medical diagnosis or a replacement for professional care. Technical image checks cannot determine whether an image depicts skin or matches the training domain.</p><p>No accounts or screening history are stored. Images are not sent to third-party AI services. Clearing the selection releases its local preview; cancelling a request does not guarantee the server has stopped processing it.</p><p>Grad-CAM remains unavailable until its implementation and branch/layer scope are validated.</p></div></details>
+        <details class="info-details" id="limitations"><summary>Privacy &amp; screening limitations <span aria-hidden="true">+</span></summary><div class="details-body"><p>This research prototype is not a medical diagnosis or a replacement for professional care. Technical image checks cannot determine whether an image depicts skin or matches the training domain.</p><p>No account or image history is saved. If enabled, the assistant keeps short-lived session text and a screening summary in server memory; Clear chat deletes that context. Images are not sent to third-party AI services. Clearing the selection releases its local preview; cancelling a request does not guarantee the server has stopped processing it.</p><p>Grad-CAM remains unavailable until its implementation and branch/layer scope are validated.</p></div></details>
       </section>
       <noscript><p class="inline-error">JavaScript is required for image preview and screening. Please enable it in your browser.</p></noscript>
       <footer class="page-footer"><span>SkinDiseaseAI <span aria-hidden="true">·</span> Explainable AI research</span><span>Designed to support awareness and professional consultation.</span></footer>

@@ -313,12 +313,77 @@ def run_checks(browser, base, temporary):
     check('remove releases hidden result text as well as preview', "document.getElementById('predicted-class').textContent === '' && document.getElementById('feedback-title').textContent === ''")
     browser.click('refresh-status')
     browser.wait("!document.getElementById('refresh-status').disabled")
+    run_chat_checks(browser, base, checks)
     check('no persisted screening data', 'localStorage.length === 0 && sessionStorage.length === 0 && document.cookie === ""')
     assert not browser.exceptions, browser.exceptions
     checks.append('no runtime JavaScript exceptions')
     assert all(url.startswith(base) or url.startswith('blob:' + base) for url in browser.requests), 'Unexpected external request'
     checks.append('dashboard uses only same-origin requests')
     return checks
+
+
+def run_chat_checks(browser, base, checks):
+    """Exercise real local safety/unconfigured routes and isolated widget-only fixtures."""
+    def check(name, expression):
+        assert browser.evaluate(expression), name
+        checks.append(name)
+    browser.wait("!!document.getElementById('chat-launcher')")
+    browser.click('chat-launcher')
+    browser.wait("!document.getElementById('chat-panel').hidden")
+    browser.wait("document.cookie === ''")
+    check('chat opens with consent required and no prediction', "document.getElementById('chat-send').disabled && document.getElementById('chat-include-prediction').disabled && document.activeElement.id === 'chat-input'")
+    for width, height in ((390, 844), (320, 568)):
+        browser.call('Emulation.setDeviceMetricsOverride', width=width, height=height, deviceScaleFactor=1, mobile=True)
+        check(f'chat fits {width}px viewport', "document.getElementById('chat-panel').getBoundingClientRect().right <= innerWidth && document.getElementById('chat-panel').getBoundingClientRect().left >= 0 && document.documentElement.scrollWidth <= innerWidth")
+        if height < 700:
+            browser.evaluate("document.getElementById('chat-panel').scrollTop = document.getElementById('chat-panel').scrollHeight")
+            check('chat composer stays reachable in short mobile viewport', "document.getElementById('chat-send').getBoundingClientRect().bottom <= document.getElementById('chat-panel').getBoundingClientRect().bottom")
+        browser.screenshot(f'chat-{width}.png')
+    browser.call('Emulation.setDeviceMetricsOverride', width=1440, height=1100, deviceScaleFactor=1, mobile=False)
+    browser.screenshot('chat-desktop.png')
+    browser.evaluate("document.getElementById('chat-input').value = 'I have trouble breathing and my tongue is swelling'; document.getElementById('chat-input').dispatchEvent(new Event('input'))")
+    check('chat blocks sending before provider-sharing consent', "document.getElementById('chat-send').disabled")
+    browser.click('chat-consent')
+    browser.click('chat-send')
+    browser.wait("!!document.querySelector('.chat-bubble.urgent')")
+    check('real emergency chat works without an LLM', "document.querySelector('.chat-bubble.urgent').textContent.includes('emergency') && document.querySelector('.chat-sources a').href.startsWith('https://www.nhs.uk/')")
+    browser.wait("!document.getElementById('chat-input').disabled")
+    browser.evaluate("document.getElementById('chat-input').value = 'How can I care for dry skin?'; document.getElementById('chat-input').dispatchEvent(new Event('input'))")
+    browser.click('chat-send')
+    browser.wait("!document.getElementById('chat-error').hidden")
+    check('unconfigured AI shows an honest error without fake reply', "document.getElementById('chat-error').textContent.includes('not configured') && document.querySelectorAll('.chat-bubble.assistant').length === 2")
+    browser.call('Fetch.enable', patterns=[{'urlPattern': base + 'chat'}])
+    browser.routes['/chat'] = (200, {'reply': '<b>TEST_CHAT_FIXTURE_ONLY</b> सामान्य जानकारी', 'mode': 'llm', 'urgency': 'routine',
+        'sources': [{'title': 'NHS fixture source', 'url': 'https://www.nhs.uk/conditions/moles/'},
+                    {'title': 'Rejected fixture link', 'url': 'javascript:alert(1)'}]})
+    browser.evaluate("document.getElementById('chat-language').value = 'hi'")
+    browser.click('chat-send')
+    browser.wait("document.getElementById('chat-messages').textContent.includes('TEST_CHAT_FIXTURE_ONLY')")
+    check('chat renders literal safe text and allowlisted sources', "!document.querySelector('#chat-messages b') && !Array.from(document.querySelectorAll('#chat-messages a')).some(a => a.href.startsWith('javascript:'))")
+    browser.click('chat-close')
+    check('chat collapses and restores launcher focus', "document.getElementById('chat-panel').hidden && document.activeElement.id === 'chat-launcher'")
+    browser.click('chat-launcher')
+    browser.routes['/chat'] = 'hold'
+    browser.evaluate("document.getElementById('chat-input').value = 'TEST_CHAT_PENDING'; document.getElementById('chat-input').dispatchEvent(new Event('input'))")
+    browser.click('chat-send')
+    browser.wait("!document.getElementById('chat-typing').hidden")
+    check('chat has a typing indicator and prevents duplicate sends', "document.getElementById('chat-send').disabled && document.getElementById('chat-input').disabled")
+    browser.click('chat-clear')
+    browser.wait("!document.getElementById('chat-clear').disabled")
+    check('clear chat resets consent, result opt-in and old bubbles', "!document.getElementById('chat-consent').checked && !document.getElementById('chat-include-prediction').checked && !document.getElementById('chat-messages').textContent.includes('TEST_CHAT') && document.getElementById('chat-typing').hidden")
+    browser.release_held()
+    browser.call('Fetch.disable')
+    browser.routes.clear()
+    browser.click('chat-close')
+    check('chat does not persist accessible browser storage', 'localStorage.length === 0 && sessionStorage.length === 0 && document.cookie === ""')
+    browser.call('Fetch.enable', patterns=[{'urlPattern': base + 'chat/status'}])
+    browser.routes['/chat/status'] = (200, {'enabled': False, 'configured': False})
+    browser.call('Page.navigate', url=base)
+    browser.wait("document.readyState === 'complete' && !!document.getElementById('page-title')")
+    browser.evaluate('new Promise(resolve => setTimeout(resolve, 200))')
+    check('disabled chatbot leaves the dashboard available without a widget', "!document.getElementById('chat-launcher') && !!document.getElementById('screening-form')")
+    browser.call('Fetch.disable')
+    browser.routes.clear()
 
 
 def main():
@@ -341,6 +406,9 @@ def main():
         base = f'http://127.0.0.1:{port}/'
         environment = os.environ.copy()
         environment.pop('SKINAI_MODEL_BUNDLE', None)
+        for key in ('SKINAI_CHAT_API_KEY', 'OPENAI_API_KEY', 'SKINAI_CHAT_MODEL'):
+            environment.pop(key, None)
+        environment['SKINAI_CHAT_ENABLED'] = '1'
         flags = subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
         server = subprocess.Popen([sys.executable, '-m', 'uvicorn', 'backend.app.main:app',
             '--host', '127.0.0.1', '--port', str(port)], cwd=ROOT, env=environment,

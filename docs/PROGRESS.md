@@ -461,3 +461,15 @@ Resumed approved Phase 7 on user request and delivered verified local dashboard 
 - Delivered Phase 7 usage guide, repeatable Python browser verifier, evidence report and updated resume records
 
 Next action: Review the local dashboard using docs/PHASE_7.md. When college training results return, review actual E1-E4 GPU/recovery/evaluation evidence and the selected evaluated hybrid export, complete real-model backend acceptance, implement and validate scoped Grad-CAM, then verify real browser prediction/explanation flows within existing approvals. Keep Phases 3-7 evidence incomplete where pending; Phase 8, mobile and deployment require separate approval. Source-only backup must remain synchronized; private artifacts remain excluded.
+
+## 2026-10-29T04:50:51.098244+00:00 — phase_7
+
+Status: awaiting_requirements
+
+Implemented the explicitly authorized chatbot-only Phase 7 extension without changing the original layout, classifier, preprocessing, training or prediction route/schema. Added floating bilingual chat, configurable text LLM, bounded isolated server history, trusted prediction-response context with explicit sharing, curated retrieval, urgent input/output safety checks, error handling and independent disable switch. A changed/cleared context rejects stale in-flight replies without blocking prediction. Verified 64 focused backend tests, all 145 repository tests and 52 Chrome checks, including prior dashboard flow and short mobile controls; dependency consistency, Python parsing, diff and source-only audit passed. Added environment examples, activation/privacy/test guide and actual evidence report. No API key/model configured, no live LLM call or real trained prediction acceptance claimed. Temporary browser/server stopped; no deployment or mobile work performed.
+
+- Integrated the authorized modular English/Hindi AI chatbot with trusted backend context, bounded sessions, curated retrieval and safety/privacy controls
+- Verified final chatbot integration with 64 backend tests, all 145 repository tests, 52 Chrome checks and dependency consistency
+- Delivered chatbot environment examples, activation and testing guide, evidence report and updated resume records; live provider configuration remains pending
+
+Next action: Configure SKINAI_CHAT_API_KEY and SKINAI_CHAT_MODEL privately in the server environment using docs/CHATBOT.md, restart Uvicorn and reload the existing site. Then verify actual selected-provider English/Hindi conversation, grounded explanations and safety behavior. Keep source-only GitHub backup synchronized. Await and review college GPU/evaluation results and the evaluated hybrid export before real screening-context acceptance; Grad-CAM remains pending. Preserve independent chatbot disabling and original classifier/layout; Phase 8/mobile/deployment remain unapproved.

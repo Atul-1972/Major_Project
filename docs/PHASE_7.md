@@ -1,5 +1,7 @@
 # Phase 7: local web dashboard
 
+The later explicitly authorized chatbot extension is documented in [CHATBOT.md](CHATBOT.md) and [its integration report](phase-reports/chatbot-integration.md). It preserves the original layout and classification behavior. The original 39-check/115-test results describe the pre-chatbot preparation; use the integration report for current results.
+
 Approved on 2026-10-29: "yes start wit hthe phase 7", with supercomputer training and real-model acceptance deferred. The user paused the partial implementation, then resumed with "start from where we left the projet". The local dashboard is now implemented and verified for missing-model operation. Training, actual prediction quality and scoped Grad-CAM remain pending.
 
 ## Start and use
@@ -19,7 +21,7 @@ Open **http://127.0.0.1:8000/**. Keep the terminal open; Ctrl+C stops the server
 4. With no verified evaluated model configured, the expected response is **Model not available yet**, with no class scores or explanation. The request ID helps distinguish separate requests.
 5. **Refresh status** checks service/model readiness. An unreachable service is distinct from an available server without a model. Review **About the model** and **Privacy & screening limitations** for context.
 
-There are no saved accounts, screening history, cookies, local/session storage or third-party image services in this client. Accepted uploads are processed in memory by the existing API. The app does not establish that an image depicts skin or lies within the HAM10000 dermoscopy domain.
+There are no saved accounts, image history or local/session storage in this client. The optional chatbot uses an opaque HttpOnly session cookie and short-lived server text/screening-summary memory, with explicit consent before text or opted-in labels go to a configured LLM. No image goes to a third-party AI service. Accepted uploads are processed in memory by the existing API. The app does not establish that an image depicts skin or lies within the HAM10000 dermoscopy domain.
 
 ## Source and behavior
 

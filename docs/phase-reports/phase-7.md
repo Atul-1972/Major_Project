@@ -1,5 +1,7 @@
 # Phase 7: dashboard preparation delivered; real-model acceptance pending
 
+The subsequently authorized chatbot-only extension has its own current evidence in `chatbot-integration.md`: 64 backend tests, 145 repository tests and 52 Chrome checks passed. The earlier dashboard-only results below are retained as historical evidence. Live LLM configuration/acceptance and real evaluated-model context remain pending.
+
 Date: 2026-10-29 (Asia/Calcutta). Explicit approval: "yes start wit hthe phase 7", with training deferred. The partial dashboard was saved at "can we pause here and start later", then resumed on "start from where we left the projet". Local dashboard preparation is delivered and verified. Full Phase 7 real-prediction/explanation acceptance remains pending.
 
 ## Delivered behavior and files

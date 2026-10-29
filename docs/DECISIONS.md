@@ -1,5 +1,11 @@
 # Decision record
 
+## 2026-10-29: chatbot-only integration authorization
+
+The user explicitly requested a configurable AI dermatology information assistant while preserving the existing website and classifier. Implement it as a Phase 7 extension in `backend/app/chat/` and two scoped frontend assets. Add no Node tooling or model/training change. The prediction integration observes trusted server responses; the browser supplies neither scores nor history. Keep prediction independent of chat latency, and reject replies generated against revoked/changed context.
+
+Use bounded worker-local memory, an opaque HttpOnly/SameSite session cookie, explicit text/context-sharing consent, fixed curated NHS/AAD/DermNet notes and no image transmission to an LLM. OpenAI and configurable compatible Chat Completions endpoints are supported through the already-pinned httpx client; require an explicit model and credentials rather than silently selecting a paid model. Follow the provider's retention policy; local deletion cannot retract data already sent externally. With missing configuration, normal AI conversation is unavailable; deterministic urgent guidance is separately labeled. Safety heuristics and translations are not clinically validated. Live provider and trained-model tests remain pending, independently of synthetic software tests.
+
 ## 2026-10-29: approved dashboard preparation with training deferred
 
 The user approved "yes start wit hthe phase 7", paused the partial implementation, then resumed with "start from where we left the projet". Serve the existing repository's dashboard through FastAPI at `/`, with public assets limited to `/static`; use no Node runtime, frontend build toolchain, hosted Site or deployment. Keep API and client on one origin. Preview images locally, require consent and explicit submission, release blob URLs/reset result values on replacement/removal, and show real request progress with indeterminate processing. Missing weights must remain unavailable; success presentation must use actual schema-checked API output and identify uncalibrated model scores.

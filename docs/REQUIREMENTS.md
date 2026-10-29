@@ -10,6 +10,8 @@ The system supports awareness and consultation with qualified dermatologists. It
 
 ## Requested capabilities
 
+Chatbot extension authorized 2026-10-29: add a floating English/Hindi dermatology information assistant, configurable LLM, current-session conversation context, trusted backend screening context, small cited retrieval library, urgent-symptom routing, no prescriptions/confirmed diagnoses/harmlessness guarantees, privacy consent and clear/delete behavior. Keep existing layout and all prediction/model/training functionality. The module must be independently disableable; never invent an LLM answer when provider configuration is absent.
+
 1. Upload a skin image for analysis.
 2. Classify supported skin-lesion categories with a trained hybrid EfficientNetV2-S and Transformer model using feature fusion. Swin-T is the proposed Transformer branch, subject to the documented feasibility checks. Fusion is a required project component; standalone models serve as comparison baselines.
 3. Display predicted classes and model confidence with appropriate limitations.

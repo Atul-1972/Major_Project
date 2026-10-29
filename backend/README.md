@@ -1,5 +1,7 @@
 # FastAPI backend
 
+The modular chatbot adds `/chat`, `/chat/status` and session/context routes without changing the classifier or `/predict` response. Runtime `httpx` reuses the existing pinned test-client version. See [chatbot configuration and verification](../docs/CHATBOT.md); a real LLM key/model must be configured separately.
+
 Phase 6 was explicitly approved on 2026-10-28 with supercomputer training deferred. The API runs now and reports inference unavailable until a verified evaluated hybrid export is configured.
 
 From the repository root:

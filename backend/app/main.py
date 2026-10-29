@@ -15,6 +15,8 @@ from .inference import LIMITATIONS, ModelService
 from .schemas import ErrorResponse, Health, ModelInfo, Prediction
 from .settings import MAX_REQUEST_BYTES, Settings
 from .uploads import decode_image, read_upload
+from .chat.config import ChatConfig
+from .chat.integration import install_chat
 
 
 FRONTEND = Path(__file__).resolve().parents[2] / 'frontend'
@@ -100,7 +102,7 @@ class RequestBoundary:
             await reject(500, 'The request could not be processed.')
 
 
-def create_app(settings=None):
+def create_app(settings=None, chat_config=None):
     settings = settings or Settings.from_environment()
 
     @asynccontextmanager
@@ -116,6 +118,7 @@ def create_app(settings=None):
         docs_url='/docs' if settings.docs_enabled else None, redoc_url=None,
         openapi_url='/openapi.json' if settings.docs_enabled else None,
     )
+    install_chat(app, chat_config or ChatConfig.from_environment())
     app.add_middleware(RequestBoundary)
     app.mount('/static', StaticFiles(directory=FRONTEND / 'static'), name='static')
 

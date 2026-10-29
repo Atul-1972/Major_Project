@@ -87,6 +87,20 @@ Resumed on 2026-10-26. The user subsequently authorized the complete E1-E4 super
 
 ## Overall phase completion
 
+### Authorized chatbot extension
+
+- [x] Preserve existing dashboard layout and classifier/preprocessing/training code.
+- [x] Add floating bilingual chat, suggestions, typing state, collapse and clear controls.
+- [x] Add configurable LLM, strict chat request schema and bounded session history.
+- [x] Capture trusted backend prediction summaries, require opt-in sharing and invalidate stale context.
+- [x] Add curated retrieval/source references, selected urgent-symptom handling and output checks.
+- [x] Verify 64 focused backend tests and 52 browser checks, including prior dashboard behavior.
+- [x] Pass all 145 repository tests and dependency consistency after the final chatbot changes.
+- [ ] Run a real configured provider conversation and evaluate English/Hindi/safety quality with the chosen model.
+- [ ] Verify explanation of a real evaluated classifier result after training.
+
+### Original phase completion
+
 - [x] Phase 2: acquire/audit HAM10000, grouped splits, preprocessing and a verified loader batch.
 - [ ] Phase 3: train/evaluate E1 and verify training resume.
 - [ ] Phase 4: train/evaluate E2 under the same protocol.

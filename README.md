@@ -8,6 +8,8 @@ Primary research reference: [Enhanced Skin Disease Classification via Dataset Re
 
 ## Current status
 
+The optional **English/Hindi dermatology information chatbot** is integrated as a floating assistant. It uses a configurable text LLM, short-lived server session memory, trusted backend screening summaries, curated source retrieval and safety checks. Configure `SKINAI_CHAT_API_KEY` and `SKINAI_CHAT_MODEL` to activate normal AI replies; neither is supplied. No image is sent to the LLM. See [chatbot setup, privacy and tests](docs/CHATBOT.md). Set `SKINAI_CHAT_ENABLED=0` to disable it independently.
+
 Phase 2 is complete. The E1-E4 training package is ready for the college supercomputer; actual GPU training, metrics, explanation validation and a trained export remain pending. The user approved **Phase 7 with training deferred** on 2026-10-29. The local web dashboard now supports upload/preview, consent, actual request progress, cancellation, model status and safe unavailable/error feedback through FastAPI. With no verified evaluated model configured, predictions return **503 unavailable**. Real-model and Grad-CAM acceptance remain pending. See [the dashboard guide](docs/PHASE_7.md), [backend guide](docs/PHASE_6.md) and [full training package](docs/TRAINING_PACKAGE.md).
 
 Read the [Phase 2 report](docs/phase-reports/phase-2.md), [Phase 1 report](docs/phase-reports/phase-1.md), and [running checklist](docs/CHECKLIST.md).

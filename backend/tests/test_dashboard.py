@@ -32,7 +32,8 @@ def test_dashboard_delivers_referenced_assets_and_safe_headers():
         assert "frame-ancestors 'none'" in policy and 'unsafe-inline' not in policy
         assets = Assets()
         assets.feed(response.text)
-        assert len(assets.paths) == 3
+        assert assets.paths == {'/static/brand.svg', '/static/dashboard.css', '/static/dashboard.js',
+                                '/static/chatbot.css', '/static/chatbot.js'}
         for path in assets.paths:
             asset = client.get(path)
             assert asset.status_code == 200 and asset.content
