@@ -483,3 +483,13 @@ User requested save till here after chatbot integration on 2026-10-29. Saved a d
 - Saved the user-requested post-chatbot pause with implementation, verified evidence and pending activation/research dependencies preserved
 
 Next action: Wait for explicit user resumption. Then inspect Git and this checkpoint and continue approved Phase 7 using docs/CHATBOT.md. Configure LLM key/model privately only when resumed, restart/reload and verify selected-provider English/Hindi and safety behavior. Await the evaluated college export before real screening-context acceptance; Grad-CAM remains pending. Preserve the classifier, original layout and chatbot disable switch. Phase 8/mobile/deployment require separate approval.
+
+## 2026-10-29T08:57:53.079672+00:00 — phase_7
+
+Status: awaiting_requirements
+
+Resumed SkinDisease on explicit user instruction on 2026-10-29 within existing Phase 7 approval. Read repository resume, scope and checkpoint records; initial Git tree was clean and prior checkpoint sync was recorded successful. Registered/refreshed this conversation archive. In-process dashboard, health, model-info and chat-status smoke checks each returned HTTP 200; pip check passed. Current environment has chat enabled without key/model and no evaluated model bundle configured. Updated resume instructions; provider choice and private configuration are pending. No live LLM request, GPU training, real-model acceptance, full suite or browser rerun performed. Source-only checkpoint backup remains authorized.
+
+- Resumed approved Phase 7 after the post-chatbot pause and verified local route availability and dependency consistency
+
+Next action: Obtain the preferred chatbot provider, configure its model and any required key privately in the server environment using docs/CHATBOT.md, then start or restart the local server and verify live English/Hindi and safety behavior. Await evaluated college training artifacts before real prediction/context acceptance and scoped Grad-CAM. Preserve existing Phase 7 scope; Phase 8/mobile/deployment need separate approval.
