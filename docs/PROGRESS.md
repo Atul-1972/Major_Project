@@ -503,3 +503,13 @@ User selected Groq for the chatbot on 2026-10-29 and explicitly deferred API-key
 - Recorded Groq as the selected chatbot provider with API-key setup and live activation deferred at user request
 
 Next action: Leave chatbot activation deferred until the user is ready to use their Groq key. Then verify current Groq endpoint, model availability and adapter compatibility, configure privately on the server and evaluate actual English/Hindi/safety behavior. Await evaluated college artifacts for real prediction/context acceptance and scoped Grad-CAM. Continue only approved Phase 7 scope; Phase 8/mobile/deployment require separate approval.
+
+## 2026-10-29T09:01:47.271103+00:00 — phase_7
+
+Status: paused
+
+User requested no stop it here we do it later on 2026-10-29 during the next-phase review. Saved the documentation-only transition proposal and explicit pause. Phase 8 was neither started nor approved. Reviewed existing Phase 7 evidence and pending dependencies; clarified that recorded local browser checks passed while real-model acceptance remains pending. Updated Phase 7 report, checklist and resume instructions. Groq preference is preserved with API-key use deferred; training, real-model and scoped Grad-CAM evidence remain pending. Diff whitespace check passed. No application changes, tests, provider calls, training, server startup or deployment performed. Save the authorized source-only backup and stop until explicit resumption.
+
+- Saved user-requested pause during the next-phase review; Phase 8 remains unstarted and unapproved
+
+Next action: Wait for explicit user resumption. Inspect Git and this checkpoint, preserve the Groq key deferral and pending training/real-model/Grad-CAM acceptance. The limited Phase 8 local QA/documentation/handover proposal is in docs/phase-reports/phase-7.md but is not approved; obtain explicit phase and ordering-override approval before starting it. Deployment and mobile remain unapproved.

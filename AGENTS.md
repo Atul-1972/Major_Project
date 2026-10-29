@@ -9,6 +9,10 @@
 
 ## User constraints
 
+- Latest pause, 2026-10-29: the user said "no stop it here we do it later" during the next-phase review. Save this documentation-only checkpoint and the authorized source-only backup, then stop until explicit resumption. Phase 8 has not started and is not approved; its limited proposal remains for later review. Preserve existing Phase 7 authorization, Groq preference with key setup deferred, and all pending training/real-model/Grad-CAM evidence. On resume inspect Git/state and ask before starting a new phase.
+
+- Latest boundary review, 2026-10-29: the user asked "canwe start the next phase". A limited Phase 8 local QA/documentation/handover proposal is recorded in `docs/phase-reports/phase-7.md`. Obtain explicit approval for that preparation ordering override before starting Phase 8; keep college training, real-model/scoped Grad-CAM acceptance and live Groq activation deferred. Phase 7 is not complete. Deployment and mobile remain outside the proposed scope.
+
 - Latest provider preference, 2026-10-29: the user chose Groq and said the API key will be used later. Record this preference without requesting credentials or activating a provider now. Private Groq configuration and live compatibility/English-Hindi/safety acceptance remain deferred; this does not authorize another development phase.
 
 - Latest resumption, 2026-10-29: the user instructed "Resume SkinDisease". The post-chatbot pause below is superseded. Continue within existing Phase 7 approval using `docs/CHATBOT.md`; inspect actual provider/model configuration before live acceptance. No chatbot API key/model or evaluated model bundle is configured in the current environment. Provider choice/private configuration and returned college training evidence remain pending. Phase 8/mobile/deployment still require separate approval.

@@ -85,6 +85,13 @@ Resumed on 2026-10-26. The user subsequently authorized the complete E1-E4 super
 - [ ] Verify real prediction and explanation flows once trained weights and scoped explanations are available.
 - [x] Deliver the Phase 7 preparation report and checkpoint; keep Phase 8 behind separate approval.
 
+## Phase 8 transition review (2026-10-29)
+
+- [x] Review the next-phase request and document a limited local QA/documentation/handover proposal in `phase-reports/phase-7.md`.
+- [ ] Receive explicit approval for Phase 8 preparation with training, real-model/Grad-CAM acceptance and live Groq activation deferred.
+- [ ] After approval, complete the proposed local QA report, user manual, acceptance matrix and academic outlines with actual evidence only.
+- [ ] Obtain separate hosting/access/privacy approval before deployment; keep final acceptance dependent on real model and provider evidence.
+
 ## Overall phase completion
 
 ### Authorized chatbot extension

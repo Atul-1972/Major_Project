@@ -39,4 +39,16 @@ Use `../PHASE_7.md` to start and review the local dashboard. Chrome desktop with
 
 Return and review the actual college E1-E4 GPU/recovery/evaluation evidence and the selected evaluated hybrid export. Complete backend real-model acceptance, implement/validate accurately scoped Grad-CAM, then verify real browser prediction/explanation flows. Keep Phases 3-7 incomplete where that evidence is missing. Phase 8 acceptance would require separately approved QA/hosting/privacy/access and handover scope; no deployment, mobile development or Phase 8 work is authorized by this report.
 
-Implementation references consulted: [FastAPI StaticFiles](https://fastapi.tiangolo.com/tutorial/static-files/) for static serving and [MDN XMLHttpRequest upload](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/upload) for actual upload progress events. Final browser verification remains pending.
+Implementation references consulted: [FastAPI StaticFiles](https://fastapi.tiangolo.com/tutorial/static-files/) for static serving and [MDN XMLHttpRequest upload](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/upload) for actual upload progress events. Local browser verification passed as recorded above; real-model browser acceptance remains pending.
+
+## Proposed Phase 8 preparation, awaiting approval
+
+The user subsequently said "no stop it here we do it later" on 2026-10-29. This proposal is deferred. Phase 8 has not started or been approved; project work is paused until explicit resumption.
+
+On 2026-10-29 the user asked "canwe start the next phase". Reviewed the saved checkpoint, checklist, existing Phase 7 evidence and clean Git status. The user previously selected Groq and explicitly deferred API-key setup. This review does not mark Phase 7 complete or approve an ordering override.
+
+Proposed scope for explicit approval: begin Phase 8 local QA and handover preparation while training and Groq activation remain deferred. Review the existing application against its documented contracts, run applicable local checks, document actual failures and resolve approved local defects, and prepare a user manual, reproducible local run instructions, acceptance matrix and academic report/presentation outlines. Use existing evidence with dates and clearly label missing results. No deployment, hosting purchases, external publishing, mobile implementation, training launch or provider activation is included.
+
+Preparation exit evidence: a reproducible local QA report separating real unconfigured-application behavior from synthetic fixtures; a user manual matching the current dashboard/chatbot; handover and academic outlines without invented metrics; and an explicit remaining-acceptance checklist. Preserve the existing design, classifier/training behavior, independent chat disable switch and private-asset exclusions.
+
+Final Phase 8 completion remains dependent on actual college GPU/evaluation evidence, the reviewed evaluated hybrid export, real prediction and scoped Grad-CAM acceptance, live Groq English/Hindi/safety evaluation when the user is ready, and separately approved hosting/access/privacy decisions if deployment is requested. Obtain explicit approval for this limited preparation scope before starting Phase 8 work.
