@@ -1,6 +1,6 @@
 # Phase 6: backend while supercomputer training is deferred
 
-Approved on 2026-10-28: "Yes, start Phase 6 with training deferred". The service is runnable independently of model availability. Phases 3-5 remain pending actual GPU training, evaluation, trained export and explanation evidence. Phase 6 remains in progress until real-model acceptance passes. The dashboard, mobile application and deployment are separate unapproved work.
+Approved on 2026-10-28: "Yes, start Phase 6 with training deferred". The service is runnable independently of model availability. Phases 3-5 remain pending actual GPU training, evaluation, trained export and explanation evidence. Phase 6 remains in progress until real-model acceptance passes. Phase 7 dashboard preparation was separately approved on 2026-10-29; see `PHASE_7.md`. Mobile development and deployment remain unapproved.
 
 ## Run locally
 
@@ -49,7 +49,7 @@ $env:SKINAI_MODEL_BUNDLE = (Resolve-Path 'artifacts/training/selected-hybrid').P
 
 The default device is CPU. Construction does not download ImageNet weights. The model loads once per worker and inference is serialized per worker. Missing or rejected exports keep `/health` live and predictions unavailable. `model_ready: true` means software loading/smoke checks passed, not that clinical validity was established. If the card's training source hashes differ from the current `ai_model/` source, investigate compatibility before enabling that export.
 
-5. Verify real prediction outputs against the returned model in a separate acceptance check, including preprocessing, class order and repeatability. Record the actual results. Keep Grad-CAM unavailable until its branch/layer scope is implemented and validated; this backend never invents explanations. Finish the remaining Phase 6 acceptance/report before requesting Phase 7.
+5. Verify real prediction outputs against the returned model in a separate acceptance check, including preprocessing, class order and repeatability. Record the actual results. Keep Grad-CAM unavailable until its branch/layer scope is implemented and validated; this backend never invents explanations. Finish the remaining Phase 6 acceptance/report and the real-model dashboard checks. The 2026-10-29 ordering override permits dashboard preparation before this evidence returns.
 
 To remove a configured bundle from the current shell:
 

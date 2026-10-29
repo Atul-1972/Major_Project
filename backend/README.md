@@ -9,6 +9,6 @@ From the repository root:
 .\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open `http://127.0.0.1:8000/docs`. Routes: `/health`, `/model-info`, `/predict`. Run `.\.venv\Scripts\python.exe -m pytest backend/tests -q` for focused checks.
+Open `http://127.0.0.1:8000/` for the dashboard or `/docs` for API documentation. API routes: `/health`, `/model-info`, `/predict`; dashboard assets: `/static/`. Run `.\.venv\Scripts\python.exe -m pytest backend/tests -q` for focused checks.
 
-See [the backend guide](../docs/PHASE_6.md), [API contract](../docs/API_SPEC.md), and [phase report](../docs/phase-reports/phase-6.md). Source is in `backend/app/`; tests are in `backend/tests/`. The web dashboard is a future separately approved phase.
+See [the backend guide](../docs/PHASE_6.md), [dashboard guide](../docs/PHASE_7.md), [API contract](../docs/API_SPEC.md), and [phase report](../docs/phase-reports/phase-6.md). Source is in `backend/app/`; tests are in `backend/tests/`. Phase 7 dashboard preparation was approved on 2026-10-29 with training deferred; real-model acceptance remains pending.

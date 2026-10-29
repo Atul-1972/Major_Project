@@ -27,6 +27,8 @@
     text("result-state", state.file ? "Ready to submit" : "Awaiting image");
     $("class-scores").replaceChildren();
     $("result-warnings").replaceChildren();
+    ["predicted-class", "result-model", "result-domain", "explanation-copy", "prediction-id",
+      "feedback-title", "feedback-copy", "request-id"].forEach((id) => text(id, ""));
   }
 
   function releasePreview() {
@@ -119,7 +121,7 @@
     text("feedback-copy", message);
     text("request-id", id ? `Request ID: ${id}` : "");
     text("result-state", label);
-    $("request-feedback").focus({ preventScroll: true });
+    $("request-feedback").focus();
   }
 
   function validPrediction(body) {
@@ -173,6 +175,7 @@
       item.textContent = warning;
       return item;
     }));
+    $("predicted-class").focus();
   }
 
   $("screening-form").addEventListener("submit", (event) => {
@@ -215,6 +218,8 @@
         text("availability-copy", "You can preview an image. Predictions need a verified, evaluated model.");
         $("availability").className = "availability";
         text("model-status", "Unavailable");
+        text("model-architecture", "Not available");
+        text("model-explanation", "Grad-CAM pending validation");
       } else {
         const message = body && body.error && typeof body.error.message === "string" ? body.error.message :
           "The service could not process the request. Please try again.";

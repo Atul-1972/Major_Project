@@ -1,5 +1,11 @@
 # Decision record
 
+## 2026-10-29: approved dashboard preparation with training deferred
+
+The user approved "yes start wit hthe phase 7", paused the partial implementation, then resumed with "start from where we left the projet". Serve the existing repository's dashboard through FastAPI at `/`, with public assets limited to `/static`; use no Node runtime, frontend build toolchain, hosted Site or deployment. Keep API and client on one origin. Preview images locally, require consent and explicit submission, release blob URLs/reset result values on replacement/removal, and show real request progress with indeterminate processing. Missing weights must remain unavailable; success presentation must use actual schema-checked API output and identify uncalibrated model scores.
+
+Use the installed Chrome browser and optional Python websocket-client/CDP tooling for isolated verification. Synthetic images, intercepted success/readiness/error responses and accelerated timeout settings exist only in the verifier's private browser session, never as application predictions. Retain screenshots/logs under ignored `reports/local/`. The actual 39 browser checks, 34 focused backend tests and 115 repository tests passed. These establish software behavior rather than trained-model quality. Real prediction and accurately scoped explanation acceptance remain pending; Phase 8, mobile and hosting/deployment are unapproved.
+
 ## 2026-10-28: resume with training deferred; prepare Phase 6
 
 The user requested continuing beyond training while it will run on the college supercomputer, then explicitly approved: "Yes, start Phase 6 with training deferred". Backend preparation is now authorized before research execution finishes. Keep Phases 3-5 evidence open rather than marking training skipped/completed. Implement the FastAPI service with genuine unavailable inference by default, a trusted returned-export adapter, bounded in-memory uploads, no retained images/history, CPU inference and serialized model execution. Grad-CAM remains unavailable pending implementation/validation. Phase 6 real-model acceptance remains open; Phase 7, mobile and deployment are unapproved. Standing source-only GitHub backup resumes; authenticated sync of the saved setup and initial backend was verified in this session.

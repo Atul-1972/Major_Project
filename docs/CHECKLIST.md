@@ -73,17 +73,17 @@ Resumed on 2026-10-26. The user subsequently authorized the complete E1-E4 super
 - [x] Pass all 112 repository tests and a real Uvicorn HTTP smoke; stop the temporary server afterward.
 - [ ] Review the real returned GPU/training/evaluation/export evidence and verify actual prediction acceptance.
 - [ ] Implement and validate scoped explanations before claiming Grad-CAM support.
-- [ ] Finalize real-model Phase 6 acceptance and request Phase 7 approval.
+- [ ] Finalize real-model Phase 6 acceptance (Phase 7 preparation was separately approved with this acceptance deferred).
 
 ## Phase 7 preparation (approved 2026-10-29)
 
 - [x] Record explicit approval to prepare the dashboard with training and real-model acceptance deferred.
-- [ ] Implement FastAPI-served responsive HTML/CSS/browser JavaScript without Node tooling.
-- [ ] Implement accessible upload/preview, consent, reset/cancel and actual request progress.
-- [ ] Integrate readiness, safe API errors, unavailable-model feedback and response-driven results.
-- [ ] Verify browser interactions and desktop/mobile-width layout; record actual evidence.
+- [x] Implement FastAPI-served responsive HTML/CSS/browser JavaScript without Node tooling.
+- [x] Implement keyboard-friendly upload/preview, consent, reset/cancel and actual request progress.
+- [x] Integrate readiness, safe API errors, unavailable-model feedback and response-driven results.
+- [x] Verify 39 Chrome browser checks and desktop/mobile-width layout; pass 34 focused backend tests and 115 repository tests.
 - [ ] Verify real prediction and explanation flows once trained weights and scoped explanations are available.
-- [ ] Deliver the Phase 7 report and checkpoint; keep Phase 8 behind separate approval.
+- [x] Deliver the Phase 7 preparation report and checkpoint; keep Phase 8 behind separate approval.
 
 ## Overall phase completion
 
@@ -92,7 +92,7 @@ Resumed on 2026-10-26. The user subsequently authorized the complete E1-E4 super
 - [ ] Phase 4: train/evaluate E2 under the same protocol.
 - [ ] Phase 5: E3/E4, scoped explanations, optional mask-backed segmentation, selection/export.
 - [ ] Phase 6: implement/test FastAPI against real evaluated weights.
-- [ ] Phase 7: implement/test the no-Node responsive web client.
+- [ ] Phase 7: local no-Node web client delivered; real-model prediction/explanation acceptance pending.
 - [ ] Phase 8: complete QA, approved deployment, academic reports and handover.
 - [ ] Mobile: deferred until an explicit new user command and approved mobile plan.
 

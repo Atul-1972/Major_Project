@@ -17,7 +17,7 @@ The user authorized project preparation and requested approval before each new p
 | Phase 4 — Transformer | Training implementation approved 2026-10-26; GPU evidence pending | User explicitly authorized Phase 4 for the complete all-model package |
 | Phase 5 — fusion/explanation/export | Fusion training/evaluation/export implementation approved 2026-10-26; GPU evidence pending | User explicitly authorized Phase 5 for the complete all-model package; explanation validation remains pending |
 | Phase 6 — backend | Approved 2026-10-28 with training deferred | "Yes, start Phase 6 with training deferred"; real-model acceptance remains dependent on returned evaluated weights |
-| Phase 7 — web dashboard | Approved 2026-10-29 with training and real-model acceptance deferred | "yes start wit hthe phase 7" in response to the explicit scope question |
+| Phase 7 — web dashboard | Approved 2026-10-29; local preparation delivered; real-model acceptance deferred | "yes start wit hthe phase 7"; later resumed with "start from where we left the projet" |
 | Phase 8 — QA and handover | Not started | Requires approval after Phase 7 report |
 | Mobile development | Deferred | Requires an explicit later user command and its own phase approval |
 

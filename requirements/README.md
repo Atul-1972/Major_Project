@@ -19,6 +19,7 @@ Phase 2 installed and import-tested `torch==2.9.1` and `torchvision==0.24.1` on 
 | `locks/phase3-windows-py311.txt` | Actual Phase 3 local dependency freeze |
 | `backend.txt` | Phase 6 FastAPI/Uvicorn/multipart/Pydantic/Pillow dependencies; no GPU required for missing-model operation |
 | `backend-test.txt` | Backend dependencies plus HTTP test client and pytest |
+| `browser-test.txt` | Optional Phase 7 Python CDP/browser verification, adding websocket-client 1.9.2; uses installed Chrome/Edge without Node or a driver download |
 | `locks/backend-windows-py311.txt` | Actual combined Phase 6 local Windows Python 3.11 environment |
 
 ```powershell

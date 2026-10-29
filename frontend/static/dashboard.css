@@ -9,3 +9,20 @@
 @media(max-width:960px){.sidebar{width:180px;padding:24px 12px}.brand{font-size:14px;gap:6px}.brand small{display:none}.brand img{width:30px;height:30px}.page{margin-left:180px}.nav-link{font-size:11px;gap:7px;padding:10px}.nav-label{margin-top:36px}.sidebar-note{padding:13px 10px}.sidebar-note a{font-size:9px}.workspace-grid{grid-template-columns:1fr}.empty-results{min-height:205px}.results-content{min-height:300px}.result-art{width:80px;margin-bottom:13px}.results-footnote{margin-top:20px}.availability{flex-wrap:wrap;gap:10px}.availability>div{flex:1}.availability .button{margin-left:27px;padding:4px 0;min-height:28px}.availability p{max-width:none}.steps{grid-template-columns:1fr;gap:20px}.steps h3{font-size:12px}.steps p{font-size:11px}.details-grid{grid-template-columns:1fr;gap:0}h1{font-size:28px}.page-heading p{max-width:420px}}
 @media(max-width:640px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:17px 20px;display:block}.brand{font-size:19px}.brand img{width:35px;height:35px}.brand small{display:block;font-size:8px}.nav-label,.sidebar-note,.sidebar-footer{display:none}.sidebar nav{display:flex;margin:19px -5px -3px;gap:5px;overflow-x:auto}.nav-link{font-size:10px;padding:7px 9px;margin:0;gap:5px;white-space:nowrap}.nav-link>span{font-size:17px;width:15px}.page{margin-left:0}.topbar{height:48px;padding:0 20px}.breadcrumb{font-size:10px}.research-tag{font-size:7px;padding:4px 6px;letter-spacing:.7px}main{padding:25px 18px 0}.eyebrow{font-size:8px;letter-spacing:1.2px}h1{font-size:27px;letter-spacing:-.8px}.page-heading{margin-bottom:21px}.page-heading p{font-size:11px;line-height:1.9}.availability{margin-bottom:20px;align-items:flex-start}.availability strong{font-size:11px}.availability p{font-size:10px;line-height:1.9}.availability-icon{margin-top:2px}.card-heading{min-height:85px;padding:17px 16px}.card-heading h2{font-size:15px}.card-heading p{font-size:9px}.status-pill{font-size:8px;padding:4px 5px}.step-number{width:29px;height:29px;font-size:10px}.upload-content,.results-content{padding:17px}.drop-zone{min-height:245px;padding:22px 12px}.upload-specs{font-size:9px}.upload-specs span{margin:0 3px}.consent{font-size:10px}.submit-note{font-size:9px}.privacy-line{font-size:9px;margin-bottom:25px;justify-content:flex-start}.section-label h2{font-size:14px}.section-label>span{display:none}.page-footer{flex-direction:column;gap:6px;font-size:9px}.page-footer>span:last-child{text-align:left;max-width:none}.info-details summary{font-size:11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Keep consent, limitations and operational feedback readable at every breakpoint. */
+.consent,.image-tip p,.results-footnote p,.privacy-line,.submit-note,.upload-specs,
+.steps p,.result-warnings,.score-note,.details-body p{font-size:12px;color:#586b83}
+.availability p,.card-heading p{font-size:12px}
+.availability strong,.steps h3,.image-tip strong{font-size:13px}
+.status-pill,.private-tag,.feedback-eyebrow,.result-metadata,.model-metadata,
+.request-progress p,figcaption,#file-detail,.page-footer{font-size:11px}
+.request-id{font-size:11px!important;color:#61738c!important}
+.consent{line-height:1.75}.consent input{width:17px;height:17px}
+.results-footnote{margin-top:20px}
+.availability .button{font-size:12px}
+.empty-results p{font-size:12px;color:#657b98}
+.button{font-size:13px}.button.small{font-size:12px}
+@media(max-width:640px){.card-heading p{font-size:11px}.availability{column-gap:10px}
+  .availability .button{margin-left:27px}.privacy-line{font-size:11px}
+  .upload-specs{font-size:11px}.page-footer{font-size:10px}}

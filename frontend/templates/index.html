@@ -63,7 +63,7 @@
               <div id="request-progress" class="request-progress" hidden><div class="progress-heading"><strong id="progress-label">Uploading image</strong><span id="progress-value"></span></div><progress id="upload-progress" max="100" value="0" aria-label="Image upload progress"></progress><p>Progress reflects the actual upload. Processing time depends on the service.</p></div>
               <div id="request-feedback" class="request-feedback" role="status" tabindex="-1" hidden><span class="feedback-eyebrow" id="feedback-eyebrow">SCREENING STATUS</span><h3 id="feedback-title"></h3><p id="feedback-copy"></p><p class="request-id" id="request-id"></p></div>
               <div id="prediction" hidden>
-                <p class="feedback-eyebrow">MODEL OUTPUT · RESEARCH ONLY</p><h3 class="predicted-class" id="predicted-class"></h3><p class="score-note">Uncalibrated model scores. These are not a diagnosis or estimates of clinical risk.</p>
+                <p class="feedback-eyebrow">MODEL OUTPUT · RESEARCH ONLY</p><h3 class="predicted-class" id="predicted-class" tabindex="-1"></h3><p class="score-note">Uncalibrated model scores. These are not a diagnosis or estimates of clinical risk.</p>
                 <ul class="scores" id="class-scores" aria-label="Scores by class"></ul>
                 <dl class="result-metadata"><div><dt>Model version</dt><dd id="result-model"></dd></div><div><dt>Input domain</dt><dd id="result-domain"></dd></div></dl>
                 <div class="explanation-note"><strong>Image explanation</strong><p id="explanation-copy">Grad-CAM is pending implementation and validation.</p></div>

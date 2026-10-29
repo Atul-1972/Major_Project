@@ -449,3 +449,15 @@ User requested pause here and start later on 2026-10-29. Saved partial Phase 7 d
 - Saved user-requested Phase 7 pause with browser verification and real-model dependencies clearly pending
 
 Next action: Wait for explicit user resumption. Then inspect Git and docs/phase-reports/phase-7.md, review the partial dashboard and verify root/static HTTP delivery, browser upload/preview/reset/consent/progress/cancel/error/unavailable flows, keyboard access and desktop/mobile layout without Node tooling. Resolve browser-test dependency access only after resuming; run appropriate repository checks and update guides/checklist with actual evidence. Keep real-model and Grad-CAM acceptance pending; Phase 8, mobile and deployment remain unapproved.
+
+## 2026-10-29T04:19:22.496049+00:00 — phase_7
+
+Status: awaiting_requirements
+
+Resumed approved Phase 7 on user request and delivered verified local dashboard preparation. Improved readable consent/limitations, result keyboard focus, cleared hidden result text on reset and stale model metadata on 503. Added root/static delivery and private-path checks plus repeatable Python CDP browser verifier with isolated synthetic fixtures. All 34 focused backend tests and all 115 repository tests passed; 39 Chrome checks passed including real API 503/animated-image 422, consent, upload progress, reset, cancel, timeout, errors and responsive widths. Dependency consistency, Python compilation and diff checks passed. Updated usage guides, approvals, phase/checklist/resume/decision records and evidence report. Temporary browser/server stopped. Training, real-model and scoped Grad-CAM acceptance remain pending; no Phase 8, mobile or deployment started.
+
+- Delivered responsive FastAPI-served dashboard with local preview, consent, actual request progress and honest model-unavailable feedback
+- Verified 39 Chrome browser checks, 34 backend tests, all 115 repository tests and dependency consistency
+- Delivered Phase 7 usage guide, repeatable Python browser verifier, evidence report and updated resume records
+
+Next action: Review the local dashboard using docs/PHASE_7.md. When college training results return, review actual E1-E4 GPU/recovery/evaluation evidence and the selected evaluated hybrid export, complete real-model backend acceptance, implement and validate scoped Grad-CAM, then verify real browser prediction/explanation flows within existing approvals. Keep Phases 3-7 evidence incomplete where pending; Phase 8, mobile and deployment require separate approval. Source-only backup must remain synchronized; private artifacts remain excluded.

@@ -8,7 +8,7 @@ Primary research reference: [Enhanced Skin Disease Classification via Dataset Re
 
 ## Current status
 
-Phase 2 is complete. The E1-E4 training package is ready for the college supercomputer; actual GPU training, metrics, explanation validation and a trained export remain pending. On 2026-10-28 the user approved **Phase 6 with training deferred**. The FastAPI backend now provides health/model metadata, bounded in-memory image validation, development API docs, and an export-loading adapter. With no verified evaluated model configured, predictions return **503 unavailable**. Backend real-model acceptance remains pending; dashboard and mobile work have not started. See [the backend guide](docs/PHASE_6.md) and [the full supercomputer package](docs/TRAINING_PACKAGE.md).
+Phase 2 is complete. The E1-E4 training package is ready for the college supercomputer; actual GPU training, metrics, explanation validation and a trained export remain pending. The user approved **Phase 7 with training deferred** on 2026-10-29. The local web dashboard now supports upload/preview, consent, actual request progress, cancellation, model status and safe unavailable/error feedback through FastAPI. With no verified evaluated model configured, predictions return **503 unavailable**. Real-model and Grad-CAM acceptance remain pending. See [the dashboard guide](docs/PHASE_7.md), [backend guide](docs/PHASE_6.md) and [full training package](docs/TRAINING_PACKAGE.md).
 
 Read the [Phase 2 report](docs/phase-reports/phase-2.md), [Phase 1 report](docs/phase-reports/phase-1.md), and [running checklist](docs/CHECKLIST.md).
 
@@ -29,8 +29,8 @@ The repository is `Desktop/Major Project/SkinDiseaseAI`. Run all commands from `
 ```text
 backend/app/          FastAPI application, upload checks and evaluated-export adapter
 backend/tests/        API and synthetic export-adapter verification
-frontend/templates/  Future HTML templates
-frontend/static/     Future CSS, browser JavaScript, and static assets
+frontend/templates/  Dashboard HTML served by FastAPI
+frontend/static/     Dashboard CSS, browser JavaScript and vector brand asset
 ai_model/            Dataset, training, evaluation, explanation, and model artifacts
 mobile_app/          Deferred-scope note only; no Flutter implementation
 tests/               Dataset, model, checkpoint, evaluation and export tests
@@ -66,14 +66,14 @@ For your own college login, start with the [supercomputer beginner guide](docs/S
 
 The current full E1-E4 deliverable is `artifacts/training-package/SkinDiseaseAI-all-models-training.zip`; follow [TRAINING_PACKAGE.md](docs/TRAINING_PACKAGE.md). It includes source/configs, original dataset archives/receipts, frozen manifests and both ImageNet caches. Extract on persistent college storage, run `bash setup_training.sh` once, then `bash run_training.sh` in a suitable GPU allocation. Scheduler-specific account/partition settings must come from the college. The training ZIP includes `START_HERE.md`; rerunning the launcher resumes saved epochs. Python/CUDA dependencies are installed separately for the target machine.
 
-To run the approved backend locally, from the repository root:
+To run the dashboard and API locally, from the repository root:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements/backend-test.txt
 .\.venv\Scripts\python.exe -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Open `http://127.0.0.1:8000/docs` for the API or `/health` for liveness. This is the backend, with no dashboard yet. Model inference remains unavailable until the returned export passes review and startup checks; see [Phase 6](docs/PHASE_6.md).
+Open **http://127.0.0.1:8000/** for the dashboard, `/docs` for the API, or `/health` for liveness. You can choose and preview an image now; analysis remains unavailable until an evaluated export is reviewed and configured. No image is sent before consent and submission. See [Phase 7](docs/PHASE_7.md) for usage and verification.
 
 The smaller E1-only Colab snapshot below is retained as an earlier alternative; it does not contain the new all-model suite.
 
@@ -83,4 +83,4 @@ Phase 3 commands and Colab instructions are in [the training guide](docs/PHASE_3
 python scripts/build_colab_bundle.py
 ```
 
-Phase 2 commands remain in [the data-preparation guide](docs/PHASE_2.md); preserve its frozen manifests. The dashboard remains a separately approved future phase. No evaluated skin-lesion model is included.
+Phase 2 commands remain in [the data-preparation guide](docs/PHASE_2.md); preserve its frozen manifests. Phase 8, deployment and mobile work require separate approval. No evaluated skin-lesion model is included.
