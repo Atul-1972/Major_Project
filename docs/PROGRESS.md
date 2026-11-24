@@ -523,3 +523,13 @@ Resumed SkinDiseaseAI on explicit user instruction on 2026-11-07. Reviewed repos
 - Resumed the project on 2026-11-07, reviewed the clean saved boundary and provided the local run command; Phase 8 remains awaiting explicit approval
 
 Next action: Continue existing Phase 7 scope or obtain explicit approval for the limited Phase 8 local QA/documentation/handover preparation ordering override in docs/phase-reports/phase-7.md. Preserve deferred Groq key setup and pending training, real-model and scoped Grad-CAM evidence; deployment and mobile remain unapproved.
+
+## 2026-11-24T13:15:20.934213+00:00 — phase_7
+
+Status: awaiting_approval
+
+Prepared user-requested account-continuity handover on 2026-11-24: docs/ACCOUNT_HANDOVER.md includes a paste-ready continuation prompt, phase boundary, pending evidence, local run instructions and private-backup guidance. Created ignored uploadable context text and source ZIP from reviewed source files, with SHA-256 manifest. ZIP integrity, source exclusions and archived checkpoint/document equality passed; refreshed eight local conversation archives. No application changes, application tests, training, provider activation or new phase started.
+
+- Prepared portable account-continuity context, reviewed source archive and continuation instructions without changing phase approvals
+
+Next action: Use artifacts/account-handover/SkinDiseaseAI-context.txt in the next account, or open this existing repository in an available IDE coding assistant and follow docs/ACCOUNT_HANDOVER.md. Inspect actual Git/state and remain within approved Phase 7; obtain explicit approval before Phase 8, deployment or mobile. Preserve deferred Groq setup and pending college training, evaluated-model and scoped Grad-CAM evidence.

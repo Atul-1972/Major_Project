@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "SkinDiseaseAI",
-  "updated_at": "2026-11-07T14:24:14.576464+00:00",
+  "updated_at": "2026-11-24T13:15:20.934213+00:00",
   "phase": "phase_7",
   "status": "awaiting_approval",
-  "summary": "Resumed SkinDiseaseAI on explicit user instruction on 2026-11-07. Reviewed repository instructions, requirements, phase plan, approvals, progress, checkpoint and clean Git status at d65f6ed. Registered the current local conversation archive and updated resumption records. Preserved Phase 7 authorization, deferred Groq setup and pending college training, real-model and scoped Grad-CAM acceptance. Provided the documented local Uvicorn run command when requested. Documentation diff whitespace check passed; no application changes, tests, training, live provider calls, server startup or deployment performed.",
-  "next_action": "Continue existing Phase 7 scope or obtain explicit approval for the limited Phase 8 local QA/documentation/handover preparation ordering override in docs/phase-reports/phase-7.md. Preserve deferred Groq key setup and pending training, real-model and scoped Grad-CAM evidence; deployment and mobile remain unapproved.",
+  "summary": "Prepared user-requested account-continuity handover on 2026-11-24: docs/ACCOUNT_HANDOVER.md includes a paste-ready continuation prompt, phase boundary, pending evidence, local run instructions and private-backup guidance. Created ignored uploadable context text and source ZIP from reviewed source files, with SHA-256 manifest. ZIP integrity, source exclusions and archived checkpoint/document equality passed; refreshed eight local conversation archives. No application changes, application tests, training, provider activation or new phase started.",
+  "next_action": "Use artifacts/account-handover/SkinDiseaseAI-context.txt in the next account, or open this existing repository in an available IDE coding assistant and follow docs/ACCOUNT_HANDOVER.md. Inspect actual Git/state and remain within approved Phase 7; obtain explicit approval before Phase 8, deployment or mobile. Preserve deferred Groq setup and pending college training, evaluated-model and scoped Grad-CAM evidence.",
   "completed": [
     "Created structured project directories and ignore rules",
     "Recorded SkinDiseaseAI requirements and deferred mobile work",
@@ -61,6 +61,7 @@
     "Resumed approved Phase 7 after the post-chatbot pause and verified local route availability and dependency consistency",
     "Recorded Groq as the selected chatbot provider with API-key setup and live activation deferred at user request",
     "Saved user-requested pause during the next-phase review; Phase 8 remains unstarted and unapproved",
-    "Resumed the project on 2026-11-07, reviewed the clean saved boundary and provided the local run command; Phase 8 remains awaiting explicit approval"
+    "Resumed the project on 2026-11-07, reviewed the clean saved boundary and provided the local run command; Phase 8 remains awaiting explicit approval",
+    "Prepared portable account-continuity context, reviewed source archive and continuation instructions without changing phase approvals"
   ]
 }
